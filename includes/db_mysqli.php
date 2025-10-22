@@ -30,8 +30,8 @@ class Db
     public $query_result = null;
     public $query_count = 0;
     public $query_time = 0;
-    public $query_array = array();
-    public $table_fields = array();
+    public $query_array = [];
+    public $table_fields = [];
 
     public function __construct($db_host, $db_user, $db_password = "", $db_name = "", $db_pconnect = 0)
     {
@@ -200,7 +200,7 @@ class Db
         if (!empty($this->table_fields[$table])) {
             return $this->table_fields[$table];
         }
-        $this->table_fields[$table] = array();
+        $this->table_fields[$table] = [];
         $result = $this->query("SHOW FIELDS FROM $table");
         while ($row = $this->fetch_array($result)) {
             $this->table_fields[$table][$row['Field']] = $row['Type'];

@@ -35,8 +35,8 @@ $site_template->template_extension = 'xml';
 @define('RSS_DEFAULT_ITEMS', 10);
 @define('RSS_MAX_ITEMS', 30);
 
-if (isset($HTTP_GET_VARS['items']) || isset($HTTP_POST_VARS['items'])) {
-  $num_items = (isset($HTTP_POST_VARS['items'])) ? intval($HTTP_POST_VARS['items']) : intval($HTTP_GET_VARS['items']);
+if (isset($_GET['items']) || isset($HTTP_POST_VARS['items'])) {
+  $num_items = (isset($HTTP_POST_VARS['items'])) ? intval($HTTP_POST_VARS['items']) : intval($_GET['items']);
   if (!$num_items) {
     $num_items = RSS_DEFAULT_ITEMS;
   }

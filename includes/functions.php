@@ -1417,12 +1417,12 @@ function get_php_version() {
 }
 
 function get_user_os() {
-  global $global_info, $HTTP_USER_AGENT, $HTTP_SERVER_VARS;
+  global $global_info, $HTTP_USER_AGENT;
   if (!empty($global_info['user_os'])) {
     return $global_info['user_os'];
   }
-  if (!empty($HTTP_SERVER_VARS['HTTP_USER_AGENT'])) {
-    $HTTP_USER_AGENT = $HTTP_SERVER_VARS['HTTP_USER_AGENT'];
+  if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+    $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
   }
   elseif (getenv("HTTP_USER_AGENT")) {
     $HTTP_USER_AGENT = getenv("HTTP_USER_AGENT");
@@ -1443,12 +1443,12 @@ function get_user_os() {
 }
 
 function get_browser_info() {
-  global $global_info, $HTTP_USER_AGENT, $HTTP_SERVER_VARS;
+  global $global_info, $HTTP_USER_AGENT;
   if (!empty($global_info['browser_agent'])) {
     return $global_info['browser_agent'];
   }
-  if (!empty($HTTP_SERVER_VARS['HTTP_USER_AGENT'])) {
-    $HTTP_USER_AGENT = $HTTP_SERVER_VARS['HTTP_USER_AGENT'];
+  if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+    $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
   }
   elseif (getenv("HTTP_USER_AGENT")) {
     $HTTP_USER_AGENT = getenv("HTTP_USER_AGENT");
@@ -1476,12 +1476,12 @@ function get_browser_info() {
 }
 
 function get_document_root() {
-  global $global_info, $DOCUMENT_ROOT, $HTTP_SERVER_VARS;
+  global $global_info, $DOCUMENT_ROOT;
   if (!empty($global_info['document_root'])) {
     return $global_info['document_root'];
   }
-  if (!empty($HTTP_SERVER_VARS['DOCUMENT_ROOT'])) {
-    $DOCUMENT_ROOT = $HTTP_SERVER_VARS['DOCUMENT_ROOT'];
+  if (!empty($_SERVER['DOCUMENT_ROOT'])) {
+    $DOCUMENT_ROOT = $_SERVER['DOCUMENT_ROOT'];
   }
   elseif (getenv("DOCUMENT_ROOT")) {
     $DOCUMENT_ROOT = getenv("DOCUMENT_ROOT");

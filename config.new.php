@@ -22,7 +22,7 @@
 
 date_default_timezone_set('CET');
 
-$db_servertype = "mysql";
+$db_servertype = "mysqli";
 $db_host = "";
 $db_name = "";
 $db_user = "";
