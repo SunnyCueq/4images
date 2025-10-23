@@ -27,8 +27,8 @@ include(ROOT_PATH.'global.php');
 require(ROOT_PATH.'includes/sessions.php');
 $user_access = get_permission();
 
-if (isset($HTTP_GET_VARS[URL_POSTCARD_ID]) || isset($_POST[URL_POSTCARD_ID])) {
-  $postcard_id = (isset($HTTP_GET_VARS[URL_POSTCARD_ID])) ? trim($HTTP_GET_VARS[URL_POSTCARD_ID]) : trim($_POST[URL_POSTCARD_ID]);
+if (isset($_GET[URL_POSTCARD_ID]) || isset($_POST[URL_POSTCARD_ID])) {
+  $postcard_id = (isset($_GET[URL_POSTCARD_ID])) ? trim($_GET[URL_POSTCARD_ID]) : trim($_POST[URL_POSTCARD_ID]);
 }
 else {
   $postcard_id = 0;
@@ -38,7 +38,7 @@ if ($action == "") {
   $action = ($postcard_id) ? "showcard" : "createcard";
 }
 
-if (isset($HTTP_GET_VARS['modifycard']) || isset($_POST['modifycard'])) {
+if (isset($_GET['modifycard']) || isset($_POST['modifycard'])) {
   $action = "modifycard";
 }
 

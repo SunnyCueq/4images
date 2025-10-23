@@ -48,8 +48,8 @@ if ($action == "") {
     $action = "modifybackups";
 }
 
-if (isset($HTTP_GET_VARS['file']) || isset($_POST['file'])) {
-    $file = (isset($HTTP_GET_VARS['file'])) ? get_basefile(trim($HTTP_GET_VARS['file'])) : get_basefile(trim($_POST['file']));
+if (isset($_GET['file']) || isset($_POST['file'])) {
+    $file = (isset($_GET['file'])) ? get_basefile(trim($_GET['file'])) : get_basefile(trim($_POST['file']));
     if (0 !== stripos(realpath(ROOT_PATH.DATABASE_DIR."/".$file), realpath(ROOT_PATH.DATABASE_DIR))) {
         $file = "";
     };

@@ -100,14 +100,13 @@ class Session
         $cookie_expire = ($permanent) ? $this->current_time + 60 * 60 * 24 * 365 : 0;
         $cookie_name = COOKIE_NAME.$name;
         setcookie($cookie_name, $value, $cookie_expire, COOKIE_PATH, COOKIE_DOMAIN, COOKIE_SECURE);
-        $HTTP_COOKIE_VARS[$cookie_name] = $value;
+        $_COOKIE[$cookie_name] = $value;
     }
 
     public function read_cookie_data($name)
     {
-        global $HTTP_COOKIE_VARS;
         $cookie_name = COOKIE_NAME.$name;
-        return (isset($HTTP_COOKIE_VARS[$cookie_name])) ? $HTTP_COOKIE_VARS[$cookie_name] : false;
+        return (isset($_COOKIE[$cookie_name])) ? $_COOKIE[$cookie_name] : false;
     }
 
     public function get_session_id()
@@ -385,8 +384,7 @@ class Session
 
     public function get_user_ip()
     {
-        global $HTTP_SERVER_VARS, $HTTP_ENV_VARS;
-        $ip = (!empty($HTTP_SERVER_VARS['REMOTE_ADDR'])) ? $HTTP_SERVER_VARS['REMOTE_ADDR'] : ((!empty($HTTP_ENV_VARS['REMOTE_ADDR'])) ? $HTTP_ENV_VARS['REMOTE_ADDR'] : getenv("REMOTE_ADDR"));
+        $ip = (!empty($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : ((!empty($_ENV['REMOTE_ADDR'])) ? $_ENV['REMOTE_ADDR'] : getenv("REMOTE_ADDR"));
         $ip = preg_replace("/[^\.0-9]+/", "", $ip);
         return substr($ip, 0, 50);
     }

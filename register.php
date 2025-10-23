@@ -302,7 +302,7 @@ if ($action == "activate") {
             WHERE (".get_user_table_field("", "user_lastaction")." < $expiry) AND ".get_user_table_field("", "user_level")." = ".USER_AWAITING;
     $site_db->query($sql);
   }
-  if (!isset($HTTP_GET_VARS['activationkey'])){
+  if (!isset($_GET['activationkey'])){
     $msg = $lang['missing_activationkey'];
   }
   else {
@@ -310,7 +310,7 @@ if ($action == "activate") {
       show_error_page($lang['no_permission']);
       exit;
     }
-    $activationkey = trim($HTTP_GET_VARS['activationkey']);
+    $activationkey = trim($_GET['activationkey']);
     $sql = "SELECT ".get_user_table_field("", "user_name").get_user_table_field(", ", "user_email").get_user_table_field(", ", "user_activationkey")."
             FROM ".USERS_TABLE."
             WHERE ".get_user_table_field("", "user_activationkey")." = '$activationkey'";

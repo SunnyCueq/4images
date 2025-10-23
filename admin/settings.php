@@ -234,8 +234,8 @@ if ($action == "updatesettings") {
 }
 
 if ($action == "modifysettings") {
-  if (isset($HTTP_GET_VARS['settings_msg'])) {
-    printf("<b>%s</b><p>", trim($HTTP_GET_VARS['settings_msg']));
+  if (isset($_GET['settings_msg'])) {
+    printf("<b>%s</b><p>", trim($_GET['settings_msg']));
   }
   elseif (!empty($msg)) {
     echo $msg;

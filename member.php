@@ -38,8 +38,8 @@ $txt_clickstream = "";
 
 $sendprocess = 0;
 
-if (isset($HTTP_GET_VARS[URL_COMMENT_ID]) || isset($_POST[URL_COMMENT_ID])) {
-  $comment_id = (isset($HTTP_GET_VARS[URL_COMMENT_ID])) ? intval($HTTP_GET_VARS[URL_COMMENT_ID]) : intval($_POST[URL_COMMENT_ID]);
+if (isset($_GET[URL_COMMENT_ID]) || isset($_POST[URL_COMMENT_ID])) {
+  $comment_id = (isset($_GET[URL_COMMENT_ID])) ? intval($_GET[URL_COMMENT_ID]) : intval($_POST[URL_COMMENT_ID]);
 }
 else {
   $comment_id = 0;
@@ -854,8 +854,8 @@ if ($action == "emailuser") {
 
 if ($action == "mailform") {
   $txt_clickstream = $lang['profile'];
-  if (isset($HTTP_GET_VARS[URL_USER_ID]) || isset($_POST[URL_USER_ID])) {
-    $user_id = (isset($HTTP_GET_VARS[URL_USER_ID])) ? intval($HTTP_GET_VARS[URL_USER_ID]) : intval($_POST[URL_USER_ID]);
+  if (isset($_GET[URL_USER_ID]) || isset($_POST[URL_USER_ID])) {
+    $user_id = (isset($_GET[URL_USER_ID])) ? intval($_GET[URL_USER_ID]) : intval($_POST[URL_USER_ID]);
     if (!$user_id) {
       $user_id = GUEST;
     }
@@ -903,8 +903,8 @@ if ($action == "mailform") {
 //-----------------------------------------------------
 if ($action == "showprofile") {
   $txt_clickstream = $lang['profile'];
-  if (isset($HTTP_GET_VARS[URL_USER_ID]) || isset($_POST[URL_USER_ID])) {
-    $user_id = (isset($HTTP_GET_VARS[URL_USER_ID])) ? intval($HTTP_GET_VARS[URL_USER_ID]) : intval($_POST[URL_USER_ID]);
+  if (isset($_GET[URL_USER_ID]) || isset($_POST[URL_USER_ID])) {
+    $user_id = (isset($_GET[URL_USER_ID])) ? intval($_GET[URL_USER_ID]) : intval($_POST[URL_USER_ID]);
     if (!$user_id) {
       $user_id = GUEST;
     }
