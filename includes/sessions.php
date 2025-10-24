@@ -82,7 +82,10 @@ class Session
         $this->user_location = $this->get_user_location();
         $this->current_time = time();
 
+        // SESSION_KEY is optionally defined in config.php for enhanced security
+        /** @phpstan-ignore-next-line */
         if (defined('SESSION_KEY') && SESSION_KEY != '') {
+            /** @phpstan-ignore-next-line */
             $this->session_key = SESSION_KEY;
         } else {
             $this->session_key = md5('4images' . realpath(ROOT_PATH));
@@ -278,6 +281,8 @@ class Session
     {
         $register_globals = strtolower(@ini_get('register_globals'));
         if ($register_globals && $register_globals != "off" && $register_globals != "false") {
+            // session_register() removed in PHP 5.4+ - this code path never executes on modern PHP
+            /** @phpstan-ignore-next-line */
             session_register($this->session_key);
 
             if (!isset($GLOBALS[$this->session_key])) {

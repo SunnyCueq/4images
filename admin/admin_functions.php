@@ -276,6 +276,8 @@ function show_admin_footer() {
     $gzip_contents = ob_get_contents();
     ob_end_clean();
 
+    // PRINT_STATS is an optional debug constant
+    /** @phpstan-ignore-next-line */
     if (defined("PRINT_STATS") && PRINT_STATS == 1){
       $s = sprintf ("<!-- Use Encoding:         %s -->\n", $encoding);
       $s .= sprintf("<!-- Not compress length:  %s -->\n", strlen($gzip_contents));
