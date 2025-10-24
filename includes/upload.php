@@ -59,6 +59,12 @@ class Upload {
   var $image_size = 0;
   var $image_size_ok = 0;
   var $lang = array();
+  
+  // Dynamic properties set during upload process
+  var $upload_file;          // Temporary upload file path
+  var $name;                 // File name without extension
+  var $mime_type;            // MIME type of uploaded file
+  var $HTTP_POST_FILES;      // $_FILES array reference
 
   function __construct() {
     global $config, $lang;

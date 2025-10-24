@@ -19,6 +19,10 @@
  *    (Licence.txt) for further information.                              *
  *                                                                        *
  *************************************************************************/
+
+// PHPDoc type hints for optional constants (defined in config.php or fallback generated)
+/** @var string SESSION_KEY Optional session encryption key from config.php */
+
 if (!defined('ROOT_PATH')) {
     die("Security violation");
 }
