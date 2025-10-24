@@ -310,7 +310,7 @@ CREATE TABLE 4images_users (
   user_icq varchar(20) NOT NULL default '',
   PRIMARY KEY  (user_id),
   KEY user_lastaction (user_lastaction),
-  KEY user_name (user_name)
+  KEY user_name (user_name(191))
 ) ENGINE=MyISAM;
 
 #
