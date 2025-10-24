@@ -216,7 +216,7 @@ CREATE TABLE 4images_sessionvars (
 
 #DROP TABLE IF EXISTS 4images_settings;
 CREATE TABLE 4images_settings (
-  setting_name varchar(255) NOT NULL default '',
+  setting_name varchar(191) NOT NULL default '',
   setting_value mediumtext NOT NULL,
   PRIMARY KEY  (setting_name)
 ) ENGINE=MyISAM;
