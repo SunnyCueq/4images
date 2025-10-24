@@ -21,7 +21,7 @@
  *************************************************************************/
 
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
-set_magic_quotes_runtime(0);
+// set_magic_quotes_runtime(0); // Removed in PHP 7.0+
 define('ROOT_PATH', './');
 
 if (isset($_GET['action']) || isset($_POST['action'])) {

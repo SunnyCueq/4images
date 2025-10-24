@@ -20,7 +20,8 @@
  *                                                                        *
  *************************************************************************/
 
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+error_reporting(E_ALL & ~E_DEPRECATED); // E_STRICT removed in PHP 8.0+
+ini_set('display_errors', 1); // Show errors during installation
 
 define('ROOT_PATH', './');
 include_once(ROOT_PATH.'includes/functions.php');
