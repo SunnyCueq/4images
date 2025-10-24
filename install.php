@@ -209,10 +209,22 @@ if ($action == "startinstall") {
 <?php
     $error_log = [];
         $error_msg = "";
-        include(ROOT_PATH.'includes/db_'.strtolower($db_servertype).'.php');
-        $site_db = new Db($db_host, $db_user, $db_password, $db_name);
-        if (!$site_db->connection) {
-            $error_log[] = "No connection to database!";
+        
+        // Try database connection with error handling
+        try {
+            include(ROOT_PATH.'includes/db_'.strtolower($db_servertype).'.php');
+            $site_db = new Db($db_host, $db_user, $db_password, $db_name);
+            if (!$site_db->connection) {
+                $error_log[] = "No connection to database!";
+            }
+        } catch (Exception $e) {
+            $error_log[] = "<b>Database Connection Error:</b><br>" . 
+                          "Could not connect to database server.<br>" .
+                          "Please check your database credentials:<br>" .
+                          "- Host: <b>$db_host</b><br>" .
+                          "- Database: <b>$db_name</b><br>" .
+                          "- User: <b>$db_user</b><br><br>" .
+                          "Error message: " . htmlspecialchars($e->getMessage());
         }
         //$site_db->no_error = 1;
 
