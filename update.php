@@ -35,13 +35,18 @@ require(ROOT_PATH.'includes/sessions.php');
 // Initialize database connection
 $site_db = new Db($db_host, $db_user, $db_password, $db_name);
 
+// Check if connected successfully
+if (!$site_db->connection) {
+    die('<h1>Database Error</h1><p>Could not connect to database. Please check your config.php settings.</p>');
+}
+
 // Initialize session
+$site_session = new Session();
 $user_info = $site_session->return_user_info();
 
-// Check if user is logged in as admin
-$user_access = ($user_info['user_level'] != GUEST) ? $user_info['user_level'] : 0;
-if ($user_access < ADMIN) {
-    die("<h1>Access Denied</h1><p>You must be logged in as administrator to run this update.</p><p><a href=\"".ROOT_PATH."admin/\">Go to Admin Login</a></p>");
+// Simple admin check - no complex permissions needed
+if (!isset($user_info['user_level']) || $user_info['user_level'] != ADMIN) {
+    die("<h1>Access Denied</h1><p>You must be logged in as administrator to run this update.</p><p><a href=\"".ROOT_PATH."admin/index.php\">Go to Admin Login</a></p>");
 }
 
 $updates_performed = array();
