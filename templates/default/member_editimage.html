@@ -1,37 +1,53 @@
 <form method="post" action="{url_member}" onsubmit="uploadbutton.disabled=true;">
   <input type="hidden" name="action" value="updateimage" />
   <input type="hidden" name="image_id" value="{image_id}" />
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_edit_image}</td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_image_name}</b></td>
-            <td class="row2"> 
-              <input type="text" name="image_name"  size="30" value="{image_name}" class="input" />
-            </td>
-          </tr>
-          <tr> 
-            <td class="row1" valign="top"><b>{lang_description}</b></td>
-            <td class="row1"> 
-              <textarea name="image_description" cols="30" rows="10" wrap="virtual" class="textarea">{image_description}</textarea>
-            </td>
-          </tr>
-          <tr> 
-            <td class="row2" valign="top"><b>{lang_keywords}</b></td>
-            <td class="row2"> 
-              <textarea name="image_keywords" cols="30" rows="10" wrap="virtual" class="textarea">{image_keywords}</textarea>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <p align="center"> 
-    <input type="submit" name="uploadbutton" value="{lang_submit}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
+  
+  <div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+      <h2 class="h5 mb-0">
+        <i class="fa-solid fa-pen-to-square me-2"></i>{lang_edit_image}
+      </h2>
+    </div>
+    <div class="card-body">
+      
+      <!-- Image Name -->
+      <div class="mb-3 row">
+        <label for="image_name" class="col-sm-3 col-form-label fw-bold">
+          <i class="fa-solid fa-heading me-1"></i>{lang_image_name}
+        </label>
+        <div class="col-sm-9">
+          <input type="text" name="image_name" id="image_name" class="form-control" value="{image_name}" required>
+        </div>
+      </div>
+      
+      <!-- Description -->
+      <div class="mb-3 row">
+        <label for="image_description" class="col-sm-3 col-form-label fw-bold align-self-start">
+          <i class="fa-solid fa-align-left me-1"></i>{lang_description}
+        </label>
+        <div class="col-sm-9">
+          <textarea name="image_description" id="image_description" class="form-control" rows="8">{image_description}</textarea>
+        </div>
+      </div>
+      
+      <!-- Keywords -->
+      <div class="mb-3 row">
+        <label for="image_keywords" class="col-sm-3 col-form-label fw-bold align-self-start">
+          <i class="fa-solid fa-tags me-1"></i>{lang_keywords}
+        </label>
+        <div class="col-sm-9">
+          <textarea name="image_keywords" id="image_keywords" class="form-control" rows="5">{image_keywords}</textarea>
+        </div>
+      </div>
+      
+    </div>
+    <div class="card-footer bg-light text-center">
+      <button type="submit" name="uploadbutton" class="btn btn-info btn-lg me-2">
+        <i class="fa-solid fa-floppy-disk me-2"></i>{lang_submit}
+      </button>
+      <button type="reset" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-rotate-left me-2"></i>{lang_reset}
+      </button>
+    </div>
+  </div>
 </form>
