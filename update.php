@@ -28,7 +28,7 @@ include_once(ROOT_PATH.'global.php');
 include_once(ROOT_PATH.'includes/sessions.php');
 
 // Check if user is logged in as admin
-$user_info = $site_session->return_user_info();
+$user_info = $site_sess->return_user_info();
 if (!isset($user_info['user_level']) || $user_info['user_level'] != ADMIN) {
     die("<h1>Access Denied</h1><p>You must be logged in as administrator to run this update.</p><p><a href=\"".ROOT_PATH."admin/index.php\">Go to Admin Login</a></p>");
 }
