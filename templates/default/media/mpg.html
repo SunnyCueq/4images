@@ -1,2 +1,7 @@
 <!-- Template file for MPEG Movies -->
-<embed src="{media_src}" border="0" width="240" height="240" type="application/x-mplayer2"></embed><br />
+<div class="ratio ratio-16x9">
+  <video controls preload="metadata">
+    <source src="{media_src}" type="video/mpeg">
+    Your browser does not support the video element.
+  </video>
+</div>

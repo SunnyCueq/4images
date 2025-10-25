@@ -1,3 +1,10 @@
-<!-- Template file for AIFF Audio Files --> 
-<embed src="{media_src}" type="audio/aiff" hidden="true" autostart="true" loop="true" height="1" width="1"></embed>
-{media_icon}<br />
+<!-- Template file for AIFF Audio Files -->
+<div class="card">
+  <div class="card-body text-center">
+    <i class="fa-solid fa-file-audio fa-3x text-warning mb-3"></i>
+    <audio controls class="w-100" preload="metadata">
+      <source src="{media_src}" type="audio/aiff">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+</div>
