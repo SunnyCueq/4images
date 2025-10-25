@@ -1,30 +1,27 @@
-<table width="100%" border="0" cellspacing="0" cellpadding="1">
-  <tr> 
-    <td valign="top" class="head1"> 
-      <table width="100%" border="0" cellpadding="4" cellspacing="0">
-        <tr> 
-          <td valign="top" class="head1">{lang_agreement}</td>
-        </tr>
-        <tr> 
-          <td class="row2">{lang_agreement_terms}</td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-<br />
-<table border="0" cellspacing="1" cellpadding="1" align="center">
-  <tr>
-    <td>
-      <form method="post" action="{url_register}">
-	    <input type="hidden" name="action" value="register" />
-        <input type="submit" value="{lang_agree}" class="button" />
-      </form>
-	</td>
-    <td>
-      <form method="post" action="{url_home}">
-        <input type="submit" value="{lang_agree_not}" class="button" />
-      </form>
-    </td>
-  </tr>
-</table>
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-warning text-dark">
+    <h2 class="h5 mb-0">
+      <i class="fa-solid fa-file-contract me-2"></i>{lang_agreement}
+    </h2>
+  </div>
+  <div class="card-body">
+    <div class="p-3 border rounded bg-light" style="max-height: 400px; overflow-y: auto;">
+      {lang_agreement_terms}
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center gap-3">
+  <form method="post" action="{url_register}" class="d-inline">
+    <input type="hidden" name="action" value="register" />
+    <button type="submit" class="btn btn-success btn-lg">
+      <i class="fa-solid fa-check-circle me-2"></i>{lang_agree}
+    </button>
+  </form>
+  
+  <form method="post" action="{url_home}" class="d-inline">
+    <button type="submit" class="btn btn-danger btn-lg">
+      <i class="fa-solid fa-times-circle me-2"></i>{lang_agree_not}
+    </button>
+  </form>
+</div>

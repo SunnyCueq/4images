@@ -1,52 +1,77 @@
-{lang_register_msg}<br><br>
+<div class="alert alert-info mb-4">
+  <i class="fa-solid fa-circle-info me-2"></i>{lang_register_msg}
+</div>
+
 <form method="POST" action="{url_register}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr>
-      <td valign="top" class="head1">
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr>
-            <td colspan="2" valign="top" class="head1">{lang_register}</td>
-          </tr>
-          <tr>
-            <td class="row1"><b>{lang_user_name}</b></td>
-            <td class="row1">
-              <input type="text" name="user_name" size="30" value="{user_name}" class="input" />
-            </td>
-          </tr>
-          <tr>
-            <td class="row2"><b>{lang_password}</b></td>
-            <td class="row2">
-              <input type="password" name="user_password" size="30" class="input" />
-            </td>
-          </tr>
-          <tr>
-            <td class="row1"><b>{lang_email}</b></td>
-            <td class="row1">
-              <input type="text" name="user_email" size="30" class="input" value="{user_email}" />
-            </td>
-          </tr>
-          {if captcha_registration}
-          <tr>
-            <td class="row1" valign="top"><b>{lang_captcha}</b></td>
-            <td class="row1">
-						  <a href="javascript:new_captcha_image();"><img src="{url_captcha_image}" border="0" alt="" id="captcha_image" /></a> <br>
-              <input type="text" name="captcha" size="30" value="" class="captchainput" id="captcha_input" />
-              <br>
-              <table cellpadding="0" cellspacing="0" width="210">
-                            <tr>
-                                <td>{lang_captcha_desc}</td>
-                            </tr>
-                        </table>
-						</td>
-          </tr>
-          {endif captcha_registration}
-        </table>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="action" value="register" />
-  <p align="center">
-    <input type="submit" value="{lang_submit}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h2 class="h5 mb-0">
+        <i class="fa-solid fa-user-plus me-2"></i>{lang_register}
+      </h2>
+    </div>
+    <div class="card-body">
+      
+      <!-- Username -->
+      <div class="mb-3 row">
+        <label for="user_name" class="col-sm-3 col-form-label fw-bold">
+          <i class="fa-solid fa-user me-1"></i>{lang_user_name}
+        </label>
+        <div class="col-sm-9">
+          <input type="text" name="user_name" id="user_name" class="form-control" value="{user_name}" required>
+        </div>
+      </div>
+      
+      <!-- Password -->
+      <div class="mb-3 row">
+        <label for="user_password" class="col-sm-3 col-form-label fw-bold">
+          <i class="fa-solid fa-lock me-1"></i>{lang_password}
+        </label>
+        <div class="col-sm-9">
+          <input type="password" name="user_password" id="user_password" class="form-control" required>
+        </div>
+      </div>
+      
+      <!-- Email -->
+      <div class="mb-3 row">
+        <label for="user_email" class="col-sm-3 col-form-label fw-bold">
+          <i class="fa-solid fa-envelope me-1"></i>{lang_email}
+        </label>
+        <div class="col-sm-9">
+          <input type="email" name="user_email" id="user_email" class="form-control" value="{user_email}" required>
+        </div>
+      </div>
+      
+      <!-- CAPTCHA -->
+      {if captcha_registration}
+      <div class="mb-3 row">
+        <label for="captcha_input" class="col-sm-3 col-form-label fw-bold">
+          <i class="fa-solid fa-shield-halved me-1"></i>{lang_captcha}
+        </label>
+        <div class="col-sm-9">
+          <div class="mb-2">
+            <a href="javascript:new_captcha_image();" class="d-inline-block">
+              <img src="{url_captcha_image}" border="1" id="captcha_image" alt="CAPTCHA" class="img-thumbnail">
+            </a>
+            <button type="button" onclick="new_captcha_image();" class="btn btn-sm btn-outline-secondary ms-2">
+              <i class="fa-solid fa-arrows-rotate"></i> Neu laden
+            </button>
+          </div>
+          <input type="text" name="captcha" id="captcha_input" class="form-control" placeholder="Code eingeben" required>
+          <div class="form-text">{lang_captcha_desc}</div>
+        </div>
+      </div>
+      {endif captcha_registration}
+      
+    </div>
+    
+    <div class="card-footer bg-light text-center">
+      <input type="hidden" name="action" value="register" />
+      <button type="submit" class="btn btn-success btn-lg me-2">
+        <i class="fa-solid fa-check me-2"></i>{lang_submit}
+      </button>
+      <button type="reset" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-rotate-left me-2"></i>{lang_reset}
+      </button>
+    </div>
+  </div>
 </form>
