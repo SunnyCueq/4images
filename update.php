@@ -35,6 +35,69 @@ $updates_performed = array();
 $errors = array();
 
 // ============================================================================
+// UPDATE 0: Delete old/removed files
+// ============================================================================
+$files_to_delete = array(
+    'admin/backup.php',
+    'postcards.php',
+    'update_1.0_to_1.5.php',
+    'update_1.5_to_1.6.php',
+    'update_1.6.1_to_1.7.php',
+    'update_RC-1_to_RC-2.php'
+);
+
+$dirs_to_delete = array(
+    'templates/default_960px',
+    'templates/default_full'
+);
+
+// Delete files
+foreach ($files_to_delete as $file) {
+    $filepath = ROOT_PATH . $file;
+    if (file_exists($filepath)) {
+        if (unlink($filepath)) {
+            $updates_performed[] = "✅ Deleted: $file";
+        } else {
+            $errors[] = "❌ Failed to delete: $file (check permissions)";
+        }
+    } else {
+        $updates_performed[] = "ℹ️ Already removed: $file";
+    }
+}
+
+// Delete directories (recursive)
+function deleteDirectory($dir) {
+    if (!file_exists($dir)) {
+        return true;
+    }
+    if (!is_dir($dir)) {
+        return unlink($dir);
+    }
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+    }
+    return rmdir($dir);
+}
+
+foreach ($dirs_to_delete as $dir) {
+    $dirpath = ROOT_PATH . $dir;
+    if (file_exists($dirpath)) {
+        if (deleteDirectory($dirpath)) {
+            $updates_performed[] = "✅ Deleted directory: $dir";
+        } else {
+            $errors[] = "❌ Failed to delete directory: $dir (check permissions)";
+        }
+    } else {
+        $updates_performed[] = "ℹ️ Already removed: $dir";
+    }
+}
+
+// ============================================================================
 // UPDATE 1: Change template_dir from default_960px to default
 // ============================================================================
 $result = $site_db->query("SELECT setting_value FROM ".SETTINGS_TABLE." WHERE setting_name = 'template_dir'");
@@ -200,13 +263,14 @@ if ($site_db->get_numrows($result) > 0) {
 
         <h2>📝 What Changed:</h2>
         <div class="info">
-            <strong>Removed Systems:</strong>
+            <strong>Files Automatically Deleted:</strong>
             <ul>
-                <li>❌ Backup System (<code>admin/backup.php</code>)</li>
-                <li>❌ Postcard System (<code>postcards.php</code>)</li>
-                <li>❌ Old Templates (<code>default_960px</code>, <code>default_full</code>)</li>
-                <li>❌ Old Update Scripts (<code>update_1.0_to_*.php</code>)</li>
+                <li>❌ Backup System: <code>admin/backup.php</code></li>
+                <li>❌ Postcard System: <code>postcards.php</code></li>
+                <li>❌ Old Templates: <code>templates/default_960px/</code>, <code>templates/default_full/</code></li>
+                <li>❌ Old Update Scripts: <code>update_1.0_to_1.5.php</code>, <code>update_1.5_to_1.6.php</code>, etc.</li>
             </ul>
+            <p><strong>Note:</strong> These files are automatically removed by this script.</p>
         </div>
 
         <div class="warning">
