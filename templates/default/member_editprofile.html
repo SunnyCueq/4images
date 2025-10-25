@@ -1,95 +1,177 @@
-{lang_edit_profile_msg}<br />
-<br><form method="post" action="{url_member}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_profile_of} {user_name}</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_email}</b></td>
-            <td class="row1"><input type="text" name="user_email"  size="30" value="{user_email}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_email_confirm}</b></td>
-            <td class="row2"><input type="text" name="user_email2"  size="30" value="{user_email2}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_show_email}</b></td>
-            <td class="row1"> 
-              <input type="radio" name="user_showemail" value="1" {user_showemail_yes} />
-              {lang_yes}&nbsp;&nbsp;&nbsp; 
-              <input type="radio" name="user_showemail" value="0" {user_showemail_no} />
-              {lang_no}</td>
-          </tr>
-		  <tr> 
-            <td class="row2"><b>{lang_allow_emails}</b></td>
-            <td class="row2"> 
-              <input type="radio" name="user_allowemails" value="1" {user_allowemails_yes} />
-              {lang_yes}&nbsp;&nbsp;&nbsp; 
-              <input type="radio" name="user_allowemails" value="0" {user_allowemails_no} />
-              {lang_no}
-			</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_invisible}</b></td>
-            <td class="row1"> 
-              <input type="radio" name="user_invisible" value="1" {user_invisible_yes} />
-              {lang_yes}&nbsp;&nbsp;&nbsp; 
-              <input type="radio" name="user_invisible" value="0" {user_invisible_no} />
-              {lang_no}
-			</td>
-          </tr>
-          <tr> 
-            <td colspan="2" class="head1">{lang_optional_infos}</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_homepage}</b></td>
-            <td class="row1"><input type="text" name="user_homepage"  size="30" value="{user_homepage}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_icq}</b></td>
-            <td class="row2"><input type="text" name="user_icq"  size="30" value="{user_icq}" class="input" /></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="action" value="updateprofile" />
-  <p align="center"> 
-    <input type="submit" value="{lang_save}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
-</form>
-<br />
+<div class="alert alert-info mb-4">
+  <i class="fa-solid fa-circle-info me-2"></i>{lang_edit_profile_msg}
+</div>
+
+<!-- Edit Profile Form -->
 <form method="post" action="{url_member}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_change_password}</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_old_password}</b></td>
-            <td class="row1"><input type="password" name="current_user_password" size="30" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_new_password}</b></td>
-            <td class="row2"><input type="password" name="user_password" size="30" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_new_password_confirm}</b></td>
-            <td class="row1"><input type="password" name="user_password2" size="30" class="input" /></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="action" value="updatepassword" />
-  <p align="center"> 
-    <input type="submit" value="{lang_change_password}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      <h2 class="h5 mb-0">
+        <i class="fa-solid fa-user-pen me-2"></i>{lang_profile_of} {user_name}
+      </h2>
+    </div>
+    <div class="card-body">
+      
+      <!-- Email -->
+      <div class="mb-3 row">
+        <label for="user_email" class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-envelope me-1"></i>{lang_email}
+        </label>
+        <div class="col-sm-8">
+          <input type="email" name="user_email" id="user_email" class="form-control" value="{user_email}">
+        </div>
+      </div>
+      
+      <!-- Email Confirm -->
+      <div class="mb-3 row">
+        <label for="user_email2" class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-envelope-circle-check me-1"></i>{lang_email_confirm}
+        </label>
+        <div class="col-sm-8">
+          <input type="email" name="user_email2" id="user_email2" class="form-control" value="{user_email2}">
+        </div>
+      </div>
+      
+      <!-- Show Email -->
+      <div class="mb-3 row">
+        <label class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-eye me-1"></i>{lang_show_email}
+        </label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input type="radio" name="user_showemail" value="1" class="form-check-input" id="showemail_yes" {user_showemail_yes}>
+            <label class="form-check-label" for="showemail_yes">{lang_yes}</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="user_showemail" value="0" class="form-check-input" id="showemail_no" {user_showemail_no}>
+            <label class="form-check-label" for="showemail_no">{lang_no}</label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Allow Emails -->
+      <div class="mb-3 row">
+        <label class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-paper-plane me-1"></i>{lang_allow_emails}
+        </label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input type="radio" name="user_allowemails" value="1" class="form-check-input" id="allowemails_yes" {user_allowemails_yes}>
+            <label class="form-check-label" for="allowemails_yes">{lang_yes}</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="user_allowemails" value="0" class="form-check-input" id="allowemails_no" {user_allowemails_no}>
+            <label class="form-check-label" for="allowemails_no">{lang_no}</label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Invisible -->
+      <div class="mb-4 row">
+        <label class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-user-secret me-1"></i>{lang_invisible}
+        </label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input type="radio" name="user_invisible" value="1" class="form-check-input" id="invisible_yes" {user_invisible_yes}>
+            <label class="form-check-label" for="invisible_yes">{lang_yes}</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="user_invisible" value="0" class="form-check-input" id="invisible_no" {user_invisible_no}>
+            <label class="form-check-label" for="invisible_no">{lang_no}</label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Optional Infos Header -->
+      <div class="border-top pt-4 mb-3">
+        <h3 class="h6 text-muted">
+          <i class="fa-solid fa-circle-info me-2"></i>{lang_optional_infos}
+        </h3>
+      </div>
+      
+      <!-- Homepage -->
+      <div class="mb-3 row">
+        <label for="user_homepage" class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-globe me-1"></i>{lang_homepage}
+        </label>
+        <div class="col-sm-8">
+          <input type="url" name="user_homepage" id="user_homepage" class="form-control" value="{user_homepage}" placeholder="https://">
+        </div>
+      </div>
+      
+      <!-- ICQ -->
+      <div class="mb-3 row">
+        <label for="user_icq" class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-brands fa-yahoo me-1"></i>{lang_icq}
+        </label>
+        <div class="col-sm-8">
+          <input type="text" name="user_icq" id="user_icq" class="form-control" value="{user_icq}">
+        </div>
+      </div>
+      
+    </div>
+    <div class="card-footer bg-light text-center">
+      <input type="hidden" name="action" value="updateprofile" />
+      <button type="submit" class="btn btn-primary btn-lg me-2">
+        <i class="fa-solid fa-floppy-disk me-2"></i>{lang_save}
+      </button>
+      <button type="reset" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-rotate-left me-2"></i>{lang_reset}
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- Change Password Form -->
+<form method="post" action="{url_member}">
+  <div class="card shadow-sm">
+    <div class="card-header bg-warning text-dark">
+      <h2 class="h5 mb-0">
+        <i class="fa-solid fa-key me-2"></i>{lang_change_password}
+      </h2>
+    </div>
+    <div class="card-body">
+      
+      <!-- Old Password -->
+      <div class="mb-3 row">
+        <label for="current_user_password" class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-lock-open me-1"></i>{lang_old_password}
+        </label>
+        <div class="col-sm-8">
+          <input type="password" name="current_user_password" id="current_user_password" class="form-control">
+        </div>
+      </div>
+      
+      <!-- New Password -->
+      <div class="mb-3 row">
+        <label for="user_password" class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-lock me-1"></i>{lang_new_password}
+        </label>
+        <div class="col-sm-8">
+          <input type="password" name="user_password" id="user_password" class="form-control">
+        </div>
+      </div>
+      
+      <!-- New Password Confirm -->
+      <div class="mb-3 row">
+        <label for="user_password2" class="col-sm-4 col-form-label fw-bold">
+          <i class="fa-solid fa-shield-halved me-1"></i>{lang_new_password_confirm}
+        </label>
+        <div class="col-sm-8">
+          <input type="password" name="user_password2" id="user_password2" class="form-control">
+        </div>
+      </div>
+      
+    </div>
+    <div class="card-footer bg-light text-center">
+      <input type="hidden" name="action" value="updatepassword" />
+      <button type="submit" class="btn btn-warning btn-lg me-2">
+        <i class="fa-solid fa-key me-2"></i>{lang_change_password}
+      </button>
+      <button type="reset" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-rotate-left me-2"></i>{lang_reset}
+      </button>
+    </div>
+  </div>
 </form>
