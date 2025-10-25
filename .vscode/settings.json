@@ -4,6 +4,7 @@
   "intelephense.diagnostics.undefinedProperties": false,
   "intelephense.diagnostics.undefinedTypes": false,
   "intelephense.diagnostics.undefinedVariables": false,
+  "intelephense.diagnostics.deprecated": false,
   
   // Alternative: Nur bestimmte Warnungen unterdrücken
   "intelephense.diagnostics.suppress": [
