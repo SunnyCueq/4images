@@ -29,20 +29,20 @@
     <!-- Sidebar -->
     <aside class="col-lg-3">
       <!-- User Box -->
-      <div class="card mb-3 shadow-sm">
-        <div class="card-header bg-primary text-white">
-          <i class="fa-solid fa-user"></i> {lang_registered_user}
+      <div class="card mb-3 shadow-sm border-start border-primary border-4">
+        <div class="card-header bg-transparent border-bottom-0">
+          <i class="fa-solid fa-user me-2"></i><strong> {lang_registered_user}</strong>
         </div>
         <div class="card-body">
           {user_box}
         </div>
       </div>
       
-      <!-- Random Image -->
+      <!-- Random Image (CoreUI) -->
       {if random_image}
-      <div class="card mb-3 shadow-sm">
-        <div class="card-header bg-primary text-white">
-          <i class="fa-solid fa-shuffle"></i> {lang_random_image}
+      <div class="card mb-3 shadow-sm border-start border-info border-4">
+        <div class="card-header bg-transparent border-bottom-0">
+          <i class="fa-solid fa-shuffle me-2"></i><strong>{lang_random_image}</strong>
         </div>
         <div class="card-body text-center">
           {random_image}
