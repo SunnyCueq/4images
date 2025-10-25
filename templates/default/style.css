@@ -162,6 +162,20 @@ a:hover {
   padding: 1rem;
 }
 
+/* Sidebar Category Navigation */
+.nav-link.hover-bg-light:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+}
+
+.nav-link.border-bottom {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.nav-link.border-bottom:last-child {
+  border-bottom: none !important;
+}
+
 /* ============================================================================
    LIGHTBOX BUTTON STYLING
    ============================================================================ */

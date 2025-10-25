@@ -68,6 +68,20 @@
         </div>
       </div>
       
+      <!-- Categories Navigation (CoreUI Sidebar Style) -->
+      {if categories}
+      <div class="card mb-3 shadow border-start border-warning border-4">
+        <div class="card-header bg-transparent border-bottom-0">
+          <i class="fa-solid fa-folder-tree me-2 text-warning"></i><strong>{lang_categories}</strong>
+        </div>
+        <div class="card-body p-0">
+          <nav class="nav flex-column">
+            {categories}
+          </nav>
+        </div>
+      </div>
+      {endif categories}
+      
       <!-- Random Image (CoreUI Accent Card) -->
       {if random_image}
       <div class="card mb-3 shadow-sm border-start border-info border-4">
@@ -92,20 +106,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       {endif msg}
-      
-      <!-- Categories (CoreUI Accent Card) -->
-      {if categories}
-      <div class="card mb-4 shadow border-start border-warning border-4">
-        <div class="card-header bg-transparent border-bottom-0">
-          <h2 class="h5 mb-0">
-            <i class="fa-solid fa-folder-tree me-2 text-warning"></i><strong>{lang_categories}</strong>
-          </h2>
-        </div>
-        <div class="card-body">
-          {categories}
-        </div>
-      </div>
-      {endif categories}
       
       <!-- Site Statistics -->
       <div class="mb-3 text-muted small">

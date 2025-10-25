@@ -1,37 +1,8 @@
-<div class="card mb-3 shadow border-start border-warning border-3 hover-shadow">
-  <div class="card-body">
-    <div class="d-flex align-items-start gap-3">
-      <!-- Folder Icon (CoreUI) -->
-      <div class="flex-shrink-0">
-        <i class="fa-solid fa-folder-open text-warning" style="font-size: 2.5rem;"></i>
-      </div>
-      
-      <!-- Category Info (CoreUI) -->
-      <div class="flex-grow-1">
-        <h5 class="card-title mb-2">
-          <a href="{cat_url}" class="text-decoration-none text-dark stretched-link"><strong>{cat_name}</strong></a>
-        </h5>
-        
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="badge bg-primary">{num_images} {lang_images}</span>
-          {if cat_is_new}
-          <span class="badge bg-success">
-            <i class="fa-solid fa-sparkles me-1"></i>{lang_new}
-          </span>
-          {endif cat_is_new}
-        </div>
-        
-        {if cat_description}
-        <p class="card-text text-muted small mb-0">{cat_description}</p>
-        {endif cat_description}
-        
-        {if sub_cats}
-        <div class="mt-2 pt-2 border-top small text-muted">
-          <i class="fa-solid fa-folder-tree me-1"></i>
-          <strong>Subcategories:</strong> {sub_cats}
-        </div>
-        {endif sub_cats}
-      </div>
-    </div>
-  </div>
-</div>
+<a href="{cat_url}" class="nav-link d-flex align-items-center py-2 px-3 border-bottom hover-bg-light">
+  <i class="fa-solid fa-folder text-warning me-2"></i>
+  <span class="flex-grow-1 fw-semibold">{cat_name}</span>
+  <span class="badge bg-primary rounded-pill">{num_images}</span>
+  {if cat_is_new}
+  <i class="fa-solid fa-sparkles text-success ms-1" title="{lang_new}"></i>
+  {endif cat_is_new}
+</a>
