@@ -191,6 +191,7 @@ $lang['send_email_to'] = "E-Mail versenden an:";
 $lang['subject'] = "Betreff:";
 $lang['message'] = "Nachricht:";
 $lang['profile_of'] = "Profil von:";
+$lang['edit_profile'] = "Profil bearbeiten";
 $lang['edit_profile_msg'] = "Hier können Sie Ihr persönliches Profil und Ihr Passwort ändern.";
 $lang['edit_profile_email_msg'] = "<br />Beachten Sie bitte: Bei Änderung der E-Mail-Adresse muss Ihr Account neu aktiviert werden. Der Aktivierungskey wird an die neue E-Mail-Adresse gesendet.";
 $lang['edit_profile_email_msg_admin'] = "<br />Beachten Sie bitte: Bei Änderung der E-Mail-Adresse muss Ihr Account durch den Administrator neu aktiviert werden.";

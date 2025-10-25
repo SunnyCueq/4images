@@ -191,6 +191,7 @@ $lang['send_email_to'] = "Enviar correo a:";
 $lang['subject'] = "Asunto:";
 $lang['message'] = "Mensaje:";
 $lang['profile_of'] = "Perfil de usuario de:";
+$lang['edit_profile'] = "Editar perfil";
 $lang['edit_profile_msg'] = "Se le permite modificar su perfil y su contraseña.";
 $lang['edit_profile_email_msg'] = "<br />Nota: si usted cambia su dirección de correo, debe reactivar su cuenta. Se le enviaría un código de activación a su nueva dirección.";
 $lang['edit_profile_email_msg_admin'] = "<br />Nota: Si cambia su correo electrónico el administrador tendra que reactivar su cuenta.";
