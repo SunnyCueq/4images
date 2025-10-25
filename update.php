@@ -17,19 +17,32 @@ ini_set('display_errors', 1);
 
 $nozip = 1;
 
+// Load config first
+if (!file_exists(ROOT_PATH.'config.php')) {
+    die('<h1>Error</h1><p>config.php not found. Please ensure 4images is properly installed.</p>');
+}
+require(ROOT_PATH.'config.php');
+
+// Load database class
 require(ROOT_PATH.'includes/db_mysqli.php');
+
+// Load constants (required for sessions)
+require(ROOT_PATH.'includes/constants.php');
+
+// Load sessions
 require(ROOT_PATH.'includes/sessions.php');
 
-// Check if user is logged in as admin
-$user_access = get_permission();
-if ($user_access < ADMIN) {
-    die("<h1>Access Denied</h1><p>You must be logged in as administrator to run this update.</p>");
-}
+// Initialize database connection
+$site_db = new Db($db_host, $db_user, $db_password, $db_name);
 
-$site_template = new Template(ROOT_PATH."templates/".$config['template_dir']);
-$site_template->set_filenames(array(
-  'update' => 'self'
-));
+// Initialize session
+$user_info = $site_session->return_user_info();
+
+// Check if user is logged in as admin
+$user_access = ($user_info['user_level'] != GUEST) ? $user_info['user_level'] : 0;
+if ($user_access < ADMIN) {
+    die("<h1>Access Denied</h1><p>You must be logged in as administrator to run this update.</p><p><a href=\"".ROOT_PATH."admin/\">Go to Admin Login</a></p>");
+}
 
 $updates_performed = array();
 $errors = array();
