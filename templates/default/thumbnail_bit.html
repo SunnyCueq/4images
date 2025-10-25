@@ -1,37 +1,39 @@
-<div class="card h-100 shadow-sm hover-shadow">
+<div class="card h-100 shadow hover-shadow border-0">
   <!-- Image -->
   <div class="card-img-top-wrapper position-relative">
-    {thumbnail}
+    <a href="{image_url}" class="d-block">
+      {thumbnail}
+    </a>
     {if image_is_new}
-    <span class="badge bg-success position-absolute top-0 end-0 m-2">
-      <i class="fa-solid fa-sparkles"></i> {lang_new}
+    <span class="badge bg-success position-absolute top-0 end-0 m-2 shadow-sm">
+      <i class="fa-solid fa-sparkles me-1"></i>{lang_new}
     </span>
     {endif image_is_new}
   </div>
   
-  <!-- Card Body -->
-  <div class="card-body">
-    <h5 class="card-title text-truncate" title="{image_name}">{image_name}</h5>
-    <p class="card-text small text-muted mb-2">
-      <i class="fa-solid fa-user"></i> {user_name_link}
+  <!-- Card Body (CoreUI) -->
+  <div class="card-body border-start border-primary border-3">
+    <h5 class="card-title mb-2" title="{image_name}">
+      <a href="{image_url}" class="text-decoration-none text-dark">{image_name}</a>
+    </h5>
+    <p class="card-text small text-muted mb-1">
+      <i class="fa-solid fa-user me-1"></i>{user_name_link}
     </p>
-    <p class="card-text small">
-      <i class="fa-solid fa-folder"></i> <a href="{cat_url}" class="text-decoration-none">{cat_name}</a>
+    <p class="card-text small mb-2">
+      <i class="fa-solid fa-folder me-1 text-primary"></i><a href="{cat_url}" class="text-decoration-none">{cat_name}</a>
     </p>
     {if allow_comments}
-    <p class="card-text small text-muted">
-      <i class="fa-solid fa-comments"></i> {lang_comments}: {image_comments}
+    <p class="card-text small text-muted mb-0">
+      <i class="fa-solid fa-comments me-1"></i>{lang_comments}: <span class="badge bg-light text-dark">{image_comments}</span>
     </p>
     {endif allow_comments}
   </div>
   
-  <!-- Card Footer -->
-  <div class="card-footer bg-transparent border-top-0">
-    <div class="d-flex justify-content-between align-items-center">
-      {lightbox_button}
-      <a href="{image_url}" class="btn btn-sm btn-outline-primary">
-        <i class="fa-solid fa-eye"></i> Details
-      </a>
-    </div>
+  <!-- Card Footer (CoreUI) -->
+  <div class="card-footer bg-light d-flex gap-2 justify-content-between">
+    {lightbox_button}
+    <a href="{image_url}" class="btn btn-sm btn-primary flex-grow-1">
+      <i class="fa-solid fa-eye me-1"></i>Details
+    </a>
   </div>
 </div>

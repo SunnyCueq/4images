@@ -58,21 +58,21 @@
     <!-- Sidebar -->
     <aside class="col-lg-3">
       
-      <!-- User Login/Info Box -->
-      <div class="card mb-3 shadow-sm">
-        <div class="card-header bg-primary text-white">
-          <i class="fa-solid fa-user"></i> {lang_registered_user}
+      <!-- User Login/Info Box (CoreUI Accent Card) -->
+      <div class="card mb-3 shadow-sm border-start border-primary border-4">
+        <div class="card-header bg-transparent border-bottom-0">
+          <i class="fa-solid fa-user me-2"></i><strong>{lang_registered_user}</strong>
         </div>
         <div class="card-body">
           {user_box}
         </div>
       </div>
       
-      <!-- Random Image -->
+      <!-- Random Image (CoreUI Accent Card) -->
       {if random_image}
-      <div class="card mb-3 shadow-sm">
-        <div class="card-header bg-primary text-white">
-          <i class="fa-solid fa-shuffle"></i> {lang_random_image}
+      <div class="card mb-3 shadow-sm border-start border-info border-4">
+        <div class="card-header bg-transparent border-bottom-0">
+          <i class="fa-solid fa-shuffle me-2"></i><strong>{lang_random_image}</strong>
         </div>
         <div class="card-body text-center">
           {random_image}
@@ -93,12 +93,12 @@
       </div>
       {endif msg}
       
-      <!-- Categories -->
+      <!-- Categories (CoreUI Accent Card) -->
       {if categories}
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header bg-light">
+      <div class="card mb-4 shadow border-start border-warning border-4">
+        <div class="card-header bg-transparent border-bottom-0">
           <h2 class="h5 mb-0">
-            <i class="fa-solid fa-folder-tree me-2"></i>{lang_categories}
+            <i class="fa-solid fa-folder-tree me-2 text-warning"></i><strong>{lang_categories}</strong>
           </h2>
         </div>
         <div class="card-body">
@@ -108,15 +108,15 @@
       {endif categories}
       
       <!-- Site Statistics -->
-      <div class="mb-3">
-        {lang_site_stats}
+      <div class="mb-3 text-muted small">
+        <i class="fa-solid fa-chart-simple me-2"></i>{lang_site_stats}
       </div>
       
-      <!-- New Images -->
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header bg-success text-white">
+      <!-- New Images (CoreUI Accent Card) -->
+      <div class="card mb-4 shadow border-start border-success border-4">
+        <div class="card-header bg-transparent border-bottom-0">
           <h2 class="h5 mb-0">
-            <i class="fa-solid fa-sparkles me-2"></i>{lang_new_images}
+            <i class="fa-solid fa-sparkles me-2 text-success"></i><strong>{lang_new_images}</strong>
           </h2>
         </div>
         <div class="card-body">
