@@ -1,27 +1,43 @@
 <form method="post" action="{url_member}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_send_email_to} {user_name}</td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_subject}</b></td>
-            <td class="row2"><input type="text" name="subject"  size="30" value="{subject}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row1" valign="top"><b>{lang_message}</b></td>
-            <td class="row1"><textarea name="message" cols="30" rows="10" wrap="virtual" class="textarea">{message}</textarea></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
   <input type="hidden" name="action" value="emailuser" />
   <input type="hidden" name="user_id" value="{user_id}" />
-  <p align="center"> 
-    <input type="submit" value="{lang_submit}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
+  
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="h5 mb-0">
+        <i class="fa-solid fa-envelope-open-text me-2"></i>{lang_send_email_to} {user_name}
+      </h2>
+    </div>
+    <div class="card-body">
+      
+      <!-- Subject -->
+      <div class="mb-3 row">
+        <label for="subject" class="col-sm-3 col-form-label fw-bold">
+          <i class="fa-solid fa-heading me-1"></i>{lang_subject}
+        </label>
+        <div class="col-sm-9">
+          <input type="text" name="subject" id="subject" class="form-control" value="{subject}" required>
+        </div>
+      </div>
+      
+      <!-- Message -->
+      <div class="mb-3 row">
+        <label for="message" class="col-sm-3 col-form-label fw-bold align-self-start">
+          <i class="fa-solid fa-message me-1"></i>{lang_message}
+        </label>
+        <div class="col-sm-9">
+          <textarea name="message" id="message" class="form-control" rows="10" required>{message}</textarea>
+        </div>
+      </div>
+      
+    </div>
+    <div class="card-footer bg-light text-center">
+      <button type="submit" class="btn btn-primary btn-lg me-2">
+        <i class="fa-solid fa-paper-plane me-2"></i>{lang_submit}
+      </button>
+      <button type="reset" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-rotate-left me-2"></i>{lang_reset}
+      </button>
+    </div>
+  </div>
 </form>
