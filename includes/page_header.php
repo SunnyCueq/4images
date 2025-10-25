@@ -383,7 +383,18 @@ if ($action == "rateimage" && $id) {
 //--- User Box ----------------------------------------
 //-----------------------------------------------------
 if ($user_info['user_level'] >= USER) {
-  $site_template->register_vars("lang_loggedin_msg", preg_replace("/".$site_template->start."loggedin_user_name".$site_template->end."/siU", format_text($user_info['user_name'], 2), $lang['lang_loggedin_msg']));
+  // Register variables for logged-in user template
+  $site_template->register_vars(array(
+    "lang_loggedin_msg" => preg_replace("/".$site_template->start."loggedin_user_name".$site_template->end."/siU", format_text($user_info['user_name'], 2), $lang['lang_loggedin_msg']),
+    "lang_welcome" => $lang['lang_welcome'],
+    "lang_edit_profile" => $lang['edit_profile'],
+    "lang_user_upload" => $lang['user_upload'],
+    "user_name" => format_text($user_info['user_name'], 2),
+    "url_member_profile" => $site_sess->url(ROOT_PATH."member.php"),
+    "url_member_editprofile" => $site_sess->url(ROOT_PATH."member.php?action=editprofile"),
+    "url_member_uploadform" => $site_sess->url(ROOT_PATH."member.php?action=uploadform")
+  ));
+  
   $user_box = $site_template->parse_template("user_logininfo");
   $site_template->register_vars(array(
     "user_box" => $user_box,
