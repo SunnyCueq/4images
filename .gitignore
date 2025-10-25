@@ -17,3 +17,7 @@ Dockerfile
 docker-compose.yml
 
 .data
+
+# IDE-specific files (optional: commit .vscode/settings.json for team-wide settings)
+# .vscode/
+# .ide-stubs.php
