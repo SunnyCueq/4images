@@ -1,35 +1,44 @@
 <form name="commentform" action="{url_member}" method="post" onsubmit="uploadbutton.disabled=true;">
   <input type="hidden" name="action" value="updatecomment" />
   <input type="hidden" name="comment_id" value="{comment_id}" />
-  <table width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_edit_comment}</td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_headline}</b></td>
-            <td class="row2"> 
-              <input type="text" name="comment_headline" size="30" value="{comment_headline}" class="commentinput" />
-            </td>
-          </tr>
-          <tr> 
-            <td class="row1" valign="top"><b>{lang_comment}</b></td>
-            <td class="row1"> 
-              <textarea name="comment_text" cols="30" rows="10" wrap="virtual" class="commenttextarea">{comment_text}</textarea>
-            </td>
-          </tr>
-          <tr> 
-            <td class="row2" valign="top">&nbsp;</td>
-            <td class="row2">{bbcode}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <p align="center"> 
-    <input type="submit" name="uploadbutton" value="{lang_submit}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
+  
+  <div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+      <h2 class="h5 mb-0">
+        <i class="fa-solid fa-comment-pen me-2"></i>{lang_edit_comment}
+      </h2>
+    </div>
+    <div class="card-body">
+      
+      <!-- Headline -->
+      <div class="mb-3 row">
+        <label for="comment_headline" class="col-sm-3 col-form-label fw-bold">
+          <i class="fa-solid fa-heading me-1"></i>{lang_headline}
+        </label>
+        <div class="col-sm-9">
+          <input type="text" name="comment_headline" id="comment_headline" class="form-control" value="{comment_headline}">
+        </div>
+      </div>
+      
+      <!-- Comment Text -->
+      <div class="mb-3 row">
+        <label for="comment_text" class="col-sm-3 col-form-label fw-bold align-self-start">
+          <i class="fa-solid fa-message me-1"></i>{lang_comment}
+        </label>
+        <div class="col-sm-9">
+          <textarea name="comment_text" id="comment_text" class="form-control" rows="8">{comment_text}</textarea>
+          <div class="mt-2">{bbcode}</div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="card-footer bg-light text-center">
+      <button type="submit" name="uploadbutton" class="btn btn-info btn-lg me-2">
+        <i class="fa-solid fa-floppy-disk me-2"></i>{lang_submit}
+      </button>
+      <button type="reset" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-rotate-left me-2"></i>{lang_reset}
+      </button>
+    </div>
+  </div>
 </form>
