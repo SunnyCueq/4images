@@ -8,6 +8,68 @@
  * @see https://github.com/JetBrains/phpstorm-stubs
  */
 
+// ============================================================================
+// PHP SUPERGLOBALS (should be recognized by IDE, but sometimes need explicit declaration)
+// ============================================================================
+
+/**
+ * Contains variables passed via HTTP GET
+ * @var array<string, mixed>
+ */
+$_GET = [];
+
+/**
+ * Contains variables passed via HTTP POST
+ * @var array<string, mixed>
+ */
+$_POST = [];
+
+/**
+ * Contains HTTP cookies
+ * @var array<string, mixed>
+ */
+$_COOKIE = [];
+
+/**
+ * Contains server and execution environment information
+ * @var array<string, mixed>
+ */
+$_SERVER = [];
+
+/**
+ * Contains environment variables
+ * @var array<string, mixed>
+ */
+$_ENV = [];
+
+/**
+ * Contains uploaded file information
+ * @var array<string, mixed>
+ */
+$_FILES = [];
+
+/**
+ * References all variables available in global scope
+ * @var array<string, mixed>
+ */
+$GLOBALS = [];
+
+/**
+ * Session variables
+ * @var array<string, mixed>
+ */
+$_SESSION = [];
+
+/**
+ * Request variables (GET, POST, COOKIE)
+ * @var array<string, mixed>
+ */
+$_REQUEST = [];
+
+// ============================================================================
+// OPTIONAL CONSTANTS FROM CONFIG.PHP
+// ============================================================================
+
 // Optional constants from config.php
 if (!defined('SESSION_KEY')) {
     /**

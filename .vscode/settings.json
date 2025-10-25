@@ -3,12 +3,15 @@
   "intelephense.diagnostics.undefinedFunctions": false,
   "intelephense.diagnostics.undefinedProperties": false,
   "intelephense.diagnostics.undefinedTypes": false,
+  "intelephense.diagnostics.undefinedVariables": false,
   
   // Alternative: Nur bestimmte Warnungen unterdrücken
   "intelephense.diagnostics.suppress": [
     "P1011",  // Undefined constant
     "P1010",  // Undefined function
-    "P1014"   // Undefined property
+    "P1014",  // Undefined property
+    "P1008",  // Undefined variable (Superglobals)
+    "P1007"   // Deprecated (legacy session_register)
   ],
   
   // PHP-Version explizit setzen
