@@ -11,40 +11,24 @@
 
 define('IN_CP', 1);
 define('ROOT_PATH', './');
+define('GET_CACHES', 1);
 
 error_reporting(E_ALL & ~E_DEPRECATED);
 ini_set('display_errors', 1);
 
 $nozip = 1;
 
-// Load config first
+// Load global.php (initializes everything: config, db, constants, functions, etc.)
 if (!file_exists(ROOT_PATH.'config.php')) {
     die('<h1>Error</h1><p>config.php not found. Please ensure 4images is properly installed.</p>');
 }
-require(ROOT_PATH.'config.php');
+include_once(ROOT_PATH.'global.php');
 
-// Load database class
-require(ROOT_PATH.'includes/db_mysqli.php');
+// Load sessions (now that everything is initialized)
+include_once(ROOT_PATH.'includes/sessions.php');
 
-// Load constants (required for sessions)
-require(ROOT_PATH.'includes/constants.php');
-
-// Load sessions
-require(ROOT_PATH.'includes/sessions.php');
-
-// Initialize database connection
-$site_db = new Db($db_host, $db_user, $db_password, $db_name);
-
-// Check if connected successfully
-if (!$site_db->connection) {
-    die('<h1>Database Error</h1><p>Could not connect to database. Please check your config.php settings.</p>');
-}
-
-// Initialize session
-$site_session = new Session();
+// Check if user is logged in as admin
 $user_info = $site_session->return_user_info();
-
-// Simple admin check - no complex permissions needed
 if (!isset($user_info['user_level']) || $user_info['user_level'] != ADMIN) {
     die("<h1>Access Denied</h1><p>You must be logged in as administrator to run this update.</p><p><a href=\"".ROOT_PATH."admin/index.php\">Go to Admin Login</a></p>");
 }
