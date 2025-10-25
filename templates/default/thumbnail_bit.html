@@ -1,7 +1,37 @@
-<!-- you wish detail page in a small javascript open window, use {thumbnail_openwindow} -->
-{thumbnail}<br />
-<b>{image_name}</b> {if image_is_new}<sup class="new">{lang_new}</sup>{endif image_is_new} ({user_name_link})
-<br />
-<a href="{cat_url}">{cat_name}</a><br />
-{if allow_comments}{lang_comments} {image_comments}{endif allow_comments}<br />
-{lightbox_button}
+<div class="card h-100 shadow-sm hover-shadow">
+  <!-- Image -->
+  <div class="card-img-top-wrapper position-relative">
+    {thumbnail}
+    {if image_is_new}
+    <span class="badge bg-success position-absolute top-0 end-0 m-2">
+      <i class="fa-solid fa-sparkles"></i> {lang_new}
+    </span>
+    {endif image_is_new}
+  </div>
+  
+  <!-- Card Body -->
+  <div class="card-body">
+    <h5 class="card-title text-truncate" title="{image_name}">{image_name}</h5>
+    <p class="card-text small text-muted mb-2">
+      <i class="fa-solid fa-user"></i> {user_name_link}
+    </p>
+    <p class="card-text small">
+      <i class="fa-solid fa-folder"></i> <a href="{cat_url}" class="text-decoration-none">{cat_name}</a>
+    </p>
+    {if allow_comments}
+    <p class="card-text small text-muted">
+      <i class="fa-solid fa-comments"></i> {lang_comments}: {image_comments}
+    </p>
+    {endif allow_comments}
+  </div>
+  
+  <!-- Card Footer -->
+  <div class="card-footer bg-transparent border-top-0">
+    <div class="d-flex justify-content-between align-items-center">
+      {lightbox_button}
+      <a href="{image_url}" class="btn btn-sm btn-outline-primary">
+        <i class="fa-solid fa-eye"></i> Details
+      </a>
+    </div>
+  </div>
+</div>
