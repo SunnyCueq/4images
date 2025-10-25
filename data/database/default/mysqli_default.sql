@@ -231,7 +231,7 @@ INSERT INTO 4images_settings VALUES ('use_smtp', '0');
 INSERT INTO 4images_settings VALUES ('smtp_host', '');
 INSERT INTO 4images_settings VALUES ('smtp_username', '');
 INSERT INTO 4images_settings VALUES ('smtp_password', '');
-INSERT INTO 4images_settings VALUES ('template_dir', 'default_960px');
+INSERT INTO 4images_settings VALUES ('template_dir', 'default');
 INSERT INTO 4images_settings VALUES ('language_dir', 'deutsch');
 INSERT INTO 4images_settings VALUES ('date_format', 'd.m.Y');
 INSERT INTO 4images_settings VALUES ('time_format', 'H:i');
