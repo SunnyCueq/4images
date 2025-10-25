@@ -1,23 +1,41 @@
-<table width="100%" border="0" cellpadding="4" cellspacing="0">
-  <tr> 
-    <td valign="top" align="left"> 
-      <form action="{url_login}" method="post">
-        {lang_user_name}<br />
-        <input type="text" size="10" name="user_name" class="logininput" />
-        <br />
-        {lang_password}<br />
-        <input type="password" size="10" name="user_password" class="logininput" />
-        <br />
-        <table border="0" cellspacing="0" cellpadding="0">
-          <tr valign="top"> 
-            <td><input type="checkbox" name="auto_login" value="1" /></td>
-            <td><span class="smalltext">{lang_auto_login}</span></td>
-          </tr>
-        </table>
-        <br />
-		<input type="submit" value="{lang_login}" class="button" />
-      </form>
-      » <a href="{url_lost_password}">{lang_lost_password}</a><br />
-	  » <a href="{url_register}">{lang_register}</a><br>&nbsp;</td>
-  </tr>
-</table>
+<form action="{url_login}" method="post">
+  <!-- Username -->
+  <div class="mb-3">
+    <label for="user_name" class="form-label">
+      <i class="fa-solid fa-user"></i> {lang_user_name}
+    </label>
+    <input type="text" class="form-control" id="user_name" name="user_name" required>
+  </div>
+  
+  <!-- Password -->
+  <div class="mb-3">
+    <label for="user_password" class="form-label">
+      <i class="fa-solid fa-lock"></i> {lang_password}
+    </label>
+    <input type="password" class="form-control" id="user_password" name="user_password" required>
+  </div>
+  
+  <!-- Auto Login Checkbox -->
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="auto_login" name="auto_login" value="1">
+    <label class="form-check-label" for="auto_login">
+      {lang_auto_login}
+    </label>
+  </div>
+  
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary w-100">
+    <i class="fa-solid fa-right-to-bracket"></i> {lang_login}
+  </button>
+  
+  <!-- Links -->
+  <div class="mt-3 text-center small">
+    <a href="{url_lost_password}" class="text-decoration-none">
+      <i class="fa-solid fa-key"></i> {lang_lost_password}
+    </a>
+    <span class="mx-2">•</span>
+    <a href="{url_register}" class="text-decoration-none">
+      <i class="fa-solid fa-user-plus"></i> {lang_register}
+    </a>
+  </div>
+</form>

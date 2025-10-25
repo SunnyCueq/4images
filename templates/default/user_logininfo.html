@@ -1,9 +1,29 @@
-<table width="100%" border="0" cellpadding="4" cellspacing="0">
-  <tr> 
-    <td valign="top" align="left">
-	  {lang_loggedin_msg}<br /><br />
-      » <a href="{url_lightbox}">{lang_lightbox}</a><br />
-	  » <a href="{url_control_panel}">{lang_control_panel}</a><br />
-      » <a href="{url_logout}">{lang_logout}</a><br>&nbsp;</td>
-  </tr>
-</table>
+<div class="user-info">
+  <div class="d-flex align-items-center mb-3">
+    <div class="me-2">
+      <i class="fa-solid fa-circle-user fa-2x text-primary"></i>
+    </div>
+    <div>
+      <strong>{lang_welcome}</strong><br>
+      <a href="{url_member_profile}" class="text-decoration-none">{user_name}</a>
+    </div>
+  </div>
+  
+  <div class="list-group list-group-flush">
+    <a href="{url_member_profile}" class="list-group-item list-group-item-action">
+      <i class="fa-solid fa-user fa-fw me-2"></i>{lang_control_panel}
+    </a>
+    <a href="{url_member_editprofile}" class="list-group-item list-group-item-action">
+      <i class="fa-solid fa-pen-to-square fa-fw me-2"></i>{lang_edit_profile}
+    </a>
+    <a href="{url_member_uploadform}" class="list-group-item list-group-item-action">
+      <i class="fa-solid fa-upload fa-fw me-2"></i>{lang_upload}
+    </a>
+    <a href="{url_lightbox}" class="list-group-item list-group-item-action">
+      <i class="fa-solid fa-lightbulb fa-fw me-2"></i>{lang_lightbox}
+    </a>
+    <a href="{url_logout}" class="list-group-item list-group-item-action text-danger">
+      <i class="fa-solid fa-right-from-bracket fa-fw me-2"></i>{lang_logout}
+    </a>
+  </div>
+</div>
