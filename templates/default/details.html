@@ -197,17 +197,15 @@
       {endif allow_comments}
       
       <!-- Navigation: Prev/Next -->
-      {if prev_image_name || next_image_name}
+      {if prev_image_name}
       <div class="card shadow-sm mb-4">
         <div class="card-body">
           <div class="row">
             <div class="col-6">
-              {if prev_image_name}
               <div class="text-start">
                 <small class="text-muted">{lang_prev_image}</small><br>
                 <strong><a href="{prev_image_url}" class="text-decoration-none">{prev_image_name}</a></strong>
               </div>
-              {endif prev_image_name}
             </div>
             <div class="col-6">
               {if next_image_name}
@@ -220,7 +218,25 @@
           </div>
         </div>
       </div>
-      {endif prev_image_name || next_image_name}
+      {endif prev_image_name}
+      {if next_image_name}
+      {if !prev_image_name}
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-6">
+              <div class="text-end">
+                <small class="text-muted">{lang_next_image}</small><br>
+                <strong><a href="{next_image_url}" class="text-decoration-none">{next_image_name}</a></strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {endif !prev_image_name}
+      {endif next_image_name}
     </div>
   </div>
 </div>
