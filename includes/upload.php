@@ -41,30 +41,31 @@ if (!function_exists("is_uploaded_file")) {
 
 class Upload {
 
-  var $upload_errors = array();
-  var $accepted_mime_types = array();
-  var $accepted_extensions = array();
-  var $upload_mode = 3;
+  // PHP 8.4+ compatibility: Changed var to public, added type declarations
+  public array $upload_errors = [];
+  public array $accepted_mime_types = [];
+  public array $accepted_extensions = [];
+  public int $upload_mode = 3;
 
-  var $image_type = "";
-  var $max_width = array();
-  var $max_height = array();
-  var $max_size = array();
-  var $upload_path = array();
+  public string $image_type = "";
+  public array $max_width = [];
+  public array $max_height = [];
+  public array $max_size = [];
+  public array $upload_path = [];
 
-  var $field_name;
-  var $file_name;
-  var $extension;
+  public ?string $field_name = null;
+  public ?string $file_name = null;
+  public ?string $extension = null;
 
-  var $image_size = 0;
-  var $image_size_ok = 0;
-  var $lang = array();
-  
-  // Dynamic properties set during upload process
-  var $upload_file;          // Temporary upload file path
-  var $name;                 // File name without extension
-  var $mime_type;            // MIME type of uploaded file
-  var $HTTP_POST_FILES;      // $_FILES array reference
+  public int $image_size = 0;
+  public int $image_size_ok = 0;
+  public array $lang = [];
+
+  // Dynamic properties set during upload process (PHP 8.2+ requires explicit declaration)
+  public ?string $upload_file = null;  // Temporary upload file path
+  public ?string $name = null;         // File name without extension
+  public ?string $mime_type = null;    // MIME type of uploaded file
+  public ?array $HTTP_POST_FILES = null; // $_FILES array reference
 
   function __construct() {
     global $config, $lang;
