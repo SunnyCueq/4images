@@ -1,29 +1,31 @@
 /* 
  * 4images Modern Template - Custom Styles
- * Based on Bootstrap 5.3 with custom primary color
+ * Based on Bootstrap 5.3 with ORIGINAL 4images colors
  */
 
-/* Override Bootstrap Primary Color to match 4images brand */
+/* Override Bootstrap Primary Color to match ORIGINAL 4images brand */
 :root {
-  --bs-primary: #0F5475;
-  --bs-primary-rgb: 15, 84, 117;
-  --bs-link-color: #0F5475;
-  --bs-link-hover-color: #0a3a52;
+  --bs-primary: #004C75;
+  --bs-primary-rgb: 0, 76, 117;
+  --bs-link-color: #004C75;
+  --bs-link-hover-color: #003a52;
+  --bs-warning: #fcdc43;
 }
 
 /* Global styling */
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #212529;
+  background-color: #ffffff;
 }
 
 a {
-  color: #0F5475;
+  color: #004C75;
   text-decoration: none;
 }
 
 a:hover {
-  color: #0a3a52;
+  color: #003a52;
 }
 
 /* Card enhancements */
@@ -37,35 +39,35 @@ a:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Primary color backgrounds */
+/* Primary color backgrounds (Original 4images Blue) */
 .bg-primary {
-  background-color: #0F5475 !important;
+  background-color: #004C75 !important;
 }
 
 .btn-primary {
-  background-color: #0F5475;
-  border-color: #0F5475;
+  background-color: #004C75;
+  border-color: #004C75;
 }
 
 .btn-primary:hover {
-  background-color: #0a3a52;
-  border-color: #0a3a52;
+  background-color: #003a52;
+  border-color: #003a52;
 }
 
 .btn-outline-primary {
-  color: #0F5475;
-  border-color: #0F5475;
+  color: #004C75;
+  border-color: #004C75;
 }
 
 .btn-outline-primary:hover {
-  background-color: #0F5475;
-  border-color: #0F5475;
+  background-color: #004C75;
+  border-color: #004C75;
   color: #fff;
 }
 
 /* Text colors */
 .text-primary {
-  color: #0F5475 !important;
+  color: #004C75 !important;
 }
 
 /* Badge styling */
@@ -75,14 +77,14 @@ a:hover {
 
 /* List group enhancements */
 .list-group-item-action:hover {
-  background-color: rgba(15, 84, 117, 0.05);
+  background-color: rgba(0, 76, 117, 0.05);
 }
 
 /* Form styling */
 .form-control:focus,
 .form-select:focus {
-  border-color: #0F5475;
-  box-shadow: 0 0 0 0.25rem rgba(15, 84, 117, 0.25);
+  border-color: #004C75;
+  box-shadow: 0 0 0 0.25rem rgba(0, 76, 117, 0.25);
 }
 
 /* Breadcrumb */
@@ -99,7 +101,7 @@ img {
 
 /* Clickstream (breadcrumb) styling */
 .clickstream a {
-  color: #0F5475;
+  color: #004C75;
   text-decoration: none;
 }
 
@@ -117,6 +119,30 @@ img {
   color: #6c757d !important;
 }
 
+/* Warning color (Original 4images Yellow) */
+.bg-warning {
+  background-color: #fcdc43 !important;
+  color: #004C75 !important;
+}
+
+.text-warning {
+  color: #fcdc43 !important;
+}
+
+/* Light backgrounds (Original 4images Grey tones) */
+.bg-light {
+  background-color: #e8e8e8 !important;
+}
+
+.card-header.bg-light {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Table styling for Bootstrap compatibility */
+.table-light {
+  background-color: #e1e1e1;
+}
+
 /* Responsive spacing adjustments */
 @media (max-width: 991.98px) {
   .container-fluid {
@@ -124,3 +150,12 @@ img {
     padding-right: 1rem;
   }
 }
+
+/* Original 4images color scheme reference:
+ * - Primary Blue: #004C75
+ * - Accent Yellow: #fcdc43
+ * - Light Grey 1: #e8e8e8
+ * - Light Grey 2: #e1e1e1
+ * - Light Grey 3: #efefef
+ * - Border Color: #004C75
+ */

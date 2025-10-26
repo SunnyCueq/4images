@@ -215,7 +215,9 @@ class Db
             if (!defined("4IMAGES_ACTIVE") || (isset($user_info['user_level']) && $user_info['user_level'] == ADMIN)) {
                 echo "<br /><font color='#FF0000'><b>DB Error</b></font>: ".$errmsg."<br />";
             } else {
-                echo "<br /><font color='#FF0000'><b>An unexpected error occured. Please try again later.</b></font><br />";
+                // Enhanced error display for debugging (ALT+Click to show details)
+                // Source: https://www.4homepages.de/forum/index.php?topic=24177.0
+                echo "<br /><span onclick=\"if(event.altKey)this.getElementsByTagName('SPAN')[0].style.display='block';\"><font color='#FF0000'><b>An unexpected error occured. Please try again later.</b></font><span style=\"display:none;\"><pre style=\"border:1px solid black;padding:3px;\">".$errmsg."</pre></span></span><br />";
             }
             if ($halt) {
                 exit;
