@@ -388,27 +388,27 @@ function show_image($image_row, $mode = "", $show_link = 1, $detailed_view = 0) 
     $lightbox_url .= strpos($lightbox_url, '?') !== false ? "&amp;" : "?";
     if (check_lightbox($image_row['image_id'])) {
       $lightbox_url .= "action=removefromlightbox&amp;id=".$image_row['image_id'];
-      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['remove_from_lightbox']."\"><i class=\"fa-solid fa-heart-broken\"></i></a>";
+      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\" class=\"text-decoration-none me-2\" title=\"".$lang['remove_from_lightbox']."\"><i class=\"fa-solid fa-heart-broken\"></i></a>";
     }
     else {
       $lightbox_url .= "action=addtolightbox&amp;id=".$image_row['image_id'];
-      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\" class=\"btn btn-outline-primary btn-sm\" title=\"".$lang['add_to_lightbox']."\"><i class=\"fa-solid fa-heart\"></i></a>";
+      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\" class=\"text-decoration-none me-2\" title=\"".$lang['add_to_lightbox']."\"><i class=\"fa-solid fa-heart\"></i></a>";
     }
   }
   else {
-    $lightbox_button = "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"".$lang['lightbox_disabled']."\"><i class=\"fa-solid fa-heart\"></i></span>";
+    $lightbox_button = "<span class=\"text-muted\" title=\"".$lang['lightbox_disabled']."\"><i class=\"fa-solid fa-heart\"></i></span>";
   }
 
   if (!check_permission("auth_download", $image_row['cat_id'])) {
-    $download_button = "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"".$lang['download_disabled']."\"><i class=\"fa-solid fa-download\"></i></span>";
-    $download_zip_button = (function_exists("gzcompress") && function_exists("crc32")) ? "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"".$lang['download_zip_disabled']."\"><i class=\"fa-solid fa-file-zipper\"></i></span>" : "";
+    $download_button = "<span class=\"text-muted\" title=\"".$lang['download_disabled']."\"><i class=\"fa-solid fa-download\"></i></span>";
+    $download_zip_button = (function_exists("gzcompress") && function_exists("crc32")) ? "<span class=\"text-muted\" title=\"".$lang['download_zip_disabled']."\"><i class=\"fa-solid fa-file-zipper\"></i></span>" : "";
     $allow_download = 0;
     clear_download_token($image_row['image_id']);
   }
   else {
     $target = (!empty($image_row['image_download_url']) && !is_remote_file($image_row['image_download_url']) && !is_local_file($image_row['image_download_url'])) ? "target=\"_blank\"" : "";
-    $download_button = "<a href=\"".$site_sess->url(ROOT_PATH."download.php?".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target." class=\"btn btn-outline-success btn-sm\" title=\"".$lang['download']."\"><i class=\"fa-solid fa-download\"></i></a>";
-    $download_zip_button = ($target == "" && function_exists("gzcompress") && function_exists("crc32")) ? "<a href=\"".$site_sess->url(ROOT_PATH."download.php?action=zip&amp;".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target." class=\"btn btn-outline-info btn-sm\" title=\"".$lang['download_zip']."\"><i class=\"fa-solid fa-file-zipper\"></i></a>" : "";
+    $download_button = "<a href=\"".$site_sess->url(ROOT_PATH."download.php?".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target." class=\"text-decoration-none me-2\" title=\"".$lang['download']."\"><i class=\"fa-solid fa-download\"></i></a>";
+    $download_zip_button = ($target == "" && function_exists("gzcompress") && function_exists("crc32")) ? "<a href=\"".$site_sess->url(ROOT_PATH."download.php?action=zip&amp;".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target." class=\"text-decoration-none me-2\" title=\"".$lang['download_zip']."\"><i class=\"fa-solid fa-file-zipper\"></i></a>" : "";
     $allow_download = 1;
     set_download_token($image_row['image_id']);
   }
