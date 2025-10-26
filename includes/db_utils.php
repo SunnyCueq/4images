@@ -139,15 +139,10 @@ function get_table_content_mysql($table, $crlf)
                 if ($type == 1 || $type == 2 || $type == 9 || $type == 3 || $type == 8) {
                     $dump .= $row[$i];
                 } else {
+                    // CLEANUP: Removed PHP 4.0.5 version check (unreachable code in PHP 8.4+)
                     $search_array = array('\\', '\'', "\x00", "\x0a", "\x0d", "\x1a");
                     $replace_array = array('\\\\', '\\\'', '\0', '\n', '\r', '\Z');
-                    if (get_php_version() >= 40005) {
-                        $row[$i] = str_replace($search_array, $replace_array, $row[$i]);
-                    } else {
-                        for ($i = 0; $i < sizeof($search_array); $i++) {
-                            $row[$i] = str_replace($search_array[$i], $replace_array[$i], $row[$i]);
-                        }
-                    }
+                    $row[$i] = str_replace($search_array, $replace_array, $row[$i]);
                     $dump .= "'".$row[$i]."'";
                 }
             } else {

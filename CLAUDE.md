@@ -12,16 +12,16 @@ Best Practices (Anthropic-basiert): Isoliere Tasks (Input → Änderung → Test
 <tech_stack>
 TECH STACK (minimal & stabil):
 - PHP: 8.4+ (PDO für DB, prepared statements; strict_types=1 optional, nur wo es Typ-Fehler stabilisiert, z.B. in Helpers).
-- Frontend: Bootstrap 5.3.8 (Grids/Cards statt Tables) + FontAwesome 7 (via Kit-Script).
+- Frontend: Bootstrap 5.3.3 (Grids/Cards statt Tables) + FontAwesome 7.0.0 Free (via CDN).
 - Admin: AdminLTE 3.2 (Bootstrap-integriert).
 - JS: Vanilla ES6+.
 - Templates: .php beibehalten.
 - Assets (CDN-Beispiele für header.php/footer.php):
-  <!-- Bootstrap 5.3.8 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <!-- FontAwesome 7 Kit -->
-  <script src="https://kit.fontawesome.com/6c6f4fc51d.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap 5.3.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <!-- FontAwesome 7.0.0 Free (2025) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <!-- AdminLTE 3.2 (für Admin-Bereich) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
