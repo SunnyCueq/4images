@@ -53,6 +53,8 @@ $cat_match_sql = ($cat_id && check_permission("auth_viewcat", $cat_id)) ? "AND i
 $register_array = array();
 
 $cat_id_sql = get_auth_cat_sql("auth_viewcat", "NOTIN");
+// SECURITY FIX: Sanitize category IDs (defense-in-depth, from get_auth_cat_sql but ensure safety)
+$cat_id_sql = $site_db->sanitize_ids($cat_id_sql);
 
 // Rating
 $sql = "SELECT i.image_id, i.user_id, i.cat_id, i.image_name, i.image_rating, i.image_votes, c.cat_name".get_user_table_field(", u.", "user_name")."

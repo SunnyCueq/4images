@@ -568,11 +568,14 @@ function get_random_image_cache() {
   $random_image_cache = array();
   $cat_id_sql = get_auth_cat_sql("auth_viewcat", "NOTIN");
 
+  // SECURITY FIX: Sanitize category IDs (defense-in-depth, from get_auth_cat_sql but ensure safety)
+  $cat_id_sql_safe = $site_db->sanitize_ids($cat_id_sql);
+
   if (SHOW_RANDOM_CAT_IMAGE) {
     $sql = "SELECT DISTINCT i.image_id, i.cat_id, i.user_id, i.image_name, i.image_description, i.image_keywords, i.image_date, i.image_active, i.image_media_file, i.image_thumb_file, i.image_download_url, i.image_allow_comments, i.image_comments, i.image_downloads, i.image_votes, i.image_rating, i.image_hits, c.cat_name".get_user_table_field(", u.", "user_name")."
             FROM (".IMAGES_TABLE." i,  ".CATEGORIES_TABLE." c)
             LEFT JOIN ".USERS_TABLE." u ON (".get_user_table_field("u.", "user_id")." = i.user_id)
-            WHERE i.image_active = 1 AND i.cat_id NOT IN ($cat_id_sql) AND c.cat_id = i.cat_id
+            WHERE i.image_active = 1 AND i.cat_id NOT IN ($cat_id_sql_safe) AND c.cat_id = i.cat_id
             ORDER BY RAND()";
     $result = $site_db->query($sql);
     while ($row = $site_db->fetch_array($result)) {
@@ -583,7 +586,7 @@ function get_random_image_cache() {
     if (empty($total_images)) {
       $sql = "SELECT COUNT(*) as total_images
               FROM ".IMAGES_TABLE."
-              WHERE image_active = 1 AND cat_id NOT IN ($cat_id_sql)";
+              WHERE image_active = 1 AND cat_id NOT IN ($cat_id_sql_safe)";
       $row = $site_db->query_firstrow($sql);
       $total_images = $row['total_images'];
     }
@@ -596,7 +599,7 @@ function get_random_image_cache() {
     $sql = "SELECT i.image_id, i.cat_id, i.user_id, i.image_name, i.image_description, i.image_keywords, i.image_date, i.image_active, i.image_media_file, i.image_thumb_file, i.image_download_url, i.image_allow_comments, i.image_comments, i.image_downloads, i.image_votes, i.image_rating, i.image_hits, c.cat_name".get_user_table_field(", u.", "user_name")."
             FROM (".IMAGES_TABLE." i,  ".CATEGORIES_TABLE." c)
             LEFT JOIN ".USERS_TABLE." u ON (".get_user_table_field("u.", "user_id")." = i.user_id)
-            WHERE i.image_active = 1 AND i.cat_id NOT IN ($cat_id_sql) AND c.cat_id = i.cat_id
+            WHERE i.image_active = 1 AND i.cat_id NOT IN ($cat_id_sql_safe) AND c.cat_id = i.cat_id
             LIMIT $number, 1";
     $random_image_cache[0] = $site_db->query_firstrow($sql);
   }

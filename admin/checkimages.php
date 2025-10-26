@@ -808,6 +808,8 @@ if (isset($_POST['action']) && $action == "checkimages")
 		}
 		$cat_sql = implode(", ", $cats);
 	}
+	// SECURITY FIX: Sanitize category IDs (defense-in-depth, IDs from DB but ensure safety)
+	$cat_sql = $site_db->sanitize_ids($cat_sql);
 	$sql = "SELECT image_media_file, cat_id
 					FROM ".IMAGES_TABLE."
 					WHERE cat_id IN ($cat_sql)

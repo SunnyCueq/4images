@@ -216,8 +216,10 @@ if ($action == "updateuser") {
       $group_delete_sql .= (($group_delete_sql != "") ? ", " : "").$key;
     }
     if (!empty($group_delete_sql)) {
+      // SECURITY FIX: Sanitize group IDs (defense-in-depth, keys should be integers but ensure safety)
+      $group_delete_sanitized = $site_db->sanitize_ids($group_delete_sql);
       $sql = "DELETE FROM ".GROUP_MATCH_TABLE."
-              WHERE user_id = $user_id AND group_id IN ($group_delete_sql)";
+              WHERE user_id = $user_id AND group_id IN ($group_delete_sanitized)";
       $site_db->query($sql);
     }
 

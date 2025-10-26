@@ -249,6 +249,8 @@ function add_searchwords($image_id = 0, $raw_words = array()) {
 
   $word_exists = array();
   if ($allwords_sql != "") {
+    // NOTE: $allwords_sql already contains escaped strings via $site_db->escape() (line 243)
+    // No additional sanitization needed - already protected
     $sql = "SELECT word_text, word_id
             FROM ".WORDLIST_TABLE."
             WHERE word_text IN ($allwords_sql)";
@@ -349,9 +351,11 @@ function remove_searchwords($image_ids_sql = "") {
     }
 
     if ($all_word_id_sql != "") {
+      // SECURITY FIX: Sanitize word IDs (defense-in-depth, IDs from DB but ensure safety)
+      $all_word_id_sql_safe = $site_db->sanitize_ids($all_word_id_sql);
       $sql = "SELECT word_id, COUNT(word_id) as word_id_count
               FROM ".WORDMATCH_TABLE."
-              WHERE word_id IN ($all_word_id_sql)
+              WHERE word_id IN ($all_word_id_sql_safe)
               GROUP BY word_id";
       $result = $site_db->query($sql);
 
@@ -363,8 +367,10 @@ function remove_searchwords($image_ids_sql = "") {
       }
 
       if ($word_id_delete_sql != "") {
+        // SECURITY FIX: Sanitize word IDs (defense-in-depth, IDs from DB but ensure safety)
+        $word_id_delete_sql_safe = $site_db->sanitize_ids($word_id_delete_sql);
         $sql = "DELETE FROM ".WORDLIST_TABLE."
-                WHERE word_id IN ($word_id_delete_sql)";
+                WHERE word_id IN ($word_id_delete_sql_safe)";
         $site_db->query($sql);
       }
 

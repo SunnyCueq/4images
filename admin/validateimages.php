@@ -155,9 +155,10 @@ if ($action == "updateimage") {
       }
     }
 
+    // SECURITY FIX: Explicit int cast (defense-in-depth, already validated via intval)
     $sql = "UPDATE ".IMAGES_TEMP_TABLE."
             SET cat_id = $cat_id, user_id = $user_id, image_name = '$image_name', image_description = '$image_description', image_keywords = '$image_keywords', image_date = $image_date, image_media_file = '$new_name', image_thumb_file = '$new_thumb_name', image_download_url = '$image_download_url'".$additional_sql."
-            WHERE image_id = $image_id";
+            WHERE image_id = ".(int)$image_id;
     $result = $site_db->query($sql);
 
     @unlink(MEDIA_TEMP_PATH."/".$old_file_name.".bak");
@@ -180,9 +181,10 @@ if ($action == "editimage") {
 
   $image_id = (isset($_POST['image_id'])) ? intval($_POST['image_id']) : intval($_GET['image_id']);
 
+  // SECURITY FIX: Explicit int cast (defense-in-depth, already validated via intval)
   $sql = "SELECT *, FROM_UNIXTIME(image_date) AS image_date
           FROM ".IMAGES_TEMP_TABLE."
-          WHERE image_id = $image_id";
+          WHERE image_id = ".(int)$image_id;
   $image_row = $site_db->query_firstrow($sql);
 
   show_form_header("validateimages.php", "updateimage", "form", 1);
