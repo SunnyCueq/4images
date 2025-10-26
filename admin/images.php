@@ -235,10 +235,10 @@ if ($action == "updateimage") {
     $error['image_download_url'] = 1;
   }
 
-  if ((empty($HTTP_POST_FILES['file']['tmp_name']) || $HTTP_POST_FILES['file']['tmp_name'] == "none") && $remote_file != "" && !check_remote_media($remote_file) && !check_local_media($remote_file)) {
+  if ((empty($_FILES['file']['tmp_name']) || $_FILES['file']['tmp_name'] == "none") && $remote_file != "" && !check_remote_media($remote_file) && !check_local_media($remote_file)) {
     $error['remote_file'] = 1;
   }
-  if ((empty($HTTP_POST_FILES['thumb_file']['tmp_name']) || $HTTP_POST_FILES['thumb_file']['tmp_name'] == "none") && $remote_thumb_file != "" && !check_remote_thumb($remote_thumb_file) && !check_local_thumb($remote_thumb_file)) {
+  if ((empty($_FILES['thumb_file']['tmp_name']) || $_FILES['thumb_file']['tmp_name'] == "none") && $remote_thumb_file != "" && !check_remote_thumb($remote_thumb_file) && !check_local_thumb($remote_thumb_file)) {
     $error['remote_thumb_file'] = 1;
   }
 
@@ -250,12 +250,12 @@ if ($action == "updateimage") {
     }
   }
 
-  if (!empty($HTTP_POST_FILES['file']['tmp_name']) && $HTTP_POST_FILES['file']['tmp_name'] != "none" && !$error) {
+  if (!empty($_FILES['file']['tmp_name']) && $_FILES['file']['tmp_name'] != "none" && !$error) {
     unset($_POST['remote_file']);
     @rename(MEDIA_PATH."/".$old_cat_id."/".$old_file_name, MEDIA_PATH."/".$old_cat_id."/".$old_file_name.".bak");
     $new_name = $site_upload->upload_file("file", "media", $cat_id);
     if (!$new_name) {
-      $error_msg .= $lang['file_upload_error'].": <b>".$HTTP_POST_FILES['file']['name']."</b><br />".$site_upload->get_upload_errors();
+      $error_msg .= $lang['file_upload_error'].": <b>".$_FILES['file']['name']."</b><br />".$site_upload->get_upload_errors();
       @rename(MEDIA_PATH."/".$old_cat_id."/".$old_file_name.".bak", MEDIA_PATH."/".$old_cat_id."/".$old_file_name);
       $error = 1;
     }
@@ -264,7 +264,7 @@ if ($action == "updateimage") {
       $log[] = $lang['file_upload_success'].": <b>$new_name</b>";
     }
   }
-  elseif ((empty($HTTP_POST_FILES['file']['tmp_name']) || $HTTP_POST_FILES['file']['tmp_name'] == "none") && $remote_file != "" && (check_remote_media($remote_file) || check_local_media($remote_file))) {
+  elseif ((empty($_FILES['file']['tmp_name']) || $_FILES['file']['tmp_name'] == "none") && $remote_file != "" && (check_remote_media($remote_file) || check_local_media($remote_file))) {
     $new_name = $remote_file;
     if (file_exists(MEDIA_PATH."/".$old_cat_id."/".$old_file_name) && is_file(MEDIA_PATH."/".$old_cat_id."/".$old_file_name)) {
       unlink(MEDIA_PATH."/".$old_cat_id."/".$old_file_name);
@@ -286,12 +286,12 @@ if ($action == "updateimage") {
     $new_thumb_name = "";
     unset($_POST['remote_thumb_file']);
   }
-  elseif (!empty($HTTP_POST_FILES['thumb_file']['tmp_name']) && $HTTP_POST_FILES['thumb_file']['tmp_name'] != "none" && !$error) {
+  elseif (!empty($_FILES['thumb_file']['tmp_name']) && $_FILES['thumb_file']['tmp_name'] != "none" && !$error) {
     unset($_POST['remote_thumb_file']);
     @rename(THUMB_PATH."/".$old_cat_id."/".$old_thumb_file_name, THUMB_PATH."/".$old_cat_id."/".$old_thumb_file_name.".bak");
     $new_thumb_name = $site_upload->upload_file("thumb_file", "thumb", $cat_id, get_basefile($new_name));
     if (!$new_thumb_name) {
-      $error_msg .= $lang['thumb_upload_error'].": <b>".$HTTP_POST_FILES['thumb_file']['name']."</b><br />".$site_upload->get_upload_errors();
+      $error_msg .= $lang['thumb_upload_error'].": <b>".$_FILES['thumb_file']['name']."</b><br />".$site_upload->get_upload_errors();
       @rename(THUMB_PATH."/".$old_cat_id."/".$old_thumb_file_name.".bak", THUMB_PATH."/".$old_cat_id."/".$old_thumb_file_name);
       @unlink(MEDIA_PATH."/".$old_cat_id."/".$new_name);
       $error = 1;
@@ -300,7 +300,7 @@ if ($action == "updateimage") {
       $log[] = $lang['thumb_upload_success'].": <b>$new_thumb_name</b>";
     }
   }
-  elseif ((empty($HTTP_POST_FILES['thumb_file']['tmp_name']) || $HTTP_POST_FILES['thumb_file']['tmp_name'] == "none") && $remote_thumb_file != "" && (check_remote_thumb($remote_thumb_file) || check_local_thumb($remote_thumb_file))) {
+  elseif ((empty($_FILES['thumb_file']['tmp_name']) || $_FILES['thumb_file']['tmp_name'] == "none") && $remote_thumb_file != "" && (check_remote_thumb($remote_thumb_file) || check_local_thumb($remote_thumb_file))) {
     $new_thumb_name = $remote_thumb_file;
     if (file_exists(THUMB_PATH."/".$old_cat_id."/".$old_thumb_file_name) && is_file(THUMB_PATH."/".$old_cat_id."/".$old_thumb_file_name)) {
       unlink(THUMB_PATH."/".$old_cat_id."/".$old_thumb_file_name);
@@ -444,7 +444,7 @@ if ($action == "saveimages") {
     if ($cat_id == 0) {
       $error['cat_id_'.$i] = 1;
     }
-    if (((empty($HTTP_POST_FILES['file_'.$i]['tmp_name']) || $HTTP_POST_FILES['file_'.$i]['tmp_name'] == "none") && $remote_file == "") || ($remote_file != "" && !check_remote_media($remote_file) && !check_local_media($remote_file))) {
+    if (((empty($_FILES['file_'.$i]['tmp_name']) || $_FILES['file_'.$i]['tmp_name'] == "none") && $remote_file == "") || ($remote_file != "" && !check_remote_media($remote_file) && !check_local_media($remote_file))) {
       $error['file_'.$i] = 1;
     }
     if ($remote_thumb_file != "" && !check_remote_thumb($remote_thumb_file) && !check_local_thumb($remote_thumb_file)) {
@@ -475,10 +475,10 @@ if ($action == "saveimages") {
       //Upload Image
       $file = "file_".$i;
       $remote_file = trim($_POST['remote_file_'.$i]);
-      if (!empty($HTTP_POST_FILES[$file]['tmp_name']) && $HTTP_POST_FILES[$file]['tmp_name'] != "none") {
+      if (!empty($_FILES[$file]['tmp_name']) && $_FILES[$file]['tmp_name'] != "none") {
         $new_name = $site_upload->upload_file($file, "media", $cat_id);
         if (!$new_name) {
-          $log[] = "<b>".$lang['file_upload_error'].": ".$HTTP_POST_FILES[$file]['name']."</b><br />".$site_upload->get_upload_errors();
+          $log[] = "<b>".$lang['file_upload_error'].": ".$_FILES[$file]['name']."</b><br />".$site_upload->get_upload_errors();
           $uploaderror = 1;
         }
         else {
@@ -493,10 +493,10 @@ if ($action == "saveimages") {
       $thumb_file = "thumb_file_".$i;
       $remote_thumb_file = trim($_POST['remote_thumb_file_'.$i]);
       $new_thumb_name = "";
-      if (!empty($HTTP_POST_FILES[$thumb_file]['tmp_name']) && $HTTP_POST_FILES[$thumb_file]['tmp_name'] != "none" && !$uploaderror) {
+      if (!empty($_FILES[$thumb_file]['tmp_name']) && $_FILES[$thumb_file]['tmp_name'] != "none" && !$uploaderror) {
         $new_thumb_name = $site_upload->upload_file($thumb_file, "thumb", $cat_id, get_basefile($new_name));
         if (!$new_thumb_name) {
-          $log[] = "<b>".$lang['thumb_upload_error'].": ".$HTTP_POST_FILES[$thumb_file]['name']."</b><br />".$site_upload->get_upload_errors();
+          $log[] = "<b>".$lang['thumb_upload_error'].": ".$_FILES[$thumb_file]['name']."</b><br />".$site_upload->get_upload_errors();
           @unlink(MEDIA_PATH."/".$cat_id."/".$new_name);
           $log[] = $lang['error_image_deleted'];
           $uploaderror = 1;
