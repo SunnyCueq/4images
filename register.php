@@ -72,7 +72,7 @@ if ($action == "register") {
   $user_allowemails = (isset($_POST['user_allowemails'])) ? intval($_POST['user_allowemails']) : 1;
   $user_invisible = (isset($_POST['user_invisible'])) ? intval($_POST['user_invisible']) : 0;
   $user_homepage = (isset($_POST['user_homepage'])) ? un_htmlspecialchars(trim($_POST['user_homepage'])) : "";
-  $user_icq = (isset($_POST['user_icq'])) ? ((intval(trim($_POST['user_icq']))) ? intval(trim($_POST['user_icq'])) : "") : "";
+  // ICQ support removed
 
   $captcha = (isset($_POST['captcha'])) ? un_htmlspecialchars(trim($_POST['captcha'])) : "";
 
@@ -155,9 +155,9 @@ if ($action == "register") {
     $user_level = ($config['account_activation'] == 0) ? USER : USER_AWAITING;
     $user_password_hashed = salted_hash($user_password);
     $sql = "INSERT INTO ".USERS_TABLE."
-            (".get_user_table_field("", "user_id").get_user_table_field(", ", "user_level").get_user_table_field(", ", "user_name").get_user_table_field(", ", "user_password").get_user_table_field(", ", "user_email").get_user_table_field(", ", "user_showemail").get_user_table_field(", ", "user_allowemails").get_user_table_field(", ", "user_invisible").get_user_table_field(", ", "user_joindate").get_user_table_field(", ", "user_activationkey").get_user_table_field(", ", "user_lastaction").get_user_table_field(", ", "user_lastvisit").get_user_table_field(", ", "user_comments").get_user_table_field(", ", "user_homepage").get_user_table_field(", ", "user_icq").$additional_field_sql.")
+            (".get_user_table_field("", "user_id").get_user_table_field(", ", "user_level").get_user_table_field(", ", "user_name").get_user_table_field(", ", "user_password").get_user_table_field(", ", "user_email").get_user_table_field(", ", "user_showemail").get_user_table_field(", ", "user_allowemails").get_user_table_field(", ", "user_invisible").get_user_table_field(", ", "user_joindate").get_user_table_field(", ", "user_activationkey").get_user_table_field(", ", "user_lastaction").get_user_table_field(", ", "user_lastvisit").get_user_table_field(", ", "user_comments").get_user_table_field(", ", "user_homepage").$additional_field_sql.")
             VALUES
-            ($user_id, $user_level, '$user_name', '$user_password_hashed', '$user_email', $user_showemail, $user_allowemails, $user_invisible, $current_time, '$activationkey', $current_time, $current_time, 0, '$user_homepage', '$user_icq'".$additional_value_sql.")";
+            ($user_id, $user_level, '$user_name', '$user_password_hashed', '$user_email', $user_showemail, $user_allowemails, $user_invisible, $current_time, '$activationkey', $current_time, $current_time, 0, '$user_homepage'".$additional_value_sql.")";
     $result = $site_db->query($sql);
 
     if ($result) {
@@ -240,7 +240,7 @@ if ($action == "register") {
       "user_name" => format_text($user_name, 2),
       "user_email" => format_text($user_email, 2),
       "user_homepage" => format_text($user_homepage, 2),
-      "user_icq" => $user_icq,
+      // ICQ support removed
       "user_showemail_yes" => $user_showemail_yes,
       "user_showemail_no" => $user_showemail_no,
       "user_allowemails_yes" => $user_allowemails_yes,
@@ -259,7 +259,7 @@ if ($action == "register") {
       "lang_invisible" => $lang['invisible'],
       "lang_optional_infos" => $lang['optional_infos'],
       "lang_homepage" => $lang['homepage'],
-      "lang_icq" => $lang['icq'],
+      // ICQ support removed
       "lang_yes" => $lang['yes'],
       "lang_no" => $lang['no'],
       "lang_captcha" => $lang['captcha'],

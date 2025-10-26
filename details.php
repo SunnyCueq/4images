@@ -343,7 +343,7 @@ if ($image_allow_comments == 1) {
       "rss_url"   => $script_url."/rss.php?action=comments&amp;".URL_IMAGE_ID."=".$image_id
   ));
 
-  $sql = "SELECT c.comment_id, c.image_id, c.user_id, c.user_name AS comment_user_name, c.comment_headline, c.comment_text, c.comment_ip, c.comment_date".get_user_table_field(", u.", "user_level").get_user_table_field(", u.", "user_name").get_user_table_field(", u.", "user_email").get_user_table_field(", u.", "user_showemail").get_user_table_field(", u.", "user_invisible").get_user_table_field(", u.", "user_joindate").get_user_table_field(", u.", "user_lastaction").get_user_table_field(", u.", "user_comments").get_user_table_field(", u.", "user_homepage").get_user_table_field(", u.", "user_icq")."
+  $sql = "SELECT c.comment_id, c.image_id, c.user_id, c.user_name AS comment_user_name, c.comment_headline, c.comment_text, c.comment_ip, c.comment_date".get_user_table_field(", u.", "user_level").get_user_table_field(", u.", "user_name").get_user_table_field(", u.", "user_email").get_user_table_field(", u.", "user_showemail").get_user_table_field(", u.", "user_invisible").get_user_table_field(", u.", "user_joindate").get_user_table_field(", u.", "user_lastaction").get_user_table_field(", u.", "user_comments").get_user_table_field(", u.", "user_homepage")."
           FROM ".COMMENTS_TABLE." c
           LEFT JOIN ".USERS_TABLE." u ON (".get_user_table_field("u.", "user_id")." = c.user_id)
           WHERE c.image_id = $image_id
@@ -371,7 +371,7 @@ if ($image_allow_comments == 1) {
       $comment_user_mailform_link = "";
       $comment_user_email_button = "";
       $comment_user_homepage_button = "";
-      $comment_user_icq_button = "";
+      // ICQ support removed
       $comment_user_profile_button = "";
       $comment_user_status_img = REPLACE_EMPTY;
       $comment_user_name = format_text($comment_row[$i]['comment_user_name'], 2);
@@ -392,10 +392,7 @@ if ($image_allow_comments == 1) {
           $comment_user_homepage_button = "<a href=\"".$comment_user_homepage."\" target=\"_blank\" class=\"text-decoration-none me-2\" title=\"".$comment_user_homepage."\"><i class=\"fa-solid fa-globe\"></i></a>";
         }
 
-        $comment_user_icq = (isset($comment_row[$i][$user_table_fields['user_icq']])) ? format_text($comment_row[$i][$user_table_fields['user_icq']]) : "";
-        if (!empty($comment_user_icq)) {
-          $comment_user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$comment_user_icq."\" target=\"_blank\" class=\"text-decoration-none me-2\" title=\"ICQ: ".$comment_user_icq."\"><i class=\"fa-brands fa-icq\"></i></a>";
-        }
+        // ICQ support removed
 
         if (!empty($comment_row[$i][$user_table_fields['user_email']]) && (!isset($comment_row[$i][$user_table_fields['user_showemail']]) || (isset($comment_row[$i][$user_table_fields['user_showemail']]) && $comment_row[$i][$user_table_fields['user_showemail']] == 1))) {
           $comment_user_email = format_text($comment_row[$i][$user_table_fields['user_email']]);
@@ -445,7 +442,7 @@ if ($image_allow_comments == 1) {
         "comment_user_mailform_link" => $comment_user_mailform_link,
         "comment_user_email_button" => $comment_user_email_button,
         "comment_user_homepage_button" => $comment_user_homepage_button,
-        "comment_user_icq_button" => $comment_user_icq_button,
+        // ICQ support removed
         "comment_user_ip" => $comment_user_ip,
         "comment_headline" => format_text($comment_row[$i]['comment_headline'], 0, $config['wordwrap_comments'], 0, 0),
         "comment_text" => format_text($comment_row[$i]['comment_text'], $config['html_comments'], $config['wordwrap_comments'], $config['bb_comments'], $config['bb_img_comments']),

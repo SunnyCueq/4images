@@ -1025,28 +1025,7 @@ function get_user_info($user_id = 0) {
   return $user_info;
 }
 
-function get_icq_status($uin) {
-  if (!is_numeric($uin)) return false;
-
-  $fp = @fsockopen('status.icq.com', 80, $errno, $errstr, 8);
-  if (!$fp) return false;
-
-  $request = "HEAD /online.gif?icq=$uin&img=3 HTTP/1.0\r\n"
-            ."Host: status.icq.com\r\n"
-            ."Connection: close\r\n\r\n";
-  fputs($fp, $request);
-
-  do {
-     $response = fgets($fp, 1024);
-  }
-  while (!feof($fp) && !stristr($response, 'Location'));
-
-  fclose($fp);
-  if (strstr($response, 'online1')) return 'online';
-  if (strstr($response, 'online0')) return 'offline';
-  if (strstr($response, 'online2')) return 'disabled';
-  return FALSE;
-}
+// ICQ support completely removed
 
 function add_to_lightbox($id) {
   global $user_info, $site_db;

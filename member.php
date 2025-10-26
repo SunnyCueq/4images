@@ -923,13 +923,7 @@ if ($action == "showprofile") {
       $user_homepage_button = REPLACE_EMPTY;
     }
 
-    $user_icq = (isset($user_row['user_icq'])) ? $user_row['user_icq'] : REPLACE_EMPTY;
-    if (!empty($user_icq) && $user_icq != REPLACE_EMPTY) {
-      $user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$user_icq."\" target=\"_blank\" class=\"text-decoration-none me-2\" title=\"ICQ: ".$user_icq."\"><i class=\"fa-brands fa-icq\"></i></a>";
-    }
-    else {
-      $user_icq_button = REPLACE_EMPTY;
-    }
+    // ICQ support completely removed
 
     if (!empty($user_row['user_email']) && (!isset($user_row['user_showemail']) || (isset($user_row['user_showemail']) && $user_row['user_showemail'] == 1))) {
       $user_email = $user_row['user_email'];
@@ -960,9 +954,7 @@ if ($action == "showprofile") {
       "user_last_action" => (isset($user_row['user_lastaction'])) ? format_date($config['date_format']." ".$config['time_format'], $user_row['user_lastaction']) : REPLACE_EMPTY,
       "user_homepage" => $user_homepage,
       "user_homepage_button" => $user_homepage_button,
-      "user_icq" => $user_icq,
-      "user_icq_button" => $user_icq_button,
-      "user_icq_status" => (isset($user_row['user_icq'])) ? get_icq_status($user_row['user_icq']) : REPLACE_EMPTY,
+      // ICQ support removed
       "user_comments" => (isset($user_row['user_comments'])) ? $user_row['user_comments'] : REPLACE_EMPTY,
       "lang_profile_of" => $lang['profile_of'],
       "lang_show_user_images" => preg_replace("/".$site_template->start."user_name".$site_template->end."/siU", format_text($user_row['user_name'], 2), $lang['show_user_images']),
@@ -972,7 +964,7 @@ if ($action == "showprofile") {
       "lang_comments" => $lang['comments'],
       "lang_email" => $lang['email'],
       "lang_homepage" => $lang['homepage'],
-      "lang_icq" => $lang['icq']
+      // ICQ support removed
     ));
 
     if (!empty($additional_user_fields)) {
@@ -1063,7 +1055,7 @@ if ($action == "updateprofile") {
   $user_email = (isset($_POST['user_email'])) ? un_htmlspecialchars(trim($_POST['user_email'])) : "";
   $user_email2 = (isset($_POST['user_email2'])) ? un_htmlspecialchars(trim($_POST['user_email2'])) : "";
   $user_homepage = (isset($_POST['user_homepage'])) ? format_url(un_htmlspecialchars(trim($_POST['user_homepage']))) : "";
-  $user_icq = (isset($_POST['user_icq'])) ? ((intval(trim($_POST['user_icq']))) ? intval(trim($_POST['user_icq'])) : "") : "";
+  // ICQ support removed
   $user_showemail = (isset($_POST['user_showemail'])) ? intval($_POST['user_showemail']) : 0;
   $user_allowemails = (isset($_POST['user_allowemails'])) ? intval($_POST['user_allowemails']) : 0;
   $user_invisible = (isset($_POST['user_invisible'])) ? intval($_POST['user_invisible']) : 0;
@@ -1166,7 +1158,7 @@ if ($action == "updateprofile") {
     }
 
     $sql = "UPDATE ".USERS_TABLE."
-            SET ".get_user_table_field("", "user_email")." = '$user_email', ".get_user_table_field("", "user_showemail")." = $user_showemail, ".get_user_table_field("", "user_allowemails")." = $user_allowemails, ".get_user_table_field("", "user_invisible")." = $user_invisible, ".get_user_table_field("", "user_homepage")." = '$user_homepage', ".get_user_table_field("", "user_icq")." = '$user_icq'".$additional_sql."
+            SET ".get_user_table_field("", "user_email")." = '$user_email', ".get_user_table_field("", "user_showemail")." = $user_showemail, ".get_user_table_field("", "user_allowemails")." = $user_allowemails, ".get_user_table_field("", "user_invisible")." = $user_invisible, ".get_user_table_field("", "user_homepage")." = '$user_homepage'".$additional_sql."
             WHERE ".get_user_table_field("", "user_id")." = ".$user_info['user_id'];
     $site_db->query($sql);
 
@@ -1227,7 +1219,7 @@ if ($action == "editprofile") {
     $user_allowemails = $user_info['user_allowemails'];
     $user_invisible = $user_info['user_invisible'];
     $user_homepage = $user_info['user_homepage'];
-    $user_icq = $user_info['user_icq'];
+    // ICQ support removed
   }
 
   if ($user_showemail == 1) {
@@ -1268,7 +1260,7 @@ if ($action == "editprofile") {
     "user_email" => format_text(stripslashes($user_email), 2),
     "user_email2" => format_text(stripslashes($user_email2), 2),
     "user_homepage" => format_text(stripslashes($user_homepage), 2),
-    "user_icq" => $user_icq,
+    // ICQ support removed
     "user_showemail_yes" => $user_showemail_yes,
     "user_showemail_no" => $user_showemail_no,
     "user_allowemails_yes" => $user_allowemails_yes,
@@ -1283,7 +1275,7 @@ if ($action == "editprofile") {
     "lang_invisible" => $lang['invisible'],
     "lang_optional_infos" => $lang['optional_infos'],
     "lang_homepage" => $lang['homepage'],
-    "lang_icq" => $lang['icq'],
+    // ICQ support removed
     "lang_save" => $lang['save'],
     "lang_reset" => $lang['reset'],
     "lang_change_password" => $lang['change_password'],
