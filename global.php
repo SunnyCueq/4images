@@ -31,22 +31,13 @@ $start_time = microtime();
 // ini_set('display_startup_errors', true);
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 
-function addslashes_array($array)
-{
-    foreach ($array as $key => $val) {
-        $array[$key] = (is_array($val)) ? addslashes_array($val) : addslashes($val);
-    }
-    return $array;
-}
+// REMOVED: addslashes_array() - insecure and deprecated approach
+// SQL injection protection now handled via prepared statements in db_mysqli.php
 
 if (isset($_GET['GLOBALS']) || isset($_POST['GLOBALS']) || isset($_COOKIE['GLOBALS']) || isset($_FILES['GLOBALS'])) {
     // Try to exploit PHP bug
     die("Security violation");
 }
-
-$_GET    = addslashes_array($_GET);
-$_POST   = addslashes_array($_POST);
-$_COOKIE = addslashes_array($_COOKIE);
 
 $search_match_fields = null;
 $search_index_types = null;
@@ -219,14 +210,14 @@ if (!defined('IN_CP')) {
 //--- Useful Stuff ------------------------------------
 //-----------------------------------------------------
 if (isset($_GET['action']) || isset($_POST['action'])) {
-    $action = (isset($_POST['action'])) ? stripslashes(trim((string)$_POST['action'])) : stripslashes(trim((string)$_GET['action']));
+    $action = (isset($_POST['action'])) ? trim((string)$_POST['action']) : trim((string)$_GET['action']);
     $action = preg_replace("/[^a-z0-9_-]+/i", "", $action);
 } else {
     $action = "";
 }
 
 if (isset($_GET['mode']) || isset($_POST['mode'])) {
-    $mode = (isset($_POST['mode'])) ? stripslashes(trim((string)$_POST['mode'])) : stripslashes(trim((string)$_GET['mode']));
+    $mode = (isset($_POST['mode'])) ? trim((string)$_POST['mode']) : trim((string)$_GET['mode']);
     $mode = preg_replace("/[^a-z0-9_-]+/i", "", $mode);
 } else {
     $mode = "";

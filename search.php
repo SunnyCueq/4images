@@ -158,9 +158,11 @@ $num_rows_all = 0;
 if ($show_result == 1) {
   if (empty($search_id)) {
     if (!empty($session_info['search_id'])) {
-      $search_id = unserialize($session_info['search_id']);
+      // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+      $search_id = unserialize($session_info['search_id'], ['allowed_classes' => false]);
     } else {
-      $search_id = unserialize($site_sess->get_session_var("search_id"));
+      // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+      $search_id = unserialize($site_sess->get_session_var("search_id"), ['allowed_classes' => false]);
     }
   }
 

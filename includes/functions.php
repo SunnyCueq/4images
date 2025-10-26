@@ -30,7 +30,8 @@ function set_download_token($token) {
     return;
   }
 
-  $download_token = @unserialize($site_sess->get_session_var('download_token'));
+  // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+  $download_token = @unserialize($site_sess->get_session_var('download_token'), ['allowed_classes' => false]);
 
   if (!$download_token) {
     $download_token = array();
@@ -48,7 +49,8 @@ function clear_download_token($token) {
     return;
   }
 
-  $download_token = @unserialize($site_sess->get_session_var('download_token'));
+  // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+  $download_token = @unserialize($site_sess->get_session_var('download_token'), ['allowed_classes' => false]);
 
   if (!$download_token) {
     return;
@@ -69,7 +71,8 @@ function check_download_token($token) {
     return true;
   }
 
-  $download_token = @unserialize($site_sess->get_session_var('download_token'));
+  // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+  $download_token = @unserialize($site_sess->get_session_var('download_token'), ['allowed_classes' => false]);
 
   if (isset($download_token[md5($token)])) {
     return true;
@@ -699,10 +702,12 @@ function update_image_rating($image_id, $rating) {
     $old_rating = $image_row['image_rating'];
     $new_rating = (($old_rating * $old_votes) + $rating) / ($old_votes + 1);
     $new_rating = sprintf("%.2f", $new_rating);
+
+    // SECURITY FIX: Use prepared statement to prevent SQL injection
     $sql = "UPDATE ".IMAGES_TABLE."
-            SET image_votes = ($old_votes + 1), image_rating = '$new_rating'
-            WHERE image_id = $image_id";
-    $site_db->query($sql);
+            SET image_votes = ?, image_rating = ?
+            WHERE image_id = ?";
+    $site_db->prepared_query($sql, [($old_votes + 1), $new_rating, (int)$image_id]);
   }
 }
 

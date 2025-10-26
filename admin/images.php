@@ -52,12 +52,26 @@ function delete_images($image_ids, $delfromserver = 1) {
     echo $lang['no_search_results'];
     return false;
   }
+
+  // SECURITY FIX: Sanitize image_ids to prevent SQL injection
+  // Convert comma-separated string to array of integers
+  $image_ids_array = explode(',', $image_ids);
+  $image_ids_safe = array_map('intval', $image_ids_array);
+  $image_ids_safe = array_filter($image_ids_safe); // Remove zeros
+
+  if (empty($image_ids_safe)) {
+    echo $lang['no_search_results'];
+    return false;
+  }
+
+  $image_ids_sanitized = implode(',', $image_ids_safe);
+
   $error_log = array();
   echo "<br />";
   $sql = "SELECT i.image_id, i.cat_id, i.user_id, i.image_name, i.image_media_file, i.image_thumb_file, l.lightbox_image_ids
           FROM ".IMAGES_TABLE." i
           LEFT JOIN ".LIGHTBOXES_TABLE." l ON (l.user_id = i.user_id)
-          WHERE i.image_id IN ($image_ids)";
+          WHERE i.image_id IN ($image_ids_sanitized)";
   $image_result = $site_db->query($sql);
   while ($image_row = $site_db->fetch_array($image_result)) {
     if ($image_row['user_id'] != GUEST) {

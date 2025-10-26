@@ -41,12 +41,25 @@ function delete_users($user_ids, $delcomments = 1, $delimages = 1) {
     echo $lang['no_search_results'];
     return false;
   }
+
+  // SECURITY FIX: Sanitize user_ids to prevent SQL injection
+  $user_ids_array = explode(',', $user_ids);
+  $user_ids_safe = array_map('intval', $user_ids_array);
+  $user_ids_safe = array_filter($user_ids_safe);
+
+  if (empty($user_ids_safe)) {
+    echo $lang['no_search_results'];
+    return false;
+  }
+
+  $user_ids_sanitized = implode(',', $user_ids_safe);
+
   $error_log = array();
   echo "<br />";
 
   $sql = "SELECT ".get_user_table_field("", "user_id").get_user_table_field(", ", "user_name")."
           FROM ".USERS_TABLE."
-          WHERE ".get_user_table_field("", "user_id")." IN ($user_ids)";
+          WHERE ".get_user_table_field("", "user_id")." IN ($user_ids_sanitized)";
   $user_result = $site_db->query($sql);
   $image_ids_sql = "";
   while ($user_row = $site_db->fetch_array($user_result)) {
@@ -59,7 +72,7 @@ function delete_users($user_ids, $delcomments = 1, $delimages = 1) {
 
     $sql = "SELECT group_id
             FROM ".GROUPS_TABLE."
-            WHERE group_name = '".addslashes($user_name)."' AND group_type = ".GROUPTYPE_SINGLE;
+            WHERE group_name = '".$site_db->escape($user_name)."' AND group_type = ".GROUPTYPE_SINGLE;
     if ($groups_row = $site_db->query_firstrow($sql)) {
       $sql = "DELETE FROM ".GROUPS_TABLE."
               WHERE group_id = ".$groups_row['group_id']." AND group_type = ".GROUPTYPE_SINGLE;

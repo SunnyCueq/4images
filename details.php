@@ -96,7 +96,8 @@ elseif ($mode == "search") {
   }
 
   if (!empty($session_info['search_id'])) {
-    $search_id = unserialize($session_info['search_id']);
+    // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+    $search_id = unserialize($session_info['search_id'], ['allowed_classes' => false]);
   }
 
   $sql_where_query = "";

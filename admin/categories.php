@@ -700,7 +700,8 @@ if ($action == "modifycats") {
     }
 
     if ($ser_map = $site_sess->get_session_var('map')) {
-        $GLOBALS['map'] = unserialize($ser_map);
+        // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+        $GLOBALS['map'] = unserialize($ser_map, ['allowed_classes' => false]);
     } else {
         $GLOBALS['map'] = array();
     }

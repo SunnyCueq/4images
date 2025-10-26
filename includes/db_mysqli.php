@@ -91,6 +91,61 @@ class Db
         }
     }
 
+    /**
+     * Execute prepared statement with parameter binding (PHP 8.4+ secure)
+     *
+     * @param string $query SQL query with ? placeholders
+     * @param array $params Array of parameters to bind
+     * @param string|null $types Optional: Type string (i, d, s, b) - auto-detected if not provided
+     * @return mysqli_result|bool Query result or false on error
+     */
+    public function prepared_query($query, $params = [], ?string $types = null)
+    {
+        if (empty($query)) {
+            return false;
+        }
+
+        $stmt = mysqli_prepare($this->connection, $query);
+        if (!$stmt) {
+            $this->error("<b>Prepared Statement Error</b>: ".safe_htmlspecialchars($query)."<br /><b>".safe_htmlspecialchars(mysqli_error($this->connection))."</b>");
+            return false;
+        }
+
+        // Bind parameters if provided
+        if (!empty($params)) {
+            // Auto-detect types if not provided
+            if ($types === null) {
+                $types = '';
+                foreach ($params as $param) {
+                    if (is_int($param)) {
+                        $types .= 'i';
+                    } elseif (is_float($param)) {
+                        $types .= 'd';
+                    } elseif (is_string($param)) {
+                        $types .= 's';
+                    } else {
+                        $types .= 'b'; // blob
+                    }
+                }
+            }
+
+            mysqli_stmt_bind_param($stmt, $types, ...$params);
+        }
+
+        // Execute statement
+        if (!mysqli_stmt_execute($stmt)) {
+            $this->error("<b>Statement Execution Error</b>: ".safe_htmlspecialchars(mysqli_stmt_error($stmt)));
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+
+        // Get result
+        $this->query_result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+
+        return $this->query_result;
+    }
+
     public function fetch_array(mysqli_result $query_result = null, $assoc = 0)
     {
         if ($query_result != null) {

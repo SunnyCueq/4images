@@ -72,7 +72,8 @@ if (!$data = get_cache_file($cache_id, null)) {
   save_cache_file($cache_id, serialize($data));
 
 } else {
-  $data = unserialize($data);
+  // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
+  $data = unserialize($data, ['allowed_classes' => false]);
 
   $total_images = $data['total_images'];
   $total_categories = $data['total_categories'];
