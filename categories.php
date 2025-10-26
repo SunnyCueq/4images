@@ -68,11 +68,11 @@ $site_template->register_vars(array('prepend_head_title' => $cat_cache[$cat_id][
 //-----------------------------------------------------
 if (!check_permission("auth_upload", $cat_id)) {
   $upload_url = "";
-  $upload_button = "<img src=\"".get_gallery_image("upload_off.gif")."\" border=\"0\" alt=\"\" />";
+  $upload_button = "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"".$lang['upload_disabled']."\"><i class=\"fa-solid fa-upload me-1\"></i>".$lang['upload_disabled']."</span>";
 }
 else {
   $upload_url = $site_sess->url(ROOT_PATH."member.php?action=uploadform&amp;".URL_CAT_ID."=".$cat_id);
-  $upload_button = "<a href=\"".$upload_url."\"><img src=\"".get_gallery_image("upload.gif")."\" border=\"0\" alt=\"\" /></a>";
+  $upload_button = "<a href=\"".$upload_url."\" class=\"btn btn-outline-primary btn-sm\" title=\"".$lang['upload']."\"><i class=\"fa-solid fa-upload me-1\"></i>".$lang['upload']."</a>";
 }
 
 $random_cat_image = (defined("SHOW_RANDOM_IMAGE") && SHOW_RANDOM_IMAGE == 0) ? "" : get_random_image($cat_id);
