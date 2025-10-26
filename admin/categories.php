@@ -145,6 +145,8 @@ function remove_subcategories($cid = 0, $depth = 1)
             $image_ids_sql .= (($image_ids_sql != "") ? ", " : "").$image_row['image_id'];
         }
 
+        // SECURITY FIX: Sanitize IDs (defense-in-depth)
+        $image_ids_sql = $site_db->sanitize_ids($image_ids_sql);
         $sql = "DELETE FROM ".IMAGES_TABLE."
             WHERE image_id IN ($image_ids_sql)";
         if ($site_db->query($sql)) {
