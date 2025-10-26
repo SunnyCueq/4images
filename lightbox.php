@@ -97,40 +97,19 @@ if (!$num_rows)  {
 else {
   set_download_token($user_info['lightbox_image_ids']);
 
-  $thumbnails = "<table width=\"".$config['image_table_width']."\" border=\"0\" cellpadding=\"".$config['image_table_cellpadding']."\" cellspacing=\"".$config['image_table_cellspacing']."\">\n";
-  $count = 0;
-  $bgcounter = 0;
+  $thumbnails = "<div class=\"row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3\">\n";
   while ($image_row = $site_db->fetch_array($result)) {
     if (!$download_allowed && check_permission("auth_download", $image_row['cat_id'])) {
       $download_allowed = true;
     }
 
-    if ($count == 0) {
-      $row_bg_number = ($bgcounter++ % 2 == 0) ? 1 : 2;
-      $thumbnails .= "<tr class=\"imagerow".$row_bg_number."\">\n";
-    }
-    $thumbnails .= "<td width=\"".$imgtable_width."\" valign=\"top\">\n";
+    $thumbnails .= "<div class=\"col\">\n";
 
     show_image($image_row, "lightbox");
     $thumbnails .= $site_template->parse_template("thumbnail_bit");
-    $thumbnails .= "\n</td>\n";
-
-    $count++;
-    if ($count == $config['image_cells']) {
-      $thumbnails .= "</tr>\n";
-      $count = 0;
-    }
+    $thumbnails .= "\n</div>\n";
   } // end while
-  if ($count > 0)  {
-    $leftover = ($config['image_cells'] - $count);
-    if ($leftover >= 1) {
-      for ($i = 0; $i < $leftover; $i++){
-        $thumbnails .= "<td width=\"".$imgtable_width."\">\n&nbsp;\n</td>\n";
-      }
-      $thumbnails .= "</tr>\n";
-    }
-  }
-  $thumbnails .= "</table>\n";
+  $thumbnails .= "</div>\n";
 } // end else
 
 $lightbox_lastaction = format_date($config['date_format']." ".$config['time_format'], $user_info['lightbox_lastaction']);

@@ -698,7 +698,7 @@ if ($action == "uploadimage") {
         "width_height" => $width_height
       ));
       $media = $site_template->parse_template("media/".$file_extension);
-      $content .= "<table border=\"0\" align=\"center\">\n<tr>\n<td>\n".$media."\n</td>\n</tr>\n</table>\n";
+      $content .= "<div class=\"d-flex justify-content-center\">\n".$media."\n</div>\n";
     }
     else {
       $action = "uploadform";

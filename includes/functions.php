@@ -1223,12 +1223,12 @@ function get_categories($cat_id = 0) {
     }
   }
 
-  $categories = "\n<table width=\"".$config['cat_table_width']."\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n<tr>\n<td valign=\"top\" width=\"".$cattable_width."\" class=\"catbgcolor\">\n";
-  $categories .= "<table border=\"0\" cellpadding=\"".$config['cat_table_cellpadding']."\" cellspacing=\"".$config['cat_table_cellspacing']."\">\n";
+  $categories = "\n<div class=\"row g-3\">\n";
+  $categories .= "<div class=\"col-12 col-md-6\">\n";
   $count = 0;
   $count2 = 0;
   foreach ($visible_cat_cache as $key => $category_id) {
-    $categories .= "<tr>\n<td valign=\"top\">\n";
+    $categories .= "<div class=\"card mb-3\">\n<div class=\"card-body\">\n";
 
     $is_new = (isset($new_image_cache[$category_id]) && $new_image_cache[$category_id] > 0) ? 1 : 0;
     $num_images = (isset($cat_cache[$category_id]['num_images'])) ? $cat_cache[$category_id]['num_images'] : 0;
@@ -1269,12 +1269,11 @@ function get_categories($cat_id = 0) {
     $categories .= $site_template->parse_template("category_bit");
     $count++;
     $count2++;
-    $categories .= "</td>\n</tr>\n";
+    $categories .= "</div>\n</div>\n";
 
     if ($count == $table_rows && $count2 < sizeof($visible_cat_cache)) {
-      $categories .= "</table></td>\n";
-      $categories .= "<td valign=\"top\" width=\"".$cattable_width."\" class=\"catbgcolor\">\n";
-      $categories .= "<table border=\"0\" cellpadding=\"".$config['cat_table_cellpadding']."\" cellspacing=\"".$config['cat_table_cellspacing']."\">\n";
+      $categories .= "</div>\n";
+      $categories .= "<div class=\"col-12 col-md-6\">\n";
 
       $total = $total - $count2;
       $table_columns = $table_columns - 1;
@@ -1291,7 +1290,7 @@ function get_categories($cat_id = 0) {
     }
   }
 
-  $categories .= "</table>\n</td>\n</tr>\n</table>\n";
+  $categories .= "</div>\n</div>\n";
   return $categories;
 }
 

@@ -115,41 +115,20 @@ $result = $site_db->query($sql);
 $num_rows = $site_db->get_numrows($result);
 
 if (!$num_rows)  {
-  $new_images = "<table width=\"".$config['image_table_width']."\" border=\"0\" cellpadding=\"".$config['image_table_cellpadding']."\" cellspacing=\"".$config['image_table_cellspacing']."\"><tr class=\"imagerow1\"><td>";
+  $new_images = "<div class=\"alert alert-info text-center\">";
   $new_images .= $lang['no_new_images'];
-  $new_images .= "</td></tr></table>";
+  $new_images .= "</div>";
 }
 else  {
-  $new_images = "<table width=\"".$config['image_table_width']."\" border=\"0\" cellpadding=\"".$config['image_table_cellpadding']."\" cellspacing=\"".$config['image_table_cellspacing']."\">";
-  $count = 0;
-  $bgcounter = 0;
+  $new_images = "<div class=\"row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3\">";
   while ($image_row = $site_db->fetch_array($result)){
-    if ($count == 0) {
-      $row_bg_number = ($bgcounter++ % 2 == 0) ? 1 : 2;
-      $new_images .= "<tr class=\"imagerow".$row_bg_number."\">\n";
-    }
-    $new_images .= "<td width=\"".$imgtable_width."\" valign=\"top\">\n";
+    $new_images .= "<div class=\"col\">\n";
 
     show_image($image_row);
     $new_images .= $site_template->parse_template("thumbnail_bit");
-    $new_images .= "\n</td>\n";
-    $count++;
-    if ($count == $config['image_cells']) {
-      $new_images .= "</tr>\n";
-      $count = 0;
-    }
+    $new_images .= "\n</div>\n";
   } // end while
-
-  if ($count > 0)  {
-    $leftover = ($config['image_cells'] - $count);
-    if ($leftover >= 1) {
-      for ($f = 0; $f < $leftover; $f++) {
-        $new_images .= "<td width=\"".$imgtable_width."\">\n&nbsp;\n</td>\n";
-      }
-      $new_images .= "</tr>\n";
-    }
-  }
-  $new_images .= "</table>\n";
+  $new_images .= "</div>\n";
 } // end else
 
 $site_template->register_vars("new_images", $new_images);
