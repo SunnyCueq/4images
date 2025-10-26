@@ -1105,6 +1105,19 @@ function check_lightbox($id) {
   return in_array($id, $lightbox_array);
 }
 
+function get_lightbox_count() {
+  global $user_info;
+  if (!isset($user_info) || empty($user_info['lightbox_image_ids'])) {
+    return 0;
+  }
+  $lightbox_array = explode(" ", trim($user_info['lightbox_image_ids']));
+  // Filter out empty values
+  $lightbox_array = array_filter($lightbox_array, function($value) {
+    return !empty($value);
+  });
+  return count($lightbox_array);
+}
+
 function get_random_key($db_table = "", $db_column = "") {
   global $site_db;
   $key = md5(uniqid(microtime()));
