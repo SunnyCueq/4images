@@ -18,6 +18,12 @@
  *    This script is NOT freeware! Please read the Copyright Notice       *
  *    (Licence.txt) for further information.                              *
  *                                                                        *
+ **************************************************************************
+ * 
+ * NOTE (2024): This file is LEGACY and only used as FALLBACK.
+ * The modern system uses mime_handler.php with fileinfo extension.
+ * This file is kept for backward compatibility only.
+ * 
  *************************************************************************/
 if (!defined('ROOT_PATH')) {
   die("Security violation");
