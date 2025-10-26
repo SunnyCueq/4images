@@ -49,7 +49,7 @@ $user_table_fields = array(
   "user_lastvisit" => "user_lastvisit",
   "user_comments" => "user_comments",
   "user_homepage" => "user_homepage",
-  "user_icq" => "user_icq"
+  // ICQ support removed
 );
 
 //-----------------------------------------------------

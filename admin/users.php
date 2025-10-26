@@ -249,7 +249,7 @@ if ($action == "updateuser") {
   $user_email = trim($_POST['user_email']);
   $user_password = trim($_POST['user_password']);
   $user_homepage = trim($_POST['user_homepage']);
-  $user_icq = (intval(trim($_POST['user_icq']))) ? intval(trim($_POST['user_icq'])) : "";
+  // ICQ support removed
   $user_joindate = trim($_POST['user_joindate']);
   $user_lastaction = trim($_POST['user_lastaction']);
   $user_showemail = intval($_POST['user_showemail']);
@@ -306,7 +306,7 @@ if ($action == "updateuser") {
     }
 
     $sql = "UPDATE ".USERS_TABLE."
-            SET ".get_user_table_field("", "user_level")." = $user_level, ".get_user_table_field("", "user_name")." = '$user_name',$passinsert ".get_user_table_field("", "user_email")." = '$user_email', ".get_user_table_field("", "user_showemail")." = $user_showemail, ".get_user_table_field("", "user_allowemails")." = $user_allowemails, ".get_user_table_field("", "user_invisible")." = $user_invisible, ".get_user_table_field("", "user_joindate")." = $user_joindate, ".get_user_table_field("", "user_lastaction")." = $user_lastaction, ".get_user_table_field("", "user_homepage")." = '$user_homepage', ".get_user_table_field("", "user_icq")." = '$user_icq'".$additional_sql."
+            SET ".get_user_table_field("", "user_level")." = $user_level, ".get_user_table_field("", "user_name")." = '$user_name',$passinsert ".get_user_table_field("", "user_email")." = '$user_email', ".get_user_table_field("", "user_showemail")." = $user_showemail, ".get_user_table_field("", "user_allowemails")." = $user_allowemails, ".get_user_table_field("", "user_invisible")." = $user_invisible, ".get_user_table_field("", "user_joindate")." = $user_joindate, ".get_user_table_field("", "user_lastaction")." = $user_lastaction, ".get_user_table_field("", "user_homepage")." = '$user_homepage'".$additional_sql."
             WHERE ".get_user_table_field("", "user_id")." = $user_id";
     $result = $site_db->query($sql);
 
@@ -366,7 +366,7 @@ if ($action == "edituser") {
   unset($_POST['user_password']);
   show_input_row($lang['field_password_ext'], "user_password", "", $textinput_size);
   show_input_row($lang['field_homepage'], "user_homepage", $user_row['user_homepage'], $textinput_size);
-  show_input_row($lang['field_icq'], "user_icq", $user_row['user_icq'], $textinput_size);
+  // ICQ support removed
   show_radio_row($lang['field_showemail'], "user_showemail", $user_row['user_showemail']);
   show_radio_row($lang['field_allowemails'], "user_allowemails", $user_row['user_allowemails']);
   show_radio_row($lang['field_invisible'], "user_invisible", $user_row['user_invisible']);
@@ -612,10 +612,7 @@ if ($action == "saveusers") {
       $user_email = trim($_POST['user_email_'.$i]);
       $user_password = trim($_POST['user_password_'.$i]);
       $user_homepage = trim($_POST['user_homepage_'.$i]);
-      $user_icq = intval(trim($_POST['user_icq_'.$i]));
-      if (!$user_icq) {
-      	$user_icq = "";
-      }
+      // ICQ support removed
       $user_showemail = intval($_POST['user_showemail_'.$i]);
       $user_allowemails = intval($_POST['user_allowemails_'.$i]);
       $user_invisible = intval($_POST['user_invisible_'.$i]);
@@ -637,11 +634,11 @@ if ($action == "saveusers") {
 
       $current_time = time();
       $user_password_hashed = salted_hash($user_password);
-      //(user_id, user_level, user_name, user_password, user_email, user_showemail, user_allowemails, user_invisible, user_joindate, user_activationkey, user_lastaction, user_lastvisit, user_homepage, user_icq".$additional_field_sql.")
+      //(user_id, user_level, user_name, user_password, user_email, user_showemail, user_allowemails, user_invisible, user_joindate, user_activationkey, user_lastaction, user_lastvisit, user_homepage".$additional_field_sql.")
       $sql = "INSERT INTO ".USERS_TABLE."
-              (".get_user_table_field("", "user_id").get_user_table_field(", ", "user_level").get_user_table_field(", ", "user_name").get_user_table_field(", ", "user_password").get_user_table_field(", ", "user_email").get_user_table_field(", ", "user_showemail").get_user_table_field(", ", "user_allowemails").get_user_table_field(", ", "user_invisible").get_user_table_field(", ", "user_joindate").get_user_table_field(", ", "user_activationkey").get_user_table_field(", ", "user_lastaction").get_user_table_field(", ", "user_lastvisit").get_user_table_field(", ", "user_comments").get_user_table_field(", ", "user_homepage").get_user_table_field(", ", "user_icq").$additional_field_sql.")
+              (".get_user_table_field("", "user_id").get_user_table_field(", ", "user_level").get_user_table_field(", ", "user_name").get_user_table_field(", ", "user_password").get_user_table_field(", ", "user_email").get_user_table_field(", ", "user_showemail").get_user_table_field(", ", "user_allowemails").get_user_table_field(", ", "user_invisible").get_user_table_field(", ", "user_joindate").get_user_table_field(", ", "user_activationkey").get_user_table_field(", ", "user_lastaction").get_user_table_field(", ", "user_lastvisit").get_user_table_field(", ", "user_comments").get_user_table_field(", ", "user_homepage").$additional_field_sql.")
               VALUES
-              ($user_id, $user_level, '$user_name', '$user_password_hashed', '$user_email', $user_showemail, $user_allowemails, $user_invisible, $current_time, '$activationkey', $current_time, $current_time, 0, '$user_homepage', '$user_icq'".$additional_value_sql.")";
+              ($user_id, $user_level, '$user_name', '$user_password_hashed', '$user_email', $user_showemail, $user_allowemails, $user_invisible, $current_time, '$activationkey', $current_time, $current_time, 0, '$user_homepage'".$additional_value_sql.")";
       $result = $site_db->query($sql);
       if (empty($user_id)) {
         $user_id = $site_db->get_insert_id();
@@ -705,7 +702,7 @@ if ($action == "addusers") {
     show_input_row($lang['field_email'], "user_email_".$i, "", $textinput_size);
     show_input_row($lang['field_password'], "user_password_".$i, "", $textinput_size);
     show_input_row($lang['field_homepage'], "user_homepage_".$i, "", $textinput_size);
-    show_input_row($lang['field_icq'], "user_icq_".$i, "", $textinput_size);
+    // ICQ support removed
     show_radio_row($lang['field_showemail'], "user_showemail_".$i, 0);
     show_radio_row($lang['field_allowemails'], "user_allowemails_".$i, 1);
     show_radio_row($lang['field_invisible'], "user_invisible_".$i, 0);
