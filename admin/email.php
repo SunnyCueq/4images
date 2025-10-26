@@ -33,8 +33,9 @@ show_admin_header();
 
 if ($action == "sendemails") {
   $error = array();
-  $subject = stripslashes(trim($_POST['subject']));
-  $message = stripslashes(trim($_POST['message']));
+  // REMOVED: stripslashes() - unnecessary in PHP 8.4 (magic_quotes removed since PHP 5.4)
+  $subject = trim($_POST['subject']);
+  $message = trim($_POST['message']);
 
   if ($subject == "") {
     $error['subject'] = 1;

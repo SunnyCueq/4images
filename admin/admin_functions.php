@@ -433,7 +433,8 @@ function show_upload_row($title, $name, $extra = "", $value = "") {
     $title = sprintf("<span class=\"marktext\">%s *</span>", $title);
   }
   if (isset($_POST['remote_'.$name])/* && $value == ""*/) {
-    $value = stripslashes($_POST['remote_'.$name]);
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4
+    $value = $_POST['remote_'.$name];
   }
 
   echo "<tr class=\"".get_row_bg()."\" valign='top'>\n<td><p class=\"rowtitle\">$title</p></td>\n";
@@ -495,7 +496,8 @@ function show_input_row($title, $name, $value = "", $size = "") {
     $title = sprintf("<span class=\"marktext\">%s *</span>", $title);
   }
   if (isset($_POST[$name])/* && $value == ""*/) {
-    $value = stripslashes($_POST[$name]);
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4
+    $value = $_POST[$name];
   }
   echo "<tr class=\"".get_row_bg()."\">\n<td><p class=\"rowtitle\">".$title."</p></td>\n<td><p><input type=\"text\" size=\"".$size."\" name=\"".$name."\" value=\"".format_text($value, 2)."\"></p></td>\n</tr>\n";
 }
@@ -507,7 +509,8 @@ function show_date_input_row($title, $name, $value = "", $size = "") {
     $title = sprintf("<span class=\"marktext\">%s *</span>", $title);
   }
   if (isset($_POST[$name])/* && $value == ""*/) {
-    $value = stripslashes($_POST[$name]);
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4
+    $value = $_POST[$name];
   }
 
   echo "<tr class=\"".get_row_bg()."\">\n<td><p class=\"rowtitle\">".$title."</p></td>\n<td><input type=\"text\" size=\"".$size."\" name=\"".$name."\" id=\"".$name."\" value=\"".format_text($value, 2)."\"> ";
@@ -522,7 +525,8 @@ function show_textarea_row($title, $name, $value = "", $cols = "", $rows = 10) {
     $title = sprintf("<span class=\"marktext\">%s *</span>", $title);
   }
   if (isset($_POST[$name])/* && $value == ""*/) {
-    $value = stripslashes($_POST[$name]);
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4
+    $value = $_POST[$name];
   }
   echo "<tr class=\"".get_row_bg()."\" valign=\"top\">\n<td><p class=\"rowtitle\">".$title."</p></td>\n<td><p><textarea name=\"".$name."\" rows=\"".$rows."\" cols=\"".$cols."\">".format_text($value, 2)."</textarea></p></td>\n</tr>\n";
 }
@@ -591,7 +595,8 @@ function show_userlevel_select_row($title, $name = "user_level", $userlevel = ""
     $title = sprintf("<span class=\"marktext\">%s *</span>", $title);
   }
   if (isset($_POST[$name])/* && $userlevel == ""*/) {
-    $userlevel = stripslashes($_POST[$name]);
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4
+    $userlevel = $_POST[$name];
   }
   echo "<tr class=\"".get_row_bg()."\">\n<td><p class=\"rowtitle\">".$title."</p></td>\n<td>\n";
   echo "<select name=".$name.">\n";
@@ -659,7 +664,8 @@ function show_nav_header($title)  {
 }
 
 function check_admin_date($date) {
-  return (preg_match('/^([0-9]{4})-([0-9]{2})-([0-9]{2})+(( )+[0-9]{2}:[0-9]{2}:([0-9]{2}))?$/', stripslashes(trim($date)))) ? 1 : 0;
+  // REMOVED: stripslashes() - unnecessary in PHP 8.4
+  return (preg_match('/^([0-9]{4})-([0-9]{2})-([0-9]{2})+(( )+[0-9]{2}:[0-9]{2}:([0-9]{2}))?$/', trim($date))) ? 1 : 0;
 }
 
 function get_dir_size($dir) {

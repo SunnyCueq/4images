@@ -235,10 +235,11 @@ if ($action == "register") {
       $user_invisible_yes = "";
       $user_invisible_no = " checked=\"checked\"";
     }
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4
     $site_template->register_vars(array(
-      "user_name" => format_text(stripslashes($user_name), 2),
-      "user_email" => format_text(stripslashes($user_email), 2),
-      "user_homepage" => format_text(stripslashes($user_homepage), 2),
+      "user_name" => format_text($user_name, 2),
+      "user_email" => format_text($user_email, 2),
+      "user_homepage" => format_text($user_homepage, 2),
       "user_icq" => $user_icq,
       "user_showemail_yes" => $user_showemail_yes,
       "user_showemail_no" => $user_showemail_no,

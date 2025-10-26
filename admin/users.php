@@ -272,7 +272,8 @@ if ($action == "updateuser") {
   if ($user_level == GUEST) {
     $error['user_level'] = 1;
   }
-  if ($user_name != "" && strtolower($current['user_name']) != strtolower(stripslashes($user_name)) && $site_db->not_empty("SELECT ".get_user_table_field("", "user_name")." FROM ".USERS_TABLE." WHERE ".get_user_table_field("", "user_name")." = '".strtolower($user_name)."'")) {
+  // REMOVED: stripslashes() - unnecessary in PHP 8.4
+  if ($user_name != "" && strtolower($current['user_name']) != strtolower($user_name) && $site_db->not_empty("SELECT ".get_user_table_field("", "user_name")." FROM ".USERS_TABLE." WHERE ".get_user_table_field("", "user_name")." = '".strtolower($user_name)."'")) {
     $msg .= sprintf("%s: <b>%s</b><br />", $lang['user_name_exists'], format_text($user_name, 2));
     $error['user_name'] = 1;
   }

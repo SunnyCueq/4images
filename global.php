@@ -432,20 +432,11 @@ include_once(ROOT_PATH.'includes/csrf_utils.php');
 //-----------------------------------------------------
 //--- GZip Compression --------------------------------
 //-----------------------------------------------------
+// REMOVED: Legacy PHP 4.0 version checks - PHP 8.4+ always has zlib support
 $do_gzip_compress = 0;
 if ($config['gz_compress'] == 1 && !isset($nozip)) {
-    if (get_php_version() >= 40004) {
-        if (extension_loaded("zlib")) {
-            ob_start("ob_gzhandler");
-        }
-    } elseif (get_php_version() > 40000) {
-        if (preg_match("/gzip/i", $_SERVER["HTTP_ACCEPT_ENCODING"]) || preg_match("/x-gzip/i", $_SERVER["HTTP_ACCEPT_ENCODING"])) {
-            if (extension_loaded("zlib")) {
-                $do_gzip_compress = 1;
-                ob_start();
-                ob_implicit_flush(0);
-            }
-        }
+    if (extension_loaded("zlib")) {
+        ob_start("ob_gzhandler");
     }
 }
 

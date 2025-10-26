@@ -300,14 +300,17 @@ if ($action == "saveimages") {
               }
             }
             add_searchwords($image_id, $search_words);
-            echo $lang['image_add_success'].": <b>".format_text(stripslashes($image_name), 2)."</b> (".$image_media_file.")<br />";
+            // REMOVED: stripslashes() - unnecessary in PHP 8.4
+            echo $lang['image_add_success'].": <b>".format_text($image_name, 2)."</b> (".$image_media_file.")<br />";
           }
           else {
-            echo $lang['image_add_error'].": <b>".format_text(stripslashes($image_name), 2)."</b> (".$image_media_file.")<br />";
+            // REMOVED: stripslashes() - unnecessary in PHP 8.4
+            echo $lang['image_add_error'].": <b>".format_text($image_name, 2)."</b> (".$image_media_file.")<br />";
           }
         }
         else {
-          echo $lang['image_add_error'].": <b>".format_text(stripslashes($image_name), 2)."</b> (".$image_media_file.")<br />";
+          // REMOVED: stripslashes() - unnecessary in PHP 8.4
+          echo $lang['image_add_error'].": <b>".format_text($image_name, 2)."</b> (".$image_media_file.")<br />";
         }
       }
       elseif ($val == 0) {
@@ -316,7 +319,8 @@ if ($action == "saveimages") {
         $site_db->query($sql);
         @unlink($old_media_path);
         @unlink($old_thumb_path);
-        echo $lang['image_delete_success'].": <b>".format_text(stripslashes($image_name), 2)."</b> (".$image_media_file.")<br />";
+        // REMOVED: stripslashes() - unnecessary in PHP 8.4
+        echo $lang['image_delete_success'].": <b>".format_text($image_name, 2)."</b> (".$image_media_file.")<br />";
       }
 
       $number_of_changes++;
@@ -346,7 +350,8 @@ if ($action == "validateimages") {
   $orderby = "i.image_date";
 
   if (isset($_GET['orderby']) || isset($_POST['orderby'])) {
-    $requestedOrderby = (isset($_GET['orderby'])) ? stripslashes(trim($_GET['orderby'])) : stripslashes(trim($_POST['orderby']));
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4
+    $requestedOrderby = (isset($_GET['orderby'])) ? trim($_GET['orderby']) : trim($_POST['orderby']);
 
     if (isset($orderbyOptions[$requestedOrderby])) {
       $orderby = $requestedOrderby;

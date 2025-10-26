@@ -352,7 +352,8 @@ if ($action == "clearlightbox") {
 if ($action == "rateimage" && $id) {
   $rating = intval($_POST['rating']);
   $cookie_name = (defined("COOKIE_NAME")) ? COOKIE_NAME : "4images_";
-  $cookie_rated = isset($_COOKIE[$cookie_name.'rated']) ? explode(" ", stripslashes((string)$_COOKIE[$cookie_name.'rated'])) : [];
+  // REMOVED: stripslashes() - unnecessary in PHP 8.4 (cookies have no escaped slashes)
+  $cookie_rated = isset($_COOKIE[$cookie_name.'rated']) ? explode(" ", (string)$_COOKIE[$cookie_name.'rated']) : [];
   if ($rating && $rating <= MAX_RATING && $id) {
     if (!isset($session_info['rated_imgs'])) {
       $session_info['rated_imgs'] = $site_sess->get_session_var("rated_imgs");

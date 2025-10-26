@@ -64,7 +64,8 @@ function convert_special($text) {
 }
 
 function clean_search_word($val) {
-  $val = strip_tags(trim(stripslashes($val)));
+  // REMOVED: stripslashes() - unnecessary in PHP 8.4 (part of cleanup chain)
+  $val = strip_tags(trim($val));
   $val = convert_special($val);
   $val = strtolower($val);
   $val = preg_replace('/[\n\t\r]+/', ' ', $val);

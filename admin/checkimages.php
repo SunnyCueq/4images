@@ -31,7 +31,8 @@ require('admin_global.php');
 if (!defined("ICON_EXT"))
 	define("ICON_EXT", "gif");
 
-$showthumb = isset($_GET['showthumb']) ? stripslashes(trim(urldecode($_GET['showthumb']))) : false;
+// REMOVED: stripslashes() - unnecessary in PHP 8.4
+$showthumb = isset($_GET['showthumb']) ? trim(urldecode($_GET['showthumb'])) : false;
 
 //--------| Default Settings |-------------
 
@@ -289,8 +290,9 @@ if ($action == "savenewimages")
 			$error_major = false;
 			if ($addimage)
 			{
-				$image_media_file = stripslashes(trim($_POST['image_media_file_'.$i]));
-				$image_thumb_file = stripslashes(trim($_POST['image_thumb_file_'.$i]));
+				// REMOVED: stripslashes() - unnecessary in PHP 8.4
+				$image_media_file = trim($_POST['image_media_file_'.$i]);
+				$image_thumb_file = trim($_POST['image_thumb_file_'.$i]);
 				$image_name = trim($_POST['image_name_'.$i]);
 
 				$cat_id = intval($_POST['cat_id_'.$i]);
@@ -582,7 +584,8 @@ if ($action == "savenewimages")
 					{
 						if (isset($_POST[$image_column.'_'.$i]))
 						{
-							$search_words[$image_column] = stripslashes($_POST[$image_column.'_'.$i]);
+							// REMOVED: stripslashes() - unnecessary in PHP 8.4
+							$search_words[$image_column] = $_POST[$image_column.'_'.$i];
 						}
 					}
 					add_searchwords($image_id, $search_words);
@@ -1061,7 +1064,8 @@ if (isset($_POST['action']) && $action == "checkimages")
 					}
 				}
 				$title = $lang['field_image_name'].((isset($file_src)) ? get_iptc_insert_link($file_src, "object_name", "image_name_".$i, 0) : "");
-				show_input_row($title, "image_name_".$i, stripslashes($image_name), $textinput_size);
+				// REMOVED: stripslashes() - unnecessary in PHP 8.4
+				show_input_row($title, "image_name_".$i, $image_name, $textinput_size);
 
 				$title = $lang['field_description_ext'].((isset($file_src)) ? get_iptc_insert_link($file_src, "caption", "image_description_".$i) : "");
 				if (is_array($iptc) && $iptc_description)
@@ -1215,7 +1219,8 @@ if (isset($_POST['action']) && $action == "checkimages")
 						}
 					}
 				}
-				echo "<td>".$field_image_name.":<br /><input type=\"text\" name=\"image_name_".$i."\" value=\"".stripslashes($image_name)."\">\n";
+				// REMOVED: stripslashes() - unnecessary in PHP 8.4
+				echo "<td>".$field_image_name.":<br /><input type=\"text\" name=\"image_name_".$i."\" value=\"".$image_name."\">\n";
 				$field_category = $lang['field_category'];
 				if (isset($error['cat_id_'.$i]))
 				{

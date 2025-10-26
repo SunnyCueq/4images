@@ -137,7 +137,7 @@ if ($action == "savetemplate") {
 
 	if ($template_file_name != "" && $content != "" && file_exists(ROOT_PATH.TEMPLATE_DIR."/".$template_folder."/".$template_file_name)) {
     $content = un_htmlspecialchars($content);
-    $content = stripslashes($content);
+    // REMOVED: stripslashes() - unnecessary in PHP 8.4 (data from DB has no escaped slashes)
     $fp = @fopen(ROOT_PATH.TEMPLATE_DIR."/".$template_folder."/".$template_file_name, "w+");
     if (@fwrite($fp, $content)) {
       $msg = $lang['template_edit_success'];

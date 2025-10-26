@@ -1398,23 +1398,16 @@ function get_mysql_version() {
   return $global_info['mysql_version'];
 }
 
-function get_php_version() {
-  global $global_info;
-  if (!empty($global_info['php_version'])) {
-    return $global_info['php_version'];
-  }
-  $split_info = array();
-  preg_match("/([0-9]{1,2})\.([0-9]{1,2})(\.([0-9]{1,2}))?/", phpversion(), $split_info);
-
-  $global_info['php_version'] = 0;
-  if (!empty($split_info) && !empty($split_info[1])) {
-    $first  = intval($split_info[1]);
-    $second = (empty($split_info[2])) ? 0 : intval($split_info[2]);
-    $third  = (empty($split_info[4])) ? 0 : intval($split_info[4]);
-    $global_info['php_version'] = sprintf('%d%02d%02d', $first, $second, $third);
-  }
-  return $global_info['php_version'];
-}
+/**
+ * REMOVED: get_php_version() - Legacy PHP 4.0 compatibility function
+ *
+ * This function was used to check PHP version for ancient PHP 4.0.x compatibility.
+ * Since we now require PHP 8.4+, use PHP_VERSION_ID or phpversion() directly:
+ *
+ * Example replacements:
+ * - get_php_version() >= 40004  →  PHP_VERSION_ID >= 80400
+ * - phpversion()                 →  PHP_VERSION
+ */
 
 function get_user_os() {
   global $global_info, $HTTP_USER_AGENT;

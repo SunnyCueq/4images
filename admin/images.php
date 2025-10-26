@@ -353,7 +353,8 @@ if ($action == "updateimage") {
       $search_words = array();
       foreach ($search_match_fields as $image_column => $match_column) {
         if (isset($_POST[$image_column])) {
-          $search_words[$image_column] = stripslashes($_POST[$image_column]);
+          // REMOVED: stripslashes() - unnecessary in PHP 8.4
+          $search_words[$image_column] = $_POST[$image_column];
         }
       }
       remove_searchwords($image_id);
@@ -562,14 +563,17 @@ if ($action == "saveimages") {
           $search_words = array();
           foreach ($search_match_fields as $image_column => $match_column) {
             if (isset($_POST[$image_column.'_'.$i])) {
-              $search_words[$image_column] = stripslashes($_POST[$image_column.'_'.$i]);
+              // REMOVED: stripslashes() - unnecessary in PHP 8.4
+              $search_words[$image_column] = $_POST[$image_column.'_'.$i];
             }
           }
           add_searchwords($image_id, $search_words);
-          $log[] = $lang['image_add_success'].": <b>".format_text(stripslashes($image_name), 2)."</b> (".$new_name.")";
+          // REMOVED: stripslashes() - unnecessary in PHP 8.4
+          $log[] = $lang['image_add_success'].": <b>".format_text($image_name, 2)."</b> (".$new_name.")";
         }
         else {
-          $log[] = $lang['image_add_error'].": <b>".format_text(stripslashes($image_name), 2)."</b> (".$new_name.")";
+          // REMOVED: stripslashes() - unnecessary in PHP 8.4
+          $log[] = $lang['image_add_error'].": <b>".format_text($image_name, 2)."</b> (".$new_name.")";
         }
       }
       else {
