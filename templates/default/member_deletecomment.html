@@ -1,22 +1,24 @@
 <form method="post" action="{url_member}" enctype="multipart/form-data" onsubmit="uploadbutton.disabled=true;">
-  <input type="hidden" name="action" value="deletecomment" />
-  <input type="hidden" name="comment_id" value="{comment_id}" />
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td valign="top" class="head1">{lang_delete_comment}</td>
-          </tr>
-          <tr> 
-            <td class="row2">{lang_delete_comment_confirm}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <p align="center"> 
-    <input type="submit" name="uploadbutton" value="{lang_yes}" class="button" />
-    <input type="button" value="{lang_no}" class="button" onclick="javascript:history.go(-1)" />
-  </p>
+  <input type="hidden" name="action" value="deletecomment">
+  <input type="hidden" name="comment_id" value="{comment_id}">
+  
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-danger text-white">
+      <h5 class="mb-0"><i class="fa-solid fa-trash me-2"></i>{lang_delete_comment}</h5>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-warning">
+        <i class="fa-solid fa-triangle-exclamation me-2"></i>{lang_delete_comment_confirm}
+      </div>
+    </div>
+  </div>
+  
+  <div class="text-center">
+    <button type="submit" name="uploadbutton" class="btn btn-danger me-2">
+      <i class="fa-solid fa-check me-1"></i>{lang_yes}
+    </button>
+    <button type="button" class="btn btn-secondary" onclick="javascript:history.go(-1)">
+      <i class="fa-solid fa-xmark me-1"></i>{lang_no}
+    </button>
+  </div>
 </form>

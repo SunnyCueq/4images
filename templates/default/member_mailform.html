@@ -1,27 +1,30 @@
 <form method="post" action="{url_member}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_send_email_to} {user_name}</td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_subject}</b></td>
-            <td class="row2"><input type="text" name="subject"  size="30" value="{subject}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row1" valign="top"><b>{lang_message}</b></td>
-            <td class="row1"><textarea name="message" cols="30" rows="10" wrap="virtual" class="textarea">{message}</textarea></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="action" value="emailuser" />
-  <input type="hidden" name="user_id" value="{user_id}" />
-  <p align="center"> 
-    <input type="submit" value="{lang_submit}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+      <h5 class="mb-0"><i class="fa-solid fa-envelope me-2"></i>{lang_send_email_to} {user_name}</h5>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="subject" class="form-label"><strong>{lang_subject}</strong></label>
+        <input type="text" name="subject" id="subject" value="{subject}" class="form-control" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="message" class="form-label"><strong>{lang_message}</strong></label>
+        <textarea name="message" id="message" rows="10" class="form-control" required>{message}</textarea>
+      </div>
+    </div>
+  </div>
+  
+  <input type="hidden" name="action" value="emailuser">
+  <input type="hidden" name="user_id" value="{user_id}">
+  
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary me-2">
+      <i class="fa-solid fa-paper-plane me-1"></i>{lang_submit}
+    </button>
+    <button type="reset" class="btn btn-secondary">
+      <i class="fa-solid fa-rotate-left me-1"></i>{lang_reset}
+    </button>
+  </div>
 </form>
