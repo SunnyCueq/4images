@@ -188,7 +188,6 @@ $site_template->register_vars(array(
   "lang_advanced_search" => $lang['advanced_search'],
   "lang_lightbox" => $lang['lightbox'],
   "lightbox_count" => (isset($user_info['lightbox_image_ids']) && !empty($user_info['lightbox_image_ids'])) ? count(array_filter(explode(" ", trim($user_info['lightbox_image_ids'])))) : 0,
-  "debug_lightbox_ids" => isset($user_info['lightbox_image_ids']) ? $user_info['lightbox_image_ids'] : "NOT_SET",
   "lang_register" => $lang['register'],
   "lang_control_panel" => $lang['control_panel'],
   "lang_login" => $lang['login'],
