@@ -311,7 +311,7 @@ else {
       $site_template->register_vars($additional_field_array);
     }
   }
-  $content = $site_template->parse_template("search_form");
+  $search_form = $site_template->parse_template("search_form");
 }
 
 //-----------------------------------------------------
@@ -324,6 +324,7 @@ $clickstream = "<span class=\"clickstream\"><a href=\"".$site_sess->url(ROOT_PAT
 //-----------------------------------------------------
 $site_template->register_vars(array(
   "content" => $content,
+  "search_form" => $search_form,
   "msg" => $msg,
   "clickstream" => $clickstream,
   "lang_search" => $lang['search']
