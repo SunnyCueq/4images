@@ -5,10 +5,10 @@
  *    ----------------------------------------------------------------    *
  *                                                                        *
  *             File: upload_definitions.php                               *
- *        Copyright: (C) 2002-2023 4homepages.de                          *
+ *        Copyright: (C) 2002-2024 4homepages.de                          *
  *            Email: 4images@4homepages.de                                * 
  *              Web: http://www.4homepages.de                             * 
- *    Scriptversion: 1.10                                                 *
+ *    Scriptversion: 2.0 (PHP 8.4+)                                       *
  *                                                                        *
  **************************************************************************
  *                                                                        *
@@ -20,93 +20,189 @@
  *                                                                        *
  **************************************************************************
  * 
- * NOTE (2024): This file is LEGACY and only used as FALLBACK.
- * The modern system uses mime_handler.php with fileinfo extension.
- * This file is kept for backward compatibility only.
+ * MODERNIZED (2024): PHP 8.4+ - Uses fileinfo extension for accurate
+ * MIME-Type detection. No legacy fallback needed.
  * 
  *************************************************************************/
+
 if (!defined('ROOT_PATH')) {
-  die("Security violation");
+    die("Security violation");
 }
 
-// Extended JPG/JPEG MIME types for better compatibility
-$mime_type_match['jpg'] = array("image/jpg", "image/jpeg", "image/pjpeg", "application/octet-stream", "");
-$mime_type_match['jpeg'] = array("image/jpg", "image/jpeg", "image/pjpeg", "application/octet-stream", "");
+/**
+ * Modern MIME-Type Definitions for PHP 8.4+
+ * Based on IANA standards + common variations
+ */
 
-// Extended GIF MIME type
-$mime_type_match['gif'] = array("image/gif", "application/octet-stream", "");
+// Canonical MIME types for each file extension
+$mime_type_match = [
+    // ========== IMAGES ==========
+    'jpg'  => ['image/jpeg', 'image/jpg', 'image/pjpeg'],
+    'jpeg' => ['image/jpeg', 'image/jpg', 'image/pjpeg'],
+    'png'  => ['image/png', 'image/x-png'],
+    'gif'  => ['image/gif'],
+    'webp' => ['image/webp'],
+    'svg'  => ['image/svg+xml'],
+    'bmp'  => ['image/bmp', 'image/x-bmp', 'image/x-ms-bmp'],
+    'ico'  => ['image/x-icon', 'image/vnd.microsoft.icon'],
+    'tif'  => ['image/tiff'],
+    'tiff' => ['image/tiff'],
+    'heic' => ['image/heic', 'image/heif'],
+    'heif' => ['image/heif'],
+    'avif' => ['image/avif'],
+    
+    // ========== AUDIO ==========
+    'mp3'  => ['audio/mpeg', 'audio/mp3'],
+    'wav'  => ['audio/wav', 'audio/x-wav', 'audio/wave'],
+    'ogg'  => ['audio/ogg'],
+    'flac' => ['audio/flac'],
+    'm4a'  => ['audio/mp4', 'audio/x-m4a'],
+    'aac'  => ['audio/aac', 'audio/x-aac'],
+    'wma'  => ['audio/x-ms-wma'],
+    'aif'  => ['audio/x-aiff', 'audio/aiff'],
+    'aiff' => ['audio/x-aiff', 'audio/aiff'],
+    'au'   => ['audio/basic'],
+    'snd'  => ['audio/basic'],
+    'mid'  => ['audio/midi', 'audio/x-midi'],
+    'midi' => ['audio/midi', 'audio/x-midi'],
+    'ra'   => ['audio/x-realaudio', 'audio/x-pn-realaudio'],
+    'ram'  => ['audio/x-pn-realaudio'],
+    'rm'   => ['audio/x-pn-realaudio', 'application/vnd.rn-realmedia'],
+    'rpm'  => ['audio/x-pn-realaudio-plugin'],
+    
+    // ========== VIDEO ==========
+    'mp4'  => ['video/mp4'],
+    'avi'  => ['video/x-msvideo', 'video/avi', 'video/msvideo'],
+    'mov'  => ['video/quicktime'],
+    'qt'   => ['video/quicktime'],
+    'wmv'  => ['video/x-ms-wmv'],
+    'flv'  => ['video/x-flv'],
+    'webm' => ['video/webm'],
+    'mkv'  => ['video/x-matroska'],
+    'mpg'  => ['video/mpeg'],
+    'mpeg' => ['video/mpeg'],
+    'mpe'  => ['video/mpeg'],
+    'm4v'  => ['video/x-m4v'],
+    '3gp'  => ['video/3gpp'],
+    
+    // ========== DOCUMENTS ==========
+    'pdf'  => ['application/pdf', 'application/x-pdf'],
+    'doc'  => ['application/msword'],
+    'docx' => ['application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+    'xls'  => ['application/vnd.ms-excel', 'application/msexcel', 'application/x-msexcel'],
+    'xlsx' => ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+    'ppt'  => ['application/vnd.ms-powerpoint', 'application/mspowerpoint'],
+    'pptx' => ['application/vnd.openxmlformats-officedocument.presentationml.presentation'],
+    'odt'  => ['application/vnd.oasis.opendocument.text'],
+    'ods'  => ['application/vnd.oasis.opendocument.spreadsheet'],
+    'odp'  => ['application/vnd.oasis.opendocument.presentation'],
+    'txt'  => ['text/plain'],
+    'rtf'  => ['text/rtf', 'application/rtf', 'text/richtext'],
+    'rtx'  => ['text/richtext'],
+    'csv'  => ['text/csv', 'text/comma-separated-values'],
+    
+    // ========== ARCHIVES ==========
+    'zip'  => ['application/zip', 'application/x-zip-compressed'],
+    'rar'  => ['application/x-rar-compressed', 'application/vnd.rar'],
+    '7z'   => ['application/x-7z-compressed'],
+    'tar'  => ['application/x-tar'],
+    'gtar' => ['application/x-gtar'],
+    'gz'   => ['application/gzip', 'application/x-gzip', 'application/x-gzip-compressed'],
+    'bz2'  => ['application/x-bzip2'],
+    'sit'  => ['application/x-stuffit'],
+    
+    // ========== WEB ==========
+    'html' => ['text/html'],
+    'htm'  => ['text/html'],
+    'css'  => ['text/css'],
+    'js'   => ['text/javascript', 'application/javascript'],
+    'json' => ['application/json'],
+    'xml'  => ['application/xml', 'text/xml'],
+    
+    // ========== OTHER ==========
+    'swf'  => ['application/x-shockwave-flash'],
+    'psd'  => ['image/vnd.adobe.photoshop', 'application/octet-stream'],
+    'fla'  => ['application/octet-stream'],
+    'ai'   => ['application/postscript'],
+    'eps'  => ['application/postscript'],
+    'ps'   => ['application/postscript'],
+];
 
-// Extended PNG MIME types for better compatibility (PHP 8.4+, modern browsers)
-$mime_type_match['png'] = array(
-  "image/png",           // Standard
-  "image/x-png",         // Alternative
-  "application/octet-stream", // Fallback (some servers)
-  ""                     // Empty (PHP fileinfo issues)
-);
+/**
+ * Detect MIME type using PHP fileinfo extension (PHP 8.4+)
+ * 
+ * @param string $file_path Path to uploaded file
+ * @param string $extension File extension (fallback)
+ * @return string|null Detected MIME type or null
+ */
+function detect_mime_type(string $file_path, string $extension = ''): ?string 
+{
+    global $mime_type_match;
+    
+    // Primary: fileinfo extension (most accurate)
+    if (function_exists('finfo_file') && file_exists($file_path)) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        if ($finfo) {
+            $mime = finfo_file($finfo, $file_path);
+            finfo_close($finfo);
+            
+            // Valid MIME detected (not generic octet-stream)
+            if ($mime && $mime !== 'application/octet-stream') {
+                return $mime;
+            }
+        }
+    }
+    
+    // Fallback: Extension-based (if file is unreadable or generic)
+    if ($extension) {
+        $extension = strtolower(trim($extension, '.'));
+        if (isset($mime_type_match[$extension])) {
+            return $mime_type_match[$extension][0]; // Return canonical MIME type
+        }
+    }
+    
+    return null;
+}
 
-$mime_type_match['tif'] = array("image/tiff", "application/octet-stream");
-$mime_type_match['tiff'] = array("image/tiff", "application/octet-stream");
+/**
+ * Validate detected MIME type against allowed types for extension
+ * 
+ * @param string $detected_mime Detected MIME type
+ * @param string $extension File extension
+ * @return bool True if valid, false otherwise
+ */
+function validate_mime_type(string $detected_mime, string $extension): bool 
+{
+    global $mime_type_match;
+    
+    $extension = strtolower(trim($extension, '.'));
+    
+    // Unknown extension = reject
+    if (!isset($mime_type_match[$extension])) {
+        return false;
+    }
+    
+    $allowed_mimes = $mime_type_match[$extension];
+    
+    // Empty or generic octet-stream: allow if extension is whitelisted
+    if (empty($detected_mime) || $detected_mime === 'application/octet-stream') {
+        return true; // Trust extension (already validated)
+    }
+    
+    // Check if detected MIME is in allowed list
+    return in_array($detected_mime, $allowed_mimes, true);
+}
 
-$mime_type_match['bmp'] = array("image/bmp", "image/x-ms-bmp");
-
-$mime_type_match['aif'] = array("audio/x-aiff");
-
-$mime_type_match['aiff'] = array("audio/x-aiff");
-
-$mime_type_match['au'] = array("audio/basic");
-
-$mime_type_match['snd'] = array("audio/basic");
-
-$mime_type_match['mid'] = array("audio/x-midi", "audio/mid", "audio/midi");
-
-$mime_type_match['mp3'] = array("audio/mpeg", "audio/x-mpeg", "audio/mp3", "audio/mpg");
-
-$mime_type_match['ra'] = array("audio/x-pn-realaudio");
-
-$mime_type_match['ram'] = array("audio/x-pn-realaudio");
-
-$mime_type_match['rm'] = array("audio/vnd.rn-realmedia", "application/vnd.rn-realmedia", "video/vnd.rn-realvideo", "application/vnd");
-
-$mime_type_match['rpm'] = array("audio/x-pn-realaudio-plugin");
-
-$mime_type_match['wav'] = array("audio/x-wav");
-
-$mime_type_match['avi'] = array("video/x-msvideo", "video/avi");
-
-$mime_type_match['mpg'] = array("video/mpeg");
-$mime_type_match['mpeg'] = array("video/mpeg");
-$mime_type_match['mpe'] = array("video/mpeg");
-
-$mime_type_match['mov'] = array("video/quicktime");
-$mime_type_match['qt'] = array("video/quicktime");
-
-$mime_type_match['swf'] = array("application/x-shockwave-flash");
-
-$mime_type_match['psd'] = array("application/octet-stream");
-$mime_type_match['fla'] = array("application/octet-stream");
-
-$mime_type_match['gz'] = array("application/gzip", "application/x-gzip-compressed");
-$mime_type_match['rar'] = array("application/x-rar-compressed");
-$mime_type_match['tar'] = array("application/x-tar");
-$mime_type_match['gtar'] = array("application/x-gtar");
-$mime_type_match['zip'] = array("application/zip", "application/x-zip-compressed");
-$mime_type_match['sit'] = array("application/x-stuffit");
-
-$mime_type_match['pdf'] = array("application/pdf", "application/x-pdf");
-
-$mime_type_match['ai'] = array("application/postscript");
-$mime_type_match['eps'] = array("application/postscript");
-$mime_type_match['ps'] = array("application/postscript");
-
-$mime_type_match['txt'] = array("text/plain", "text/richtext", "text/rtf", "text/html");
-$mime_type_match['rtf'] = array("text/plain", "text/richtext", "text/rtf");
-$mime_type_match['rtx'] = array("text/plain", "text/richtext", "text/rtf");
-
-$mime_type_match['doc'] = array("application/msword");
-$mime_type_match['xls'] = array("application/vnd", "application/x-msexcel");
-$mime_type_match['ppt'] = array("application/vnd");
-
-$mime_type_match['csv'] = array("text/comma-separated-values");
-$mime_type_match['js'] = array("text/javascript");
-$mime_type_match['css'] = array("text/css");
-?>
+/**
+ * Get allowed MIME types for an extension
+ * 
+ * @param string $extension File extension
+ * @return array Allowed MIME types
+ */
+function get_allowed_mime_types(string $extension): array 
+{
+    global $mime_type_match;
+    
+    $extension = strtolower(trim($extension, '.'));
+    return $mime_type_match[$extension] ?? [];
+}
