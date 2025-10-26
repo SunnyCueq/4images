@@ -239,9 +239,10 @@ if ($action == "deleteimage") {
     show_error_page($lang['no_permission']);
     exit;
   }
+  // SECURITY FIX: Explicit int cast (defense-in-depth, already validated in global.php)
   $sql = "SELECT image_id, cat_id, user_id, image_name, image_media_file, image_thumb_file
           FROM ".IMAGES_TABLE."
-          WHERE image_id = $image_id";
+          WHERE image_id = ".(int)$image_id;
   $image_row = $site_db->query_firstrow($sql);
   if (!$image_row || $image_row['user_id'] <= USER_AWAITING || ($user_info['user_id'] != $image_row['user_id'] && $user_info['user_level'] != ADMIN)) {
     show_error_page($lang['no_permission']);
@@ -251,7 +252,7 @@ if ($action == "deleteimage") {
   $txt_clickstream = $lang['image_delete'];
 
   $sql = "DELETE FROM ".IMAGES_TABLE."
-          WHERE image_id = $image_id";
+          WHERE image_id = ".(int)$image_id;
   $del_img = $site_db->query($sql);
 
   if (!is_remote($image_row['image_media_file']) && !is_local_file($image_row['image_media_file'])) {
@@ -267,7 +268,7 @@ if ($action == "deleteimage") {
   if (!empty($user_table_fields['user_comments'])) {
     $sql = "SELECT user_id
             FROM ".COMMENTS_TABLE."
-            WHERE image_id = $image_id";
+            WHERE image_id = ".(int)$image_id;
     $result = $site_db->query($sql);
     $user_id_sql = "";
     while ($row = $site_db->fetch_array($result)) {
@@ -281,7 +282,7 @@ if ($action == "deleteimage") {
   }
 
   $sql = "DELETE FROM ".COMMENTS_TABLE."
-          WHERE image_id = $image_id";
+          WHERE image_id = ".(int)$image_id;
   $del_com = $site_db->query($sql);
 
   if ($del_img) {
@@ -298,7 +299,7 @@ if ($action == "removeimage") {
   }
   $sql = "SELECT image_id, cat_id, user_id, image_name
           FROM ".IMAGES_TABLE."
-          WHERE image_id = $image_id";
+          WHERE image_id = ".(int)$image_id;
   $image_row = $site_db->query_firstrow($sql);
   if (!$image_row || $image_row['user_id'] <= USER_AWAITING || ($user_info['user_id'] != $image_row['user_id'] && $user_info['user_level'] != ADMIN)) {
     show_error_page($lang['no_permission']);
@@ -327,7 +328,7 @@ if ($action == "updateimage") {
   }
   $sql = "SELECT image_id, cat_id, user_id, image_name
           FROM ".IMAGES_TABLE."
-          WHERE image_id = $image_id";
+          WHERE image_id = ".(int)$image_id;
   $image_row = $site_db->query_firstrow($sql);
   if (!$image_row || $image_row['user_id'] <= USER_AWAITING || ($user_info['user_id'] != $image_row['user_id'] && $user_info['user_level'] != ADMIN)) {
     show_error_page($lang['no_permission']);
@@ -382,7 +383,7 @@ if ($action == "updateimage") {
 
     $sql = "UPDATE ".IMAGES_TABLE."
             SET image_name = '$image_name', image_description = '$image_description', image_keywords = '$image_keywords'".$additional_sql."
-            WHERE image_id = $image_id";
+            WHERE image_id = ".(int)$image_id;
     $result = $site_db->query($sql);
     if ($result) {
       include(ROOT_PATH.'includes/search_utils.php');
@@ -419,7 +420,7 @@ if ($action == "editimage") {
   }
   $sql = "SELECT image_id, cat_id, user_id, image_name, image_description, image_keywords, image_allow_comments".$additional_sql."
           FROM ".IMAGES_TABLE."
-          WHERE image_id = $image_id";
+          WHERE image_id = ".(int)$image_id;
   $image_row = $site_db->query_firstrow($sql);
   if (!$image_row || $image_row['user_id'] <= USER_AWAITING || ($user_info['user_id'] != $image_row['user_id'] && $user_info['user_level'] != ADMIN)) {
     redirect($url);

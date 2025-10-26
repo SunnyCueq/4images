@@ -44,9 +44,11 @@ function delete_comments($comment_ids) {
   }
   $error_log = array();
   echo "<br />";
+  // SECURITY FIX: Sanitize IDs
+  $comment_ids_sanitized = $site_db->sanitize_ids($comment_ids);
   $sql = "SELECT comment_id, image_id, user_id, user_name, comment_headline
           FROM ".COMMENTS_TABLE."
-          WHERE comment_id IN ($comment_ids)";
+          WHERE comment_id IN ($comment_ids_sanitized)";
   $comment_result = $site_db->query($sql);
   while ($comment_row = $site_db->fetch_array($comment_result)) {
     $sql = "DELETE FROM ".COMMENTS_TABLE."
