@@ -1107,7 +1107,7 @@ function check_lightbox($id) {
 
 function get_lightbox_count() {
   global $user_info;
-  if (empty($user_info['lightbox_image_ids'])) {
+  if (!isset($user_info) || empty($user_info['lightbox_image_ids'])) {
     return 0;
   }
   $lightbox_array = explode(" ", trim($user_info['lightbox_image_ids']));
