@@ -163,7 +163,13 @@ class Upload {
     }
 
     if (!$this->check_file_extension() || !$this->check_mime_type()) {
-      $this->set_error($this->lang['invalid_file_type']. " (".$this->extension.", ".$this->mime_type.")");
+      // Enhanced error message for debugging
+      $allowed_mimes = isset($this->accepted_mime_types[$this->extension]) 
+        ? (is_array($this->accepted_mime_types[$this->extension]) 
+          ? implode(', ', $this->accepted_mime_types[$this->extension]) 
+          : $this->accepted_mime_types[$this->extension])
+        : 'none defined';
+      $this->set_error($this->lang['invalid_file_type']. " (Extension: ".$this->extension.", Detected MIME: ".$this->mime_type.", Allowed: ".$allowed_mimes.")");
       $ok = 0;
     }
     if ($ok) {
@@ -217,8 +223,14 @@ class Upload {
     }
 
     $this->mime_type = $this->HTTP_POST_FILES[$this->field_name]['type'];
-    preg_match("/([a-z]+\/[a-z\-]+)/", $this->mime_type, $this->mime_type);
-    $this->mime_type = $this->mime_type[1];
+    
+    // Clean up MIME type - handle empty or malformed MIME types
+    if (empty($this->mime_type)) {
+      $this->mime_type = "";
+    } else {
+      preg_match("/([a-z]+\/[a-z\-]+)/", $this->mime_type, $mime_match);
+      $this->mime_type = isset($mime_match[1]) ? $mime_match[1] : "";
+    }
 
     if ($this->save_file()) {
       return $this->file_name;

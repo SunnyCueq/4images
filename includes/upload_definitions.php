@@ -23,12 +23,20 @@ if (!defined('ROOT_PATH')) {
   die("Security violation");
 }
 
-$mime_type_match['jpg'] = array("image/jpg", "image/jpeg", "image/pjpeg");
-$mime_type_match['jpeg'] = array("image/jpg", "image/jpeg", "image/pjpeg");
+// Extended JPG/JPEG MIME types for better compatibility
+$mime_type_match['jpg'] = array("image/jpg", "image/jpeg", "image/pjpeg", "application/octet-stream", "");
+$mime_type_match['jpeg'] = array("image/jpg", "image/jpeg", "image/pjpeg", "application/octet-stream", "");
 
-$mime_type_match['gif'] = array("image/gif");
+// Extended GIF MIME type
+$mime_type_match['gif'] = array("image/gif", "application/octet-stream", "");
 
-$mime_type_match['png'] = array("image/png", "image/x-png");
+// Extended PNG MIME types for better compatibility (PHP 8.4+, modern browsers)
+$mime_type_match['png'] = array(
+  "image/png",           // Standard
+  "image/x-png",         // Alternative
+  "application/octet-stream", // Fallback (some servers)
+  ""                     // Empty (PHP fileinfo issues)
+);
 
 $mime_type_match['tif'] = array("image/tiff", "application/octet-stream");
 $mime_type_match['tiff'] = array("image/tiff", "application/octet-stream");
