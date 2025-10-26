@@ -38,42 +38,28 @@
   </nav>
 </div>
 
-<!-- Main Content -->
+<!-- Main Content (DeviantArt-Inspired Layout) -->
 <div class="container-fluid">
-  <div class="row">
-    <!-- Sidebar: User Box + Random Image -->
-    <div class="col-12 col-lg-3 mb-4">
-      <!-- User Box -->
-      <div class="card shadow-sm mb-3">
-        <div class="card-header bg-primary text-white">
-          <i class="fa-solid fa-user me-2"></i><strong>{lang_registered_user}</strong>
-        </div>
-        <div class="card-body">
-          {user_box}
-        </div>
+  <div class="row justify-content-center">
+    <!-- Main Content Area (Centered, wider) -->
+    <div class="col-12 col-xl-10">
+
+      <!-- Image Title (Hero-Style like DeviantArt) -->
+      <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold mb-2">
+          {image_name}
+          {if image_is_new}
+          <span class="badge bg-success ms-2">
+            <i class="fa-solid fa-sparkles me-1"></i>{lang_new}
+          </span>
+          {endif image_is_new}
+        </h1>
+        <p class="text-muted mb-0">
+          <i class="fa-solid fa-user me-1"></i>by {user_name_link}
+          <span class="mx-2">•</span>
+          <i class="fa-solid fa-calendar me-1"></i>{image_date}
+        </p>
       </div>
-      
-      {if random_cat_image}
-      <!-- Random Image -->
-      <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-          <i class="fa-solid fa-shuffle me-2"></i><strong>{lang_random_image}</strong>
-        </div>
-        <div class="card-body text-center">
-          {random_cat_image}
-        </div>
-      </div>
-      {endif random_cat_image}
-    </div>
-    
-    <!-- Main Content Area -->
-    <div class="col-12 col-lg-9">
-      <!-- Image Title -->
-      <h2 class="h4 mb-3">
-        {image_name}
-        {if image_is_new}<span class="badge bg-success ms-2">{lang_new}</span>{endif image_is_new}
-      </h2>
-      <hr>
       
       <!-- Message -->
       {if msg}
@@ -82,171 +68,233 @@
       </div>
       {endif msg}
       
-      <!-- Image Display -->
-      <div class="text-center mb-4">
-        {image}
+      <!-- Hero Image Display (DeviantArt-Style) -->
+      <div class="position-relative mb-4">
+        <!-- Main Image -->
+        <div class="text-center bg-dark rounded p-3 shadow">
+          {image}
+        </div>
+
+        <!-- Floating Action Buttons (Desktop Only) -->
+        <div class="position-absolute top-0 end-0 m-3 d-none d-md-block">
+          <div class="btn-group-vertical shadow-lg" role="group">
+            {lightbox_button}
+            {download_button}
+            {download_zip_button}
+          </div>
+        </div>
+
+        <!-- Mobile Action Buttons (Below Image) -->
+        <div class="d-md-none mt-3 text-center">
+          <div class="btn-group" role="group">
+            {lightbox_button}
+            {download_button}
+            {download_zip_button}
+          </div>
+        </div>
+
+        <!-- Admin Links -->
         {if admin_links}
-        <div class="mt-2">
+        <div class="mt-3 text-center">
           {admin_links}
         </div>
         {endif admin_links}
-        <div class="mt-3">
-          {lightbox_button}
-          {download_button}
-          {download_zip_button}
+      </div>
+
+      <!-- Engagement Stats Bar (DeviantArt-Style) -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body bg-light py-3">
+          <div class="row text-center g-3">
+            <div class="col-6 col-md-3">
+              <div class="h4 mb-0 text-primary">
+                <i class="fa-solid fa-eye me-2"></i>{image_hits}
+              </div>
+              <small class="text-muted">{lang_hits}</small>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="h4 mb-0 text-warning">
+                <i class="fa-solid fa-star me-2"></i>{image_rating}
+              </div>
+              <small class="text-muted">{image_votes} {lang_votes}</small>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="h4 mb-0 text-success">
+                <i class="fa-solid fa-download me-2"></i>{image_downloads}
+              </div>
+              <small class="text-muted">{lang_downloads}</small>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="h4 mb-0 text-info">
+                <i class="fa-solid fa-comment me-2"></i>{image_comments}
+              </div>
+              <small class="text-muted">{lang_comments}</small>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <!-- Image Details Card -->
+
+      <!-- About This Image (DeviantArt-Style: 2-Column Layout) -->
       <div class="card shadow-sm mb-4">
-        <div class="card-header bg-light">
-          <h5 class="mb-0"><i class="fa-solid fa-info-circle me-2"></i>{image_name}</h5>
+        <div class="card-header bg-white border-bottom">
+          <h5 class="mb-0">
+            <i class="fa-solid fa-info-circle me-2 text-primary"></i>About This Image
+          </h5>
         </div>
         <div class="card-body">
-          <div class="row g-3">
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_description}</strong>
-                <div class="text-end">{image_description}</div>
+          <div class="row g-4">
+            <!-- Left Column: Description & Keywords -->
+            <div class="col-12 col-lg-7">
+              {if image_description}
+              <div class="mb-4">
+                <h6 class="text-muted mb-2">
+                  <i class="fa-solid fa-align-left me-2"></i>{lang_description}
+                </h6>
+                <div class="lead">{image_description}</div>
               </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_keywords}</strong>
-                <div class="text-end">{image_keywords}</div>
+              {endif image_description}
+
+              {if image_keywords}
+              <div>
+                <h6 class="text-muted mb-2">
+                  <i class="fa-solid fa-tags me-2"></i>{lang_keywords}
+                </h6>
+                <div>{image_keywords}</div>
               </div>
+              {endif image_keywords}
             </div>
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_date}</strong>
-                <div class="text-end">{image_date}</div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_hits}</strong>
-                <div class="text-end">{image_hits}</div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_downloads}</strong>
-                <div class="text-end">{image_downloads}</div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_rating}</strong>
-                <div class="text-end">{image_rating} ({image_votes} {lang_votes})</div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_file_size}</strong>
-                <div class="text-end">{image_file_size}</div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <strong class="text-muted">{lang_added_by}</strong>
-                <div class="text-end">{user_name_link}</div>
+
+            <!-- Right Column: Metadata -->
+            <div class="col-12 col-lg-5">
+              <div class="list-group list-group-flush">
+                <div class="list-group-item px-0 d-flex justify-content-between">
+                  <span class="text-muted">
+                    <i class="fa-solid fa-calendar-plus me-2"></i>{lang_date}
+                  </span>
+                  <strong>{image_date}</strong>
+                </div>
+                <div class="list-group-item px-0 d-flex justify-content-between">
+                  <span class="text-muted">
+                    <i class="fa-solid fa-user-plus me-2"></i>{lang_added_by}
+                  </span>
+                  <strong>{user_name_link}</strong>
+                </div>
+                <div class="list-group-item px-0 d-flex justify-content-between">
+                  <span class="text-muted">
+                    <i class="fa-solid fa-file me-2"></i>{lang_file_size}
+                  </span>
+                  <strong>{image_file_size}</strong>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- IPTC Info -->
+      <!-- EXIF Data (Collapsible - DeviantArt Style) -->
+      {if exif_info}
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white border-bottom">
+          <h5 class="mb-0">
+            <button class="btn btn-link text-decoration-none text-dark w-100 text-start p-0 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#exifCollapse">
+              <span><i class="fa-solid fa-camera me-2 text-primary"></i>EXIF Data</span>
+              <i class="fa-solid fa-chevron-down text-muted"></i>
+            </button>
+          </h5>
+        </div>
+        <div class="collapse" id="exifCollapse">
+          <div class="card-body">
+            <div class="row g-3">
+              {exif_info}
+            </div>
+          </div>
+        </div>
+      </div>
+      {endif exif_info}
+
+      <!-- IPTC Metadata (Collapsible - DeviantArt Style) -->
       {if iptc_info}
       <div class="card shadow-sm mb-4">
-        <div class="card-header bg-light">
-          <h5 class="mb-0"><i class="fa-solid fa-file-code me-2"></i>IPTC Info</h5>
+        <div class="card-header bg-white border-bottom">
+          <h5 class="mb-0">
+            <button class="btn btn-link text-decoration-none text-dark w-100 text-start p-0 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#iptcCollapse">
+              <span><i class="fa-solid fa-file-code me-2 text-primary"></i>IPTC Metadata</span>
+              <i class="fa-solid fa-chevron-down text-muted"></i>
+            </button>
+          </h5>
         </div>
-        <div class="card-body">
-          <div class="row g-3">
-            {iptc_info}
+        <div class="collapse" id="iptcCollapse">
+          <div class="card-body">
+            <div class="row g-3">
+              {iptc_info}
+            </div>
           </div>
         </div>
       </div>
       {endif iptc_info}
       
-      <!-- EXIF Info -->
-      {if exif_info}
-      <div class="card shadow-sm mb-4">
-        <div class="card-header bg-light">
-          <h5 class="mb-0"><i class="fa-solid fa-camera me-2"></i>EXIF Info</h5>
-        </div>
-        <div class="card-body">
-          <div class="row g-3">
-            {exif_info}
-          </div>
-        </div>
-      </div>
-      {endif exif_info}
-      
-      <!-- Rating Form -->
+      <!-- Rating Section (DeviantArt Style) -->
       {if rate_form}
-      <div class="text-center mb-4">
-        {rate_form}
+      <div class="card shadow-sm mb-4">
+        <div class="card-body text-center py-4">
+          <h5 class="mb-3">
+            <i class="fa-solid fa-star-half-stroke me-2 text-warning"></i>Rate This Image
+          </h5>
+          {rate_form}
+        </div>
       </div>
       {endif rate_form}
-      
-      <!-- Comments Section -->
+
+      <!-- Comments Section (DeviantArt Style) -->
       {if allow_comments}
       <a name="comments"></a>
       <div class="card shadow-sm mb-4">
-        <div class="card-header bg-light">
-          <h5 class="mb-0"><i class="fa-solid fa-comments me-2"></i>{lang_comments}</h5>
+        <div class="card-header bg-white border-bottom">
+          <h5 class="mb-0">
+            <i class="fa-solid fa-comments me-2 text-primary"></i>{lang_comments} ({image_comments})
+          </h5>
         </div>
         <div class="card-body">
+          {if image_comments}
           {comments}
+          {else}
+          <div class="text-center text-muted py-5">
+            <i class="fa-regular fa-comment fa-3x mb-3 d-block opacity-50"></i>
+            <p class="lead">No comments yet. Be the first to comment!</p>
+          </div>
+          {endif image_comments}
         </div>
       </div>
-      
+
       {comment_form}
       {endif allow_comments}
       
-      <!-- Navigation: Prev/Next -->
+      <!-- Navigation: Previous / Next Images (DeviantArt Style) -->
       {if prev_image_name}
-      <div class="card shadow-sm mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-6">
-              <div class="text-start">
-                <small class="text-muted">{lang_prev_image}</small><br>
-                <strong><a href="{prev_image_url}" class="text-decoration-none">{prev_image_name}</a></strong>
-              </div>
-            </div>
-            <div class="col-6">
-              {if next_image_name}
-              <div class="text-end">
-                <small class="text-muted">{lang_next_image}</small><br>
-                <strong><a href="{next_image_url}" class="text-decoration-none">{next_image_name}</a></strong>
-              </div>
-              {endif next_image_name}
-            </div>
-          </div>
-        </div>
-      </div>
-      {endif prev_image_name}
       {if next_image_name}
-      {if !prev_image_name}
       <div class="card shadow-sm mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-6">
+        <div class="card-body py-3">
+          <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-6 text-start">
+              <small class="text-muted d-block mb-1">
+                <i class="fa-solid fa-arrow-left me-1"></i>{lang_prev_image}
+              </small>
+              <a href="{prev_image_url}" class="text-decoration-none fw-bold h6 mb-0">
+                {prev_image_name}
+              </a>
             </div>
-            <div class="col-6">
-              <div class="text-end">
-                <small class="text-muted">{lang_next_image}</small><br>
-                <strong><a href="{next_image_url}" class="text-decoration-none">{next_image_name}</a></strong>
-              </div>
+            <div class="col-12 col-md-6 text-md-end">
+              <small class="text-muted d-block mb-1">
+                {lang_next_image}<i class="fa-solid fa-arrow-right ms-1"></i>
+              </small>
+              <a href="{next_image_url}" class="text-decoration-none fw-bold h6 mb-0">
+                {next_image_name}
+              </a>
             </div>
           </div>
         </div>
       </div>
-      {endif !prev_image_name}
       {endif next_image_name}
+      {endif prev_image_name}
     </div>
   </div>
 </div>
