@@ -72,7 +72,7 @@ if (!check_permission("auth_upload", $cat_id)) {
 }
 else {
   $upload_url = $site_sess->url(ROOT_PATH."member.php?action=uploadform&amp;".URL_CAT_ID."=".$cat_id);
-  $upload_button = "<a href=\"".$upload_url."\" class=\"btn btn-outline-primary btn-sm\" title=\"".$lang['upload']."\"><i class=\"fa-solid fa-upload me-1\"></i>".$lang['upload']."</a>";
+  $upload_button = "<a href=\"".$upload_url."\" class=\"btn btn-outline-primary btn-sm\" title=\"".$lang['user_upload']."\"><i class=\"fa-solid fa-upload me-1\"></i>".$lang['user_upload']."</a>";
 }
 
 $random_cat_image = (defined("SHOW_RANDOM_IMAGE") && SHOW_RANDOM_IMAGE == 0) ? "" : get_random_image($cat_id);
