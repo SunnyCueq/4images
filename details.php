@@ -358,7 +358,7 @@ if ($image_allow_comments == 1) {
   $num_comments = sizeof($comment_row);
 
   if (!$num_comments) {
-    $comments = "<tr><td class=\"commentrow1\" colspan=\"2\">".$lang['no_comments']."</td></tr>";
+    $comments = "<div class=\"alert alert-info text-center\">".$lang['no_comments']."</div>";
   }
   else {
     $comments = "";

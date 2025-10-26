@@ -1,28 +1,32 @@
-<tr class="table-light">
-  <td style="width: 25%;" class="align-top">
-    <a name="comment{comment_id}"></a>
-    <div class="fw-bold">{comment_user_name}</div>
-    <div class="small text-muted">{comment_user_info}</div>
-    {if comment_user_ip}
-    <div class="small text-muted mt-2"><strong>IP:</strong> {comment_user_ip}</div>
-    {endif comment_user_ip}
-    <div class="small text-muted mt-2">{comment_date}</div>
-  </td>
-  <td class="align-top">
-    <div class="d-flex justify-content-between align-items-start mb-2">
-      <strong>{comment_headline}</strong>
-      {if admin_links}
-      <div class="small">{admin_links}</div>
-      {endif admin_links}
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <a name="comment{comment_id}"></a>
+        <div class="fw-bold">{comment_user_name}</div>
+        <div class="small text-muted">{comment_user_info}</div>
+        {if comment_user_ip}
+        <div class="small text-muted mt-2"><strong>IP:</strong> {comment_user_ip}</div>
+        {endif comment_user_ip}
+        <div class="small text-muted mt-2">{comment_date}</div>
+      </div>
+      <div class="col-12 col-md-9">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <strong>{comment_headline}</strong>
+          {if admin_links}
+          <div class="small">{admin_links}</div>
+          {endif admin_links}
+        </div>
+        <hr class="my-2">
+        <div>{comment_text}</div>
+        <div class="mt-2">
+          {comment_user_status_img}
+          {comment_user_profile_button}
+          {comment_user_email_button}
+          {comment_user_homepage_button}
+          {comment_user_icq_button}
+        </div>
+      </div>
     </div>
-    <hr class="my-2">
-    <div>{comment_text}</div>
-    <div class="mt-2">
-      {comment_user_status_img}
-      {comment_user_profile_button}
-      {comment_user_email_button}
-      {comment_user_homepage_button}
-      {comment_user_icq_button}
-    </div>
-  </td>
-</tr>
+  </div>
+</div>
