@@ -197,6 +197,7 @@
       {endif allow_comments}
       
       <!-- Navigation: Prev/Next -->
+      {if prev_image_name || next_image_name}
       <div class="card shadow-sm mb-4">
         <div class="card-body">
           <div class="row">
@@ -219,6 +220,7 @@
           </div>
         </div>
       </div>
+      {endif prev_image_name || next_image_name}
     </div>
   </div>
 </div>
