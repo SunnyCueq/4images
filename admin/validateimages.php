@@ -247,15 +247,16 @@ if ($action == "saveimages") {
       }
 
       flush();
-      $image_name = addslashes($image_cache[$key]['image_name']);
+      // SECURITY FIX: Replace addslashes() with $site_db->escape()
+      $image_name = $site_db->escape($image_cache[$key]['image_name']);
       $cat_id = $image_cache[$key]['cat_id'];
       $user_id = $image_cache[$key]['user_id'];
-      $image_description = addslashes($image_cache[$key]['image_description']);
-      $image_keywords = addslashes($image_cache[$key]['image_keywords']);
+      $image_description = $site_db->escape($image_cache[$key]['image_description']);
+      $image_keywords = $site_db->escape($image_cache[$key]['image_keywords']);
       $image_date = $image_cache[$key]['image_date'];
-      $image_media_file = addslashes($image_cache[$key]['image_media_file']);
-      $image_thumb_file = addslashes($image_cache[$key]['image_thumb_file']);
-      $image_download_url = addslashes($image_cache[$key]['image_download_url']);
+      $image_media_file = $site_db->escape($image_cache[$key]['image_media_file']);
+      $image_thumb_file = $site_db->escape($image_cache[$key]['image_thumb_file']);
+      $image_download_url = $site_db->escape($image_cache[$key]['image_download_url']);
 
       $old_media_path = MEDIA_TEMP_PATH."/".$image_media_file;
       $old_thumb_path = THUMB_TEMP_PATH."/".$image_thumb_file;
@@ -272,7 +273,7 @@ if ($action == "saveimages") {
             foreach ($additional_image_fields as $key2 => $val2) {
               if (isset($image_cache[$key][$key2]) && isset($image_cache[$key][$key2])) {
                 $additional_field_sql .= ", $key2";
-                $additional_value_sql .= ", '".addslashes($image_cache[$key][$key2])."'";
+                $additional_value_sql .= ", '".$site_db->escape($image_cache[$key][$key2])."'";
               }
             }
           }

@@ -84,7 +84,7 @@ if ($search_keywords != "" && $show_result == 1) {
 
       $where = array();
       foreach ($curr_words as $curr_word) {
-          $where[] = "w.word_text LIKE '".addslashes(str_replace("*", "%", $curr_word))."'";
+          $where[] = "w.word_text LIKE '".$site_db->escape(str_replace("*", "%", $curr_word))."'";
       }
  
       $sql = "SELECT m.image_id

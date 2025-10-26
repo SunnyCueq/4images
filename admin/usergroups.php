@@ -166,13 +166,13 @@ function update_single_usergroup($user_id) {
   }
   $sql = "SELECT group_id
           FROM ".GROUPS_TABLE."
-          WHERE group_name = '".addslashes($group_name)."' AND group_type = ".GROUPTYPE_SINGLE;
+          WHERE group_name = '".$site_db->escape($group_name)."' AND group_type = ".GROUPTYPE_SINGLE;
   $row = $site_db->query_firstrow($sql);
   if (!$row) {
     $sql = "INSERT INTO ".GROUPS_TABLE."
             (group_name, group_type)
             VALUES
-            ('".addslashes($group_name)."', ".GROUPTYPE_SINGLE.")";
+            ('".$site_db->escape($group_name)."', ".GROUPTYPE_SINGLE.")";
     $site_db->query($sql);
     $group_id = $site_db->get_insert_id();
   }

@@ -26,6 +26,12 @@ ini_set('display_errors', 1); // Show errors during installation
 define('ROOT_PATH', './');
 include_once(ROOT_PATH.'includes/functions.php');
 
+/**
+ * LEGACY FUNCTION - Only used during installation
+ * NOTE: This file (install.php) should be DELETED after successful installation!
+ *
+ * @deprecated Use mysqli_real_escape_string() or prepared statements instead
+ */
 function addslashes_array($array)
 {
     foreach ($array as $key => $val) {

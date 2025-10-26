@@ -164,7 +164,7 @@ class Session
         $sql = "REPLACE INTO ".SESSIONS_TABLE."
               (session_id, session_user_id, session_lastaction, session_location, session_ip)
               VALUES
-              ('".addslashes($this->session_id)."', ".$this->user_info['user_id'].", $this->current_time, '$this->user_location', '$this->user_ip')";
+              ('".$site_db->escape($this->session_id)."', ".$this->user_info['user_id'].", $this->current_time, '$this->user_location', '$this->user_ip')";
         $site_db->query($sql);
         //}
 
@@ -202,7 +202,7 @@ class Session
             if (compare_passwords($user_password, $row[$user_table_fields['user_password']])) {
                 $sql = "UPDATE ".SESSIONS_TABLE."
                 SET session_user_id = $user_id
-                WHERE session_id = '".addslashes($this->session_id)."'";
+                WHERE session_id = '".$site_db->escape($this->session_id)."'";
                 $site_db->query($sql);
                 if ($set_auto_login) {
                     $this->set_cookie_data("userpass", ($auto_login) ? md5($row[$user_table_fields['user_password']]) : "");
@@ -218,7 +218,7 @@ class Session
     {
         global $site_db;
         $sql = "DELETE FROM ".SESSIONS_TABLE."
-            WHERE session_id = '".addslashes($this->session_id)."' OR session_user_id = $user_id";
+            WHERE session_id = '".$site_db->escape($this->session_id)."' OR session_user_id = $user_id";
         $site_db->query($sql);
         $this->set_cookie_data("userpass", "", 0);
         $this->set_cookie_data("userid", GUEST);
@@ -246,7 +246,7 @@ class Session
         $sql = "REPLACE INTO ".SESSIONS_TABLE."
            (session_id, session_user_id, session_lastaction, session_location, session_ip)
            VALUES
-           ('".addslashes($this->session_id)."', ".$this->user_info['user_id'].", $this->current_time, '$this->user_location', '$this->user_ip')";
+           ('".$site_db->escape($this->session_id)."', ".$this->user_info['user_id'].", $this->current_time, '$this->user_location', '$this->user_ip')";
         $site_db->query($sql);
 
         $this->session_info['session_lastaction'] = $this->current_time;
@@ -401,7 +401,8 @@ class Session
     public function get_user_location()
     {
         global $self_url;
-        return (defined("IN_CP")) ? "Control Panel" : preg_replace(array("/([?|&])action=[^?|&]*/", "/([?|&])mode=[^?|&]*/", "/([?|&])phpinfo=[^?|&]*/", "/([?|&])printstats=[^?|&]*/", "/[?|&]".URL_ID."=[^?|&]*/", "/[?|&]l=[^?|&]*/", "/[&?]+$/"), array("", "", "", "", "", "", ""), addslashes($self_url));
+        // SECURITY FIX: addslashes() removed - preg_replace already sanitizes the URL
+        return (defined("IN_CP")) ? "Control Panel" : preg_replace(array("/([?|&])action=[^?|&]*/", "/([?|&])mode=[^?|&]*/", "/([?|&])phpinfo=[^?|&]*/", "/([?|&])printstats=[^?|&]*/", "/[?|&]".URL_ID."=[^?|&]*/", "/[?|&]l=[^?|&]*/", "/[&?]+$/"), array("", "", "", "", "", "", ""), $self_url);
     }
 
     public function url($url, $amp = "&amp;")

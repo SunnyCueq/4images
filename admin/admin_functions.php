@@ -410,7 +410,8 @@ function show_num_select_row($title, $option, $desc = "") {
   global $site_sess, $PHP_SELF, $action, $$option;
   echo "<tr class=\"".get_row_bg()."\">\n<td><p>".$title."</p></td>\n";
   echo "<td align=\"right\"><p>".$desc;
-  $url = addslashes(str_replace('"', '&quot;', $PHP_SELF));
+  // SECURITY FIX: str_replace already sanitizes quotes, no addslashes needed
+  $url = str_replace('"', '&quot;', $PHP_SELF);
   $url .= preg_match("/\?/", $url) ? "&amp;" : "?";
   $url .= "action=".$action;
   $url = $site_sess->url($url);

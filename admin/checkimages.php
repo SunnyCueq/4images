@@ -564,7 +564,7 @@ if ($action == "savenewimages")
   						$sql = "INSERT INTO ".IMAGES_TABLE."
   										(cat_id, user_id, image_name, image_description, image_keywords, image_date, image_active, image_media_file, image_thumb_file, image_download_url, image_allow_comments".$additional_field_sql.")
   										VALUES
-  										($cat_id, $user_id, '$image_name', '$image_description', '$image_keywords', $image_date, $image_active, '".addslashes($image_media_file)."', '".addslashes($image_thumb_file)."', '$image_download_url', $image_allow_comments".$additional_value_sql.")";
+  										($cat_id, $user_id, '$image_name', '$image_description', '$image_keywords', $image_date, $image_active, '".$site_db->escape($image_media_file)."', '".$site_db->escape($image_thumb_file)."', '$image_download_url', $image_allow_comments".$additional_value_sql.")";
   						$result = $site_db->query($sql);
   						$image_id = $site_db->get_insert_id();
   					}

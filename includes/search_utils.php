@@ -239,7 +239,8 @@ function add_searchwords($image_id = 0, $raw_words = array()) {
     $word_cache = array();
     foreach ($split_words as $word) {
       $word_cache[$word] = 1;
-      $allwords_sql .= ($allwords_sql != "") ? ", '".addslashes($word)."'" : "'".addslashes($word)."'";
+      // SECURITY FIX: Replace addslashes() with $site_db->escape()
+      $allwords_sql .= ($allwords_sql != "") ? ", '".$site_db->escape($word)."'" : "'".$site_db->escape($word)."'";
     }
     if (!empty($word_cache)) {
       $clean_words[$key] = $word_cache;
@@ -302,7 +303,7 @@ function add_searchwords($image_id = 0, $raw_words = array()) {
   if (!empty($new_words)) {
     $value_sql = "";
     foreach ($new_words as $key => $val) {
-      $value_sql .= (($value_sql != "") ? ", " : "")."('".addslashes($key)."', NULL)";
+      $value_sql .= (($value_sql != "") ? ", " : "")."('".$site_db->escape($key)."', NULL)";
     }
     if ($value_sql != "") {
       $sql = "INSERT IGNORE INTO ".WORDLIST_TABLE." (word_text, word_id)
@@ -322,7 +323,7 @@ function add_searchwords($image_id = 0, $raw_words = array()) {
       $sql = "INSERT INTO ".WORDMATCH_TABLE." (image_id, word_id".$match_insert_key_sql.")
               SELECT DISTINCT $image_id, word_id".$match_insert_val_sql."
                 FROM ".WORDLIST_TABLE."
-                WHERE word_text = '" . addslashes($key) . "'";
+                WHERE word_text = '" . $site_db->escape($key) . "'";
       $site_db->query($sql);
     }
   }

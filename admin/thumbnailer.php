@@ -79,7 +79,7 @@ if ($action == "createthumbnails") {
 
         if (create_thumbnail($src, THUMB_PATH."/".$image_cache[$key]['cat_id']."/".$dest, $quality, $dimension, $resize_type)) {
           $sql = "UPDATE ".IMAGES_TABLE."
-                  SET image_thumb_file = '".addslashes($dest)."'
+                  SET image_thumb_file = '".$site_db->escape($dest)."'
                   WHERE image_id = $key";
           $site_db->query($sql);
 
