@@ -163,8 +163,8 @@ class Upload {
     }
 
     if (!$this->check_file_extension() || !$this->check_mime_type()) {
-      // Enhanced error message for debugging (PHP 8.4+)
-      $allowed_mimes = implode(', ', get_allowed_mime_types($this->extension));
+      // Enhanced error message for debugging using MimeHandler (PHP 8.4+)
+      $allowed_mimes = implode(', ', MimeHandler::getAllowedMimeTypes($this->extension));
       $detection_method = function_exists('finfo_file') ? 'fileinfo' : 'extension-based';
       
       $this->set_error(
@@ -226,12 +226,12 @@ class Upload {
       $this->extension = strtolower($regs[2]);
     }
 
-    // Modern MIME-Type detection using fileinfo (PHP 8.4+)
+    // Modern MIME-Type detection using MimeHandler (PHP 8.4+)
     $uploaded_file_path = $this->HTTP_POST_FILES[$this->field_name]['tmp_name'];
     
     if (!empty($uploaded_file_path) && file_exists($uploaded_file_path)) {
-      // Use detect_mime_type() from upload_definitions.php
-      $detected_mime = detect_mime_type($uploaded_file_path, $this->extension);
+      // Use MimeHandler::detectMimeType() from upload_definitions.php
+      $detected_mime = MimeHandler::detectMimeType($uploaded_file_path, $this->extension);
       $this->mime_type = $detected_mime ?? "";
     } else {
       $this->mime_type = "";
@@ -259,8 +259,8 @@ class Upload {
 
   function check_mime_type()
   {
-    // Modern MIME validation using validate_mime_type() from upload_definitions.php
-    return validate_mime_type($this->mime_type, $this->extension);
+    // Modern MIME validation using MimeHandler class (PHP 8.4+)
+    return MimeHandler::validateMimeType($this->mime_type, $this->extension);
   }
 
   function set_allowed_filetypes() {
