@@ -193,13 +193,13 @@ if (!empty($next_prev_cache[$next_image_id])) {
   $next_image_name = format_text($next_prev_cache[$next_image_id]['image_name'], 2);
   $next_image_url = $site_sess->url(ROOT_PATH."details.php?".URL_IMAGE_ID."=".$next_image_id.((!empty($mode)) ? "&amp;mode=".$mode : ""));
   if (!get_file_path($next_prev_cache[$next_image_id]['image_media_file'], "media", $next_prev_cache[$next_image_id]['cat_id'], 0, 0)) {
-    $next_image_file = ICON_PATH."/404.gif";
+    $next_image_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>');
   }
   else {
     $next_image_file = get_file_path($next_prev_cache[$next_image_id]['image_media_file'], "media", $next_prev_cache[$next_image_id]['cat_id'], 0, 1);
   }
   if (!get_file_path($next_prev_cache[$next_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$next_image_id]['cat_id'], 0, 0)) {
-    $next_thumb_file = ICON_PATH."/".get_file_extension($next_prev_cache[$next_image_id]['image_media_file']).".gif";
+    $next_thumb_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>');
   }
   else {
     $next_thumb_file = get_file_path($next_prev_cache[$next_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$next_image_id]['cat_id'], 0, 1);
@@ -216,13 +216,13 @@ if (!empty($next_prev_cache[$prev_image_id])) {
   $prev_image_name = format_text($next_prev_cache[$prev_image_id]['image_name'], 2);
   $prev_image_url = $site_sess->url(ROOT_PATH."details.php?".URL_IMAGE_ID."=".$prev_image_id.((!empty($mode)) ? "&amp;mode=".$mode : ""));
   if (!get_file_path($next_prev_cache[$prev_image_id]['image_media_file'], "media", $next_prev_cache[$prev_image_id]['cat_id'], 0, 0)) {
-    $prev_image_file = ICON_PATH."/404.gif";
+    $prev_image_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>');
   }
   else {
     $prev_image_file = get_file_path($next_prev_cache[$prev_image_id]['image_media_file'], "media", $next_prev_cache[$prev_image_id]['cat_id'], 0, 1);
   }
   if (!get_file_path($next_prev_cache[$prev_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$prev_image_id]['cat_id'], 0, 0)) {
-    $prev_thumb_file = ICON_PATH."/".get_file_extension($next_prev_cache[$prev_image_id]['image_media_file']).".gif";
+    $prev_thumb_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>');
   }
   else {
     $prev_thumb_file = get_file_path($next_prev_cache[$prev_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$prev_image_id]['cat_id'], 0, 1);
@@ -383,18 +383,18 @@ if ($image_allow_comments == 1) {
         $comment_user_name = format_text($comment_row[$i][$user_table_fields['user_name']], 2);
 
         $comment_user_profile_link = !empty($url_show_profile) ? $site_sess->url(preg_replace("/{user_id}/", $comment_user_id, $url_show_profile)) : $site_sess->url(ROOT_PATH."member.php?action=showprofile&amp;".URL_USER_ID."=".$comment_user_id);
-        $comment_user_profile_button = "<a href=\"".$comment_user_profile_link."\"><img src=\"".get_gallery_image("profile.gif")."\" border=\"0\" alt=\"".$comment_user_name."\" /></a>";
+        $comment_user_profile_button = "<a href=\"".$comment_user_profile_link."\" class=\"btn btn-outline-primary btn-sm me-1\" title=\"".$comment_user_name."\"><i class=\"fa-solid fa-user\"></i></a>";
 
-        $comment_user_status_img = ($comment_row[$i][$user_table_fields['user_lastaction']] >= (time() - 300) && ((isset($comment_row[$i][$user_table_fields['user_invisible']]) && $comment_row[$i][$user_table_fields['user_invisible']] == 0) || $user_info['user_level'] == ADMIN)) ? "<img src=\"".get_gallery_image("user_online.gif")."\" border=\"0\" alt=\"Online\" />" : "<img src=\"".get_gallery_image("user_offline.gif")."\" border=\"0\" alt=\"Offline\" />";
+        $comment_user_status_img = ($comment_row[$i][$user_table_fields['user_lastaction']] >= (time() - 300) && ((isset($comment_row[$i][$user_table_fields['user_invisible']]) && $comment_row[$i][$user_table_fields['user_invisible']] == 0) || $user_info['user_level'] == ADMIN)) ? "<i class=\"fa-solid fa-circle text-success\" title=\"Online\"></i>" : "<i class=\"fa-solid fa-circle text-muted\" title=\"Offline\"></i>";
 
         $comment_user_homepage = (isset($comment_row[$i][$user_table_fields['user_homepage']])) ? format_url($comment_row[$i][$user_table_fields['user_homepage']]) : "";
         if (!empty($comment_user_homepage)) {
-          $comment_user_homepage_button = "<a href=\"".$comment_user_homepage."\" target=\"_blank\"><img src=\"".get_gallery_image("homepage.gif")."\" border=\"0\" alt=\"".$comment_user_homepage."\" /></a>";
+          $comment_user_homepage_button = "<a href=\"".$comment_user_homepage."\" target=\"_blank\" class=\"btn btn-outline-info btn-sm me-1\" title=\"".$comment_user_homepage."\"><i class=\"fa-solid fa-globe\"></i></a>";
         }
 
         $comment_user_icq = (isset($comment_row[$i][$user_table_fields['user_icq']])) ? format_text($comment_row[$i][$user_table_fields['user_icq']]) : "";
         if (!empty($comment_user_icq)) {
-          $comment_user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$comment_user_icq."\" target=\"_blank\"><img src=\"http://status.icq.com/online.gif?icq=".$comment_user_icq."&img=5\" width=\"18\" height=\"18\" border=\"0\" alt=\"".$comment_user_icq."\" /></a>";
+          $comment_user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$comment_user_icq."\" target=\"_blank\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"ICQ: ".$comment_user_icq."\"><i class=\"fa-brands fa-icq\"></i></a>";
         }
 
         if (!empty($comment_row[$i][$user_table_fields['user_email']]) && (!isset($comment_row[$i][$user_table_fields['user_showemail']]) || (isset($comment_row[$i][$user_table_fields['user_showemail']]) && $comment_row[$i][$user_table_fields['user_showemail']] == 1))) {
@@ -406,7 +406,7 @@ if ($image_allow_comments == 1) {
           else {
             $comment_user_mailform_link = $site_sess->url(ROOT_PATH."member.php?action=mailform&amp;".URL_USER_ID."=".$comment_user_id);
           }
-          $comment_user_email_button = "<a href=\"".$comment_user_mailform_link."\"><img src=\"".get_gallery_image("email.gif")."\" border=\"0\" alt=\"".$comment_user_email_save."\" /></a>";
+          $comment_user_email_button = "<a href=\"".$comment_user_mailform_link."\" class=\"btn btn-outline-success btn-sm me-1\" title=\"".$comment_user_email_save."\"><i class=\"fa-solid fa-envelope\"></i></a>";
         }
 
         if (!isset($comment_row[$i][$user_table_fields['user_level']]) || (isset($comment_row[$i][$user_table_fields['user_level']]) && $comment_row[$i][$user_table_fields['user_level']] == USER)) {
@@ -425,12 +425,12 @@ if ($image_allow_comments == 1) {
 
       $admin_links = "";
       if ($user_info['user_level'] == ADMIN) {
-        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=editcomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\">".$lang['edit']."</a>&nbsp;";
-        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=removecomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\">".$lang['delete']."</a>";
+        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=editcomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
+        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=removecomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
       }
       elseif ($is_image_owner) {
-        $admin_links .= ($config['user_edit_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editcomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\">".$lang['edit']."</a>&nbsp;";
-        $admin_links .= ($config['user_delete_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removecomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\">".$lang['delete']."</a>";
+        $admin_links .= ($config['user_edit_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editcomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
+        $admin_links .= ($config['user_delete_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removecomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
       }
 
       $site_template->register_vars(array(
@@ -507,12 +507,12 @@ if ($image_allow_comments == 1) {
 // Admin Links
 $admin_links = "";
 if ($user_info['user_level'] == ADMIN) {
-  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=editimage&amp;image_id=".$image_id))."\" target=\"_blank\">".$lang['edit']."</a>&nbsp;";
-  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=removeimage&amp;image_id=".$image_id))."\" target=\"_blank\">".$lang['delete']."</a>";
+  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=editimage&amp;image_id=".$image_id))."\" target=\"_blank\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
+  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=removeimage&amp;image_id=".$image_id))."\" target=\"_blank\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
 }
 elseif ($is_image_owner) {
-  $admin_links .= ($config['user_edit_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editimage&amp;".URL_IMAGE_ID."=".$image_id)."\">".$lang['edit']."</a>&nbsp;";
-  $admin_links .= ($config['user_delete_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removeimage&amp;".URL_IMAGE_ID."=".$image_id)."\">".$lang['delete']."</a>";
+  $admin_links .= ($config['user_edit_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editimage&amp;".URL_IMAGE_ID."=".$image_id)."\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
+  $admin_links .= ($config['user_delete_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removeimage&amp;".URL_IMAGE_ID."=".$image_id)."\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
 }
 $site_template->register_vars("admin_links", $admin_links);
 

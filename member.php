@@ -690,7 +690,7 @@ if ($action == "uploadimage") {
       if (!is_remote($file) && $imageinfo = @getimagesize($file)) {
         $width_height = " ".$imageinfo[3];
       }
-      $media_icon = "<img src=\"".ICON_PATH."/".$file_extension.".gif\" border=\"0\" alt=\"\" />";
+      $media_icon = "<i class=\"fa-solid fa-file\"></i>";
       $site_template->register_vars(array(
         "media_src" => $file,
         "media_icon" => $media_icon,
@@ -917,7 +917,7 @@ if ($action == "showprofile") {
   if ($user_row = get_user_info($user_id)) {
     $user_homepage = (isset($user_row['user_homepage'])) ? format_text(format_url($user_row['user_homepage']), 2) : REPLACE_EMPTY;
     if (!empty($user_homepage) && $user_homepage != REPLACE_EMPTY) {
-      $user_homepage_button = "<a href=\"".$user_homepage."\" target=\"_blank\"><img src=\"".get_gallery_image("homepage.gif")."\" border=\"0\" alt=\"".$user_homepage."\" /></a>";
+      $user_homepage_button = "<a href=\"".$user_homepage."\" target=\"_blank\" class=\"btn btn-outline-info btn-sm me-1\" title=\"".$user_homepage."\"><i class=\"fa-solid fa-globe\"></i></a>";
     }
     else {
       $user_homepage_button = REPLACE_EMPTY;
@@ -925,7 +925,7 @@ if ($action == "showprofile") {
 
     $user_icq = (isset($user_row['user_icq'])) ? $user_row['user_icq'] : REPLACE_EMPTY;
     if (!empty($user_icq) && $user_icq != REPLACE_EMPTY) {
-      $user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$user_icq."\" target=\"_blank\"><img src=\"http://status.icq.com/online.gif?icq=".$user_icq."&img=5\" width=\"18\" height=\"18\" border=\"0\" alt=\"".$user_icq."\" /></a>";
+      $user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$user_icq."\" target=\"_blank\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"ICQ: ".$user_icq."\"><i class=\"fa-brands fa-icq\"></i></a>";
     }
     else {
       $user_icq_button = REPLACE_EMPTY;
@@ -941,7 +941,7 @@ if ($action == "showprofile") {
       else {
         $user_mailform_link = $site_sess->url(ROOT_PATH."member.php?action=mailform&amp;".URL_USER_ID."=".$user_row['user_id']);
       }
-      $user_email_button = "<a href=\"".$user_mailform_link."\"><img src=\"".get_gallery_image("email.gif")."\" border=\"0\" alt=\"".$user_email_save."\" /></a>";
+      $user_email_button = "<a href=\"".$user_mailform_link."\" class=\"btn btn-outline-success btn-sm me-1\" title=\"".$user_email_save."\"><i class=\"fa-solid fa-envelope\"></i></a>";
     }
     else {
       $user_email = REPLACE_EMPTY;

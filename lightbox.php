@@ -134,10 +134,10 @@ $clickstream = "<span class=\"clickstream\"><a href=\"".$site_sess->url(ROOT_PAT
 $download_button = "";
 if (function_exists("gzcompress") && function_exists("crc32")) {
   if ($download_allowed && !empty($user_info['lightbox_image_ids'])) {
-    $download_button = "<a href=\"".$site_sess->url(ROOT_PATH."download.php?action=lightbox")."\"><img src=\"".get_gallery_image("download_zip.gif")."\" border=\"0\" alt=\"\" /></a>";
+    $download_button = "<a href=\"".$site_sess->url(ROOT_PATH."download.php?action=lightbox")."\" class=\"btn btn-outline-primary btn-sm\" title=\"Download ZIP\"><i class=\"fa-solid fa-file-zipper\"></i></a>";
   }
   else {
-    $download_button = "<img src=\"".get_gallery_image("download_zip_off.gif")."\" border=\"0\" alt=\"\" />";
+    $download_button = "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"Download nicht verfügbar\"><i class=\"fa-solid fa-file-zipper\"></i></span>";
   }
 }
 
