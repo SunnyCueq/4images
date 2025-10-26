@@ -179,21 +179,57 @@ function check_executable($file_name) {
   return $file_name;
 }
 
+function get_file_icon_class($extension) {
+  $icon_map = array(
+    'jpg' => 'image',
+    'jpeg' => 'image', 
+    'png' => 'image',
+    'gif' => 'image',
+    'webp' => 'image',
+    'svg' => 'image',
+    'bmp' => 'image',
+    'tiff' => 'image',
+    'pdf' => 'pdf',
+    'doc' => 'word',
+    'docx' => 'word',
+    'xls' => 'excel',
+    'xlsx' => 'excel',
+    'ppt' => 'powerpoint',
+    'pptx' => 'powerpoint',
+    'txt' => 'text',
+    'zip' => 'zipper',
+    'rar' => 'zipper',
+    'mp4' => 'video',
+    'avi' => 'video',
+    'mov' => 'video',
+    'mp3' => 'audio',
+    'wav' => 'audio',
+    'css' => 'code',
+    'js' => 'code',
+    'php' => 'code',
+    'html' => 'code',
+    'xml' => 'code'
+  );
+  
+  $ext = strtolower($extension);
+  return isset($icon_map[$ext]) ? $icon_map[$ext] : 'file';
+}
+
 function get_file_path($file_name = "", $image_type = "media", $cat_id = 0, $in_admin = 0, $return_icon = 1, $check_remote = CHECK_REMOTE_FILES) {
-  $return_code = ($return_icon) ? ICON_PATH."/404.gif" : 0;
+  $return_code = ($return_icon) ? "<i class=\"fa-solid fa-exclamation-triangle text-warning\"></i>" : 0;
   if (empty($file_name)) {
     return $return_code;
   }
   if (is_remote($file_name)) {
     $check_handle = "check_remote_".$image_type;
-    return ($check_handle($file_name) && remote_file_exists($file_name, $check_remote)) ? (($in_admin && !preg_match("#\.(gif|jpg|jpeg|png)$#is", $file_name)) ? ICON_PATH."/".get_file_extension($file_name).".gif" : $file_name) : $return_code;
+    return ($check_handle($file_name) && remote_file_exists($file_name, $check_remote)) ? (($in_admin && !preg_match("#\.(gif|jpg|jpeg|png)$#is", $file_name)) ? "<i class=\"fa-solid fa-file text-muted\"></i>" : $file_name) : $return_code;
   }
   elseif (is_local_file($file_name)) {
     $check_handle = "check_local_".$image_type;
     $file_name = ($in_admin && preg_match("/^([\.]+|[^\/])/", $file_name)) ? "../".$file_name : $file_name;
     if (!file_exists($file_name)) {
       $file_path = preg_replace("/\/{2,}/", "/", get_document_root()."/".$file_name);
-      return ($check_handle($file_name) && file_exists($file_path)) ? (($in_admin && !preg_match("#\.(gif|jpg|jpeg|png)$#is", $file_name)) ? ICON_PATH."/".get_file_extension($file_name).".gif" : $file_name) : $return_code;
+      return ($check_handle($file_name) && file_exists($file_path)) ? (($in_admin && !preg_match("#\.(gif|jpg|jpeg|png)$#is", $file_name)) ? "<i class=\"fa-solid fa-file text-muted\"></i>" : $file_name) : $return_code;
     }
     else {
       return $file_name;
@@ -202,7 +238,7 @@ function get_file_path($file_name = "", $image_type = "media", $cat_id = 0, $in_
   else {
     $check_handle = "check_".$image_type."_type";
     $path = (($image_type == "media") ? (($cat_id) ? MEDIA_PATH."/".$cat_id : MEDIA_TEMP_PATH) : (($cat_id) ? THUMB_PATH."/".$cat_id : THUMB_TEMP_PATH))."/".$file_name;
-    return ($check_handle($file_name) && file_exists($path)) ? (($in_admin && !preg_match("#\.(gif|jpg|jpeg|png)$#is", $file_name)) ? ICON_PATH."/".get_file_extension($file_name).".gif" : $path) : $return_code;
+    return ($check_handle($file_name) && file_exists($path)) ? (($in_admin && !preg_match("#\.(gif|jpg|jpeg|png)$#is", $file_name)) ? "<i class=\"fa-solid fa-file text-muted\"></i>" : $path) : $return_code;
   }
 }
 
@@ -352,27 +388,27 @@ function show_image($image_row, $mode = "", $show_link = 1, $detailed_view = 0) 
     $lightbox_url .= strpos($lightbox_url, '?') !== false ? "&amp;" : "?";
     if (check_lightbox($image_row['image_id'])) {
       $lightbox_url .= "action=removefromlightbox&amp;id=".$image_row['image_id'];
-      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\"><img src=\"".get_gallery_image("lightbox_yes.gif")."\" border=\"0\" alt=\"\" /></a>";
+      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['remove_from_lightbox']."\"><i class=\"fa-solid fa-heart-broken me-1\"></i>".$lang['remove_from_lightbox']."</a>";
     }
     else {
       $lightbox_url .= "action=addtolightbox&amp;id=".$image_row['image_id'];
-      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\"><img src=\"".get_gallery_image("lightbox_no.gif")."\" border=\"0\" alt=\"\" /></a>";
+      $lightbox_button = "<a href=\"".$site_sess->url($lightbox_url)."\" class=\"btn btn-outline-primary btn-sm\" title=\"".$lang['add_to_lightbox']."\"><i class=\"fa-solid fa-heart me-1\"></i>".$lang['add_to_lightbox']."</a>";
     }
   }
   else {
-    $lightbox_button = "<img src=\"".get_gallery_image("lightbox_off.gif")."\" border=\"0\" alt=\"\" />";
+    $lightbox_button = "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"".$lang['lightbox_disabled']."\"><i class=\"fa-solid fa-heart me-1\"></i>".$lang['lightbox_disabled']."</span>";
   }
 
   if (!check_permission("auth_download", $image_row['cat_id'])) {
-    $download_button = "<img src=\"".get_gallery_image("download_off.gif")."\" border=\"0\" alt=\"\" />";
-    $download_zip_button = (function_exists("gzcompress") && function_exists("crc32")) ? "<img src=\"".get_gallery_image("download_zip_off.gif")."\" border=\"0\" alt=\"\" />" : "";
+    $download_button = "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"".$lang['download_disabled']."\"><i class=\"fa-solid fa-download me-1\"></i>".$lang['download_disabled']."</span>";
+    $download_zip_button = (function_exists("gzcompress") && function_exists("crc32")) ? "<span class=\"btn btn-outline-secondary btn-sm disabled\" title=\"".$lang['download_zip_disabled']."\"><i class=\"fa-solid fa-file-zipper me-1\"></i>".$lang['download_zip_disabled']."</span>" : "";
     $allow_download = 0;
     clear_download_token($image_row['image_id']);
   }
   else {
     $target = (!empty($image_row['image_download_url']) && !is_remote_file($image_row['image_download_url']) && !is_local_file($image_row['image_download_url'])) ? "target=\"_blank\"" : "";
-    $download_button = "<a href=\"".$site_sess->url(ROOT_PATH."download.php?".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target."><img src=\"".get_gallery_image("download.gif")."\" border=\"0\" alt=\"\" /></a>";
-    $download_zip_button = ($target == "" && function_exists("gzcompress") && function_exists("crc32")) ? "<a href=\"".$site_sess->url(ROOT_PATH."download.php?action=zip&amp;".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target."><img src=\"".get_gallery_image("download_zip.gif")."\" border=\"0\" alt=\"\" /></a>" : "";
+    $download_button = "<a href=\"".$site_sess->url(ROOT_PATH."download.php?".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target." class=\"btn btn-outline-success btn-sm\" title=\"".$lang['download']."\"><i class=\"fa-solid fa-download me-1\"></i>".$lang['download']."</a>";
+    $download_zip_button = ($target == "" && function_exists("gzcompress") && function_exists("crc32")) ? "<a href=\"".$site_sess->url(ROOT_PATH."download.php?action=zip&amp;".URL_IMAGE_ID."=".$image_row['image_id'])."\"".$target." class=\"btn btn-outline-info btn-sm\" title=\"".$lang['download_zip']."\"><i class=\"fa-solid fa-file-zipper me-1\"></i>".$lang['download_zip']."</a>" : "";
     $allow_download = 1;
     set_download_token($image_row['image_id']);
   }
@@ -465,14 +501,11 @@ function get_thumbnail_code($media_file_name, $thumb_file_name = "", $image_id, 
   global $site_sess, $config;
 
   if (!check_media_type($media_file_name)) {
-    $thumb = "<img src=\"".ICON_PATH."/404.gif\" border=\"0\" alt=\"\" />";
+    $thumb = "<div class=\"d-flex align-items-center justify-content-center bg-light border rounded\" style=\"width: 150px; height: 150px;\"><i class=\"fa-solid fa-exclamation-triangle text-warning fa-2x\"></i></div>";
   }
   else {
     if (!get_file_path($thumb_file_name, "thumb", $cat_id, 0, 0)) {
-      $file_src = ICON_PATH."/".get_file_extension($media_file_name).".gif";
-      $image_info = @getimagesize($file_src);
-      $width_height = (!empty($image_info[3])) ? " ".$image_info[3] : "";
-      $thumb = "<img src=\"".$file_src."\" border=\"0\"".$width_height." alt=\"".format_text($image_name, 2)."\" title=\"".format_text($image_name, 2)."\" />";
+      $thumb = "<div class=\"d-flex align-items-center justify-content-center bg-light border rounded\" style=\"width: 150px; height: 150px;\"><i class=\"fa-solid fa-file text-muted fa-2x\"></i></div>";
     }
     else {
       $file_src = get_file_path($thumb_file_name, "thumb", $cat_id, 0, 1);
@@ -497,14 +530,14 @@ function get_media_code($media_file_name, $image_id = 0, $cat_id = 0, $image_nam
   global $site_template, $site_sess, $lang, $mode;
 
   if (!get_file_path($media_file_name, "media", $cat_id, 0, 0)) {
-    $media = "<img src=\"".ICON_PATH."/404.gif\" border=\"0\" alt=\"\" />";
+    $media = "<div class=\"d-flex align-items-center justify-content-center bg-light border rounded\" style=\"width: 300px; height: 200px;\"><i class=\"fa-solid fa-exclamation-triangle text-warning fa-2x\"></i></div>";
     $site_template->register_vars("iptc_info", "");
     $site_template->register_vars("exif_info", "");
   }
   else {
     $media_src = get_file_path($media_file_name, "media", $cat_id, 0, 1);
     $file_extension = get_file_extension($media_file_name);
-    $media_icon = "<img src=\"".ICON_PATH."/".$file_extension.".gif\" border=\"0\" alt=\"".format_text($image_name, 2)."\" />";
+    $media_icon = "<div class=\"d-flex align-items-center justify-content-center bg-light border rounded p-2\" style=\"width: 100px; height: 80px;\"><i class=\"fa-solid fa-file text-muted fa-2x\"></i></div>";
     if ($show_link) {
       $media_icon = "<a href=\"".$site_sess->url(ROOT_PATH."details.php?".URL_IMAGE_ID."=".$image_id.((!empty($mode)) ? "&amp;mode=".$mode : ""))."\">".$media_icon."</a>";
     }
