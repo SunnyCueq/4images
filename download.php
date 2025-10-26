@@ -167,9 +167,10 @@ elseif ($image_id) {
     $size = 0;
   }
 
+  // SECURITY FIX: Explicit int cast (defense-in-depth)
   $sql = "SELECT image_id, cat_id, user_id, image_media_file, image_download_url, image_downloads
           FROM ".IMAGES_TABLE."
-          WHERE image_id = $image_id AND image_active = 1";
+          WHERE image_id = ".(int)$image_id." AND image_active = 1";
   $image_row = $site_db->query_firstrow($sql);
 
   if (!$image_row || !check_permission("auth_viewcat", $image_row['cat_id']) || !check_permission("auth_viewimage", $image_row['cat_id'])) {
@@ -222,7 +223,7 @@ elseif ($image_id) {
   if ($user_info['user_level'] != ADMIN) {
     $sql = "UPDATE ".IMAGES_TABLE."
             SET image_downloads = image_downloads + 1
-            WHERE image_id = $image_id";
+            WHERE image_id = ".(int)$image_id;
     $site_db->query($sql);
   }
 
