@@ -49,7 +49,8 @@ $num_rows_all = 0;
 $num_rows = 0;
 
 if (!empty($user_info['lightbox_image_ids']))  {
-  $image_id_sql = str_replace(" ", ", ", trim($user_info['lightbox_image_ids']));
+  // SECURITY FIX: Sanitize IDs for IN() query
+  $image_id_sql = $site_db->sanitize_ids(str_replace(" ", ",", trim($user_info['lightbox_image_ids'])));
   $sql = "SELECT COUNT(image_id) AS images
           FROM ".IMAGES_TABLE."
           WHERE image_active = 1 AND image_id IN ($image_id_sql) AND cat_id NOT IN (".get_auth_cat_sql("auth_viewcat", "NOTIN").")";

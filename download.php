@@ -100,7 +100,8 @@ if ($action == "lightbox") {
     redirect("lightbox.php");
   }
 
-  $image_id_sql = str_replace(" ", ", ", trim($user_info['lightbox_image_ids']));
+  // SECURITY FIX: Sanitize IDs for IN() query
+  $image_id_sql = $site_db->sanitize_ids(str_replace(" ", ",", trim($user_info['lightbox_image_ids'])));
   $image_ids = array();
   $sql = "SELECT image_id, cat_id, image_media_file, image_download_url
           FROM ".IMAGES_TABLE."

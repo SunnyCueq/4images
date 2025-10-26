@@ -146,6 +146,26 @@ class Db
         return $this->query_result;
     }
 
+    /**
+     * Sanitize comma-separated IDs for safe IN() queries
+     *
+     * @param string $ids Comma-separated list of IDs (e.g., "1,2,3" or "1, 2, 3")
+     * @return string Sanitized comma-separated integers (e.g., "1,2,3")
+     */
+    public function sanitize_ids($ids)
+    {
+        if (empty($ids)) {
+            return '0'; // Return 0 to prevent empty IN() clause
+        }
+
+        // Split by comma, convert to int, filter zeros, rejoin
+        $id_array = explode(',', $ids);
+        $id_array = array_map('intval', $id_array);
+        $id_array = array_filter($id_array); // Remove zeros/false values
+
+        return empty($id_array) ? '0' : implode(',', $id_array);
+    }
+
     public function fetch_array(mysqli_result $query_result = null, $assoc = 0)
     {
         if ($query_result != null) {

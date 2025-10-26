@@ -82,7 +82,8 @@ $in_mode = 0;
 $sql = "";
 if ($mode == "lightbox") {
   if (!empty($user_info['lightbox_image_ids'])) {
-    $image_id_sql = str_replace(" ", ", ", trim($user_info['lightbox_image_ids']));
+    // SECURITY FIX: Sanitize IDs for IN() query
+    $image_id_sql = $site_db->sanitize_ids(str_replace(" ", ",", trim($user_info['lightbox_image_ids'])));
     $sql = "SELECT image_id, cat_id, image_name, image_media_file, image_thumb_file
             FROM ".IMAGES_TABLE."
             WHERE image_active = 1 AND image_id IN ($image_id_sql) AND (cat_id NOT IN (".get_auth_cat_sql("auth_viewimage", "NOTIN").", ".get_auth_cat_sql("auth_viewcat", "NOTIN")."))
