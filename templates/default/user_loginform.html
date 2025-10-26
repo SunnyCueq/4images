@@ -1,23 +1,31 @@
-<table width="100%" border="0" cellpadding="4" cellspacing="0">
-  <tr> 
-    <td valign="top" align="left"> 
-      <form action="{url_login}" method="post">
-        {lang_user_name}<br />
-        <input type="text" size="10" name="user_name" class="logininput" />
-        <br />
-        {lang_password}<br />
-        <input type="password" size="10" name="user_password" class="logininput" />
-        <br />
-        <table border="0" cellspacing="0" cellpadding="0">
-          <tr valign="top"> 
-            <td><input type="checkbox" name="auto_login" value="1" /></td>
-            <td><span class="smalltext">{lang_auto_login}</span></td>
-          </tr>
-        </table>
-        <br />
-		<input type="submit" value="{lang_login}" class="button" />
-      </form>
-      » <a href="{url_lost_password}">{lang_lost_password}</a><br />
-	  » <a href="{url_register}">{lang_register}</a><br>&nbsp;</td>
-  </tr>
-</table>
+<form action="{url_login}" method="post" class="p-3">
+  <div class="mb-3">
+    <label class="form-label small">{lang_user_name}</label>
+    <input type="text" name="user_name" class="form-control form-control-sm" required>
+  </div>
+  
+  <div class="mb-3">
+    <label class="form-label small">{lang_password}</label>
+    <input type="password" name="user_password" class="form-control form-control-sm" required>
+  </div>
+  
+  <div class="form-check mb-3">
+    <input type="checkbox" name="auto_login" value="1" class="form-check-input" id="autoLogin">
+    <label class="form-check-label small" for="autoLogin">
+      {lang_auto_login}
+    </label>
+  </div>
+  
+  <button type="submit" class="btn btn-primary btn-sm w-100 mb-3">
+    <i class="fa-solid fa-right-to-bracket me-1"></i>{lang_login}
+  </button>
+  
+  <div class="d-flex flex-column gap-1 small">
+    <a href="{url_lost_password}" class="text-decoration-none">
+      <i class="fa-solid fa-key fa-fw me-1"></i>{lang_lost_password}
+    </a>
+    <a href="{url_register}" class="text-decoration-none">
+      <i class="fa-solid fa-user-plus fa-fw me-1"></i>{lang_register}
+    </a>
+  </div>
+</form>

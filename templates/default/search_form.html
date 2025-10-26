@@ -1,61 +1,91 @@
 <form method="post" action="{url_search}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr>
-      <td class="head1">
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr>
-            <td colspan="2" valign="top" class="head1">{lang_search}</td>
-          </tr>
-          <tr>
-            <td valign="top" class="row1"><b>{lang_search_by_keyword}</b></td>
-            <td class="row1" valign="top">
-              <input type="text" name="search_keywords" size="40" value="{search_keywords}" class="input" />
-              <br />
-              <input type="checkbox" name="search_new_images" value="1" />
-              {lang_new_images_only}</td>
-          </tr>
-		  <tr>
-            <td valign="top" class="row2"><b>{lang_search_by_username}</b></td>
-            <td class="row2" valign="top">
-              <input type="text" name="search_user" size="40" value="{search_user}" class="input" />
-            </td>
-          </tr>
-          <tr>
-            <td class="row1"><b>{lang_search_terms}</b></td>
-            <td class="row1">
-              <input type="radio" name="search_terms" value="any" checked="checked" />
-              {lang_or}&nbsp;&nbsp;
-							<input type="radio" name="search_terms" value="all" />
-              {lang_and}
-            </td>
-          </tr>
-          <tr>
-            <td class="row2"><b>{lang_category}</b></td>
-            <td class="row2">{category_dropdown}</td>
-          </tr>
-          <tr>
-            <td valign="top" class="row1"><b>{lang_search_fields}</b></td>
-            <td class="row1">
-              <table border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="all" checked="checked" /> {lang_all_fields}</td>
-                  <td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="image_name" /> {lang_name_only}</td>
-                </tr>
-                <tr>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="image_description" /> {lang_description_only}</td>
-                  <td nowrap="nowrap">&nbsp;</td>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="image_keywords" /> {lang_keywords_only}</td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="row1">&nbsp;</td>
-            <td class="row1"><input type="submit" value="{lang_search}" class="button" /></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+      <h5 class="mb-0"><i class="fa-solid fa-magnifying-glass me-2"></i>{lang_search}</h5>
+    </div>
+    <div class="card-body">
+      <!-- Search by Keyword -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"><strong>{lang_search_by_keyword}</strong></label>
+        <div class="col-sm-9">
+          <input type="text" name="search_keywords" value="{search_keywords}" class="form-control mb-2">
+          <div class="form-check">
+            <input type="checkbox" name="search_new_images" value="1" class="form-check-input" id="searchNewImages">
+            <label class="form-check-label" for="searchNewImages">
+              {lang_new_images_only}
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Search by Username -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"><strong>{lang_search_by_username}</strong></label>
+        <div class="col-sm-9">
+          <input type="text" name="search_user" value="{search_user}" class="form-control">
+        </div>
+      </div>
+      
+      <!-- Search Terms -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"><strong>{lang_search_terms}</strong></label>
+        <div class="col-sm-9">
+          <div class="form-check form-check-inline">
+            <input type="radio" name="search_terms" value="any" checked="checked" class="form-check-input" id="searchAny">
+            <label class="form-check-label" for="searchAny">{lang_or}</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="search_terms" value="all" class="form-check-input" id="searchAll">
+            <label class="form-check-label" for="searchAll">{lang_and}</label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Category -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"><strong>{lang_category}</strong></label>
+        <div class="col-sm-9">
+          {category_dropdown}
+        </div>
+      </div>
+      
+      <!-- Search Fields -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"><strong>{lang_search_fields}</strong></label>
+        <div class="col-sm-9">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-check">
+                <input type="radio" name="search_fields" value="all" checked="checked" class="form-check-input" id="fieldAll">
+                <label class="form-check-label" for="fieldAll">{lang_all_fields}</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" name="search_fields" value="image_description" class="form-check-input" id="fieldDesc">
+                <label class="form-check-label" for="fieldDesc">{lang_description_only}</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-check">
+                <input type="radio" name="search_fields" value="image_name" class="form-check-input" id="fieldName">
+                <label class="form-check-label" for="fieldName">{lang_name_only}</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" name="search_fields" value="image_keywords" class="form-check-input" id="fieldKeywords">
+                <label class="form-check-label" for="fieldKeywords">{lang_keywords_only}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Submit Button -->
+      <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-search me-1"></i>{lang_search}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>

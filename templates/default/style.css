@@ -1,239 +1,126 @@
+/* 
+ * 4images Modern Template - Custom Styles
+ * Based on Bootstrap 5.3 with custom primary color
+ */
+
+/* Override Bootstrap Primary Color to match 4images brand */
+:root {
+  --bs-primary: #0F5475;
+  --bs-primary-rgb: 15, 84, 117;
+  --bs-link-color: #0F5475;
+  --bs-link-hover-color: #0a3a52;
+}
+
+/* Global styling */
 body {
-  background-color: #ffffff;
-  color: #000000;
-  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #212529;
 }
 
-hr {
-  height: 1px; 
-  color: #004c75;
-  background-color: #ffffff;
-}
-
-ul, li, p, td {
-  color: #004c75;
-  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11px;
-}
-
-.tablehead {
-  background-color: #e8e8e8;
-  color: #004c75;
-}
-
-.tablebottom {
-  background-color: #004C75;
-}
-
-.bordercolor {
-  background-color: #004C75;
-}
-
-.tablebgcolor {
-  background-color: #ffffff;
-}
-
-.navbar {
-  background-color: #fcdc43;
-  color: #004c75;
-}
-
-.row1 {
-  background-color: #e1e1e1;
-  color: #004c75;
-}
-
-.row2 {
-  background-color: #efefef;
-  color: #004c75;
-}
-
-.head1 {
-  background-color: #004C75;
-  color: #fcdc43;
-  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.head1:hover {
-  background-color: #004C75;
-  color: #fcdc43;
-  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.head2 {
-  background-color: #004C75;
-  color: #ffffff;
-  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.title {
-  font-family: Arial,Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.clickstream {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  font-size: 11px;
-}
-
-.smalltext {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  font-size: 10px;
-  font-weight: normal;
-}
-
-.marktext {
-  color: #FF0000;
-  background-color: #ffffff;
-}
-
-.new {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  font-size: 11px;
-  color: #FF0000;
+a {
+  color: #0F5475;
+  text-decoration: none;
 }
 
 a:hover {
-  color: #000000;
+  color: #0a3a52;
 }
 
-form {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  font-size: 11px;
+/* Card enhancements */
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.logininput {
-  background-color: #ffffff;
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
-  width: 130px;
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
-.searchinput {
-  background-color: #FFFFFF;
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
-  WIDTH: 130px;
+/* Primary color backgrounds */
+.bg-primary {
+  background-color: #0F5475 !important;
 }
 
-.textarea {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
-  width: 230px;
+.btn-primary {
+  background-color: #0F5475;
+  border-color: #0F5475;
 }
 
-.input {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
-  width: 230px;
+.btn-primary:hover {
+  background-color: #0a3a52;
+  border-color: #0a3a52;
 }
 
-.select {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
+.btn-outline-primary {
+  color: #0F5475;
+  border-color: #0F5475;
 }
 
-.setperpageselect {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
+.btn-outline-primary:hover {
+  background-color: #0F5475;
+  border-color: #0F5475;
+  color: #fff;
 }
 
-.categoryselect {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
+/* Text colors */
+.text-primary {
+  color: #0F5475 !important;
 }
 
-.dropdownmarker {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  background-color: #EEEEEE;
-  color: #136c99;
-  font-size: 11px;
+/* Badge styling */
+.badge.bg-success {
+  background-color: #198754 !important;
 }
 
-.button {
-  font-family:  Tahoma,Verdana,Arial, Helvetica, sans-serif;
-  background-color: #003366;
-  color: #fcdc43;
-  font-size: 11px;
-  font-weight: bold;
+/* List group enhancements */
+.list-group-item-action:hover {
+  background-color: rgba(15, 84, 117, 0.05);
 }
 
-/*--Categories------------------------------------------------*/
-.catbgcolor {
-  background-color: #EFEFEF;
+/* Form styling */
+.form-control:focus,
+.form-select:focus {
+  border-color: #0F5475;
+  box-shadow: 0 0 0 0.25rem rgba(15, 84, 117, 0.25);
 }
 
-.maincat {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  font-size: 11px;
-  font-weight: bold;
+/* Breadcrumb */
+.breadcrumb {
+  background-color: #f8f9fa;
+  border-radius: 0.25rem;
 }
 
-.subcat {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  font-size: 10px;
-  font-weight: bold;
+/* Image thumbnails */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-/*--Images----------------------------------------------------*/
-.imagerow1 {
-  background-color: #E5E5E5;
-  color: #004C75;
+/* Clickstream (breadcrumb) styling */
+.clickstream a {
+  color: #0F5475;
+  text-decoration: none;
 }
 
-.imagerow2 {
-  background-color: #EFEFEF;
-  color: #004C75;
+.clickstream a:hover {
+  text-decoration: underline;
 }
 
-/*--Comments--------------------------------------------------*/
-.commentrow1 {
-  background-color: #e1e1e1;
-  color: #004c75;
+/* Small utilities */
+.small, small {
+  font-size: 0.875em;
 }
 
-.commentrow2 {
-  background-color: #efefef;
-  color: #004c75;
+/* Text muted */
+.text-muted {
+  color: #6c757d !important;
 }
 
-.commentspacerrow {
-  background-color: #d1d1d1;
-  color: #004c75;
-}
-
-.commenttextarea {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
-  width: 250px;
-}
-
-.commentinput {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
-  width: 250px;
-}
-
-.captchainput {
-  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
-  color: #0f5475;
-  font-size: 11px;
-  width: 200px;
+/* Responsive spacing adjustments */
+@media (max-width: 991.98px) {
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

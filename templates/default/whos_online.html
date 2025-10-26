@@ -1,18 +1,11 @@
-<table width="100%" border="0" cellspacing="0" cellpadding="1">
-  <tr> 
-    <td class="head1"> 
-      <table width="100%" border="0" cellspacing="0" cellpadding="3">
-        <tr> 
-          <td valign="top" class="head1">{lang_user_online}</td>
-        </tr>
-        <tr> 
-          <td valign="top" class="row2">
-		    {lang_user_online_detail}
-		    <br />
-            {user_online_list}
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-light">
+    <h5 class="mb-0"><i class="fa-solid fa-users me-2"></i>{lang_user_online}</h5>
+  </div>
+  <div class="card-body">
+    <p class="mb-2">{lang_user_online_detail}</p>
+    <div class="small">
+      {user_online_list}
+    </div>
+  </div>
+</div>

@@ -1,7 +1,23 @@
-<!-- you wish detail page in a small javascript open window, use {thumbnail_openwindow} -->
-{thumbnail}<br />
-<b>{image_name}</b> {if image_is_new}<sup class="new">{lang_new}</sup>{endif image_is_new} ({user_name_link})
-<br />
-<a href="{cat_url}">{cat_name}</a><br />
-{if allow_comments}{lang_comments} {image_comments}{endif allow_comments}<br />
-{lightbox_button}
+<div class="card shadow-sm h-100">
+  <div class="card-body text-center">
+    {thumbnail}
+    <h6 class="card-title mt-2 mb-1">
+      {image_name} 
+      {if image_is_new}<span class="badge bg-success ms-1">{lang_new}</span>{endif image_is_new}
+    </h6>
+    <p class="card-text small text-muted mb-1">
+      {user_name_link}
+    </p>
+    <p class="card-text small">
+      <a href="{cat_url}" class="text-decoration-none">
+        <i class="fa-solid fa-folder fa-fw me-1"></i>{cat_name}
+      </a>
+    </p>
+    {if allow_comments}
+    <p class="card-text small text-muted">
+      <i class="fa-solid fa-comments fa-fw me-1"></i>{lang_comments} {image_comments}
+    </p>
+    {endif allow_comments}
+    {lightbox_button}
+  </div>
+</div>
