@@ -187,6 +187,7 @@ $site_template->register_vars(array(
   "lang_search" => $lang['search'],
   "lang_advanced_search" => $lang['advanced_search'],
   "lang_lightbox" => $lang['lightbox'],
+  "lightbox_count" => get_lightbox_count(),
   "lang_register" => $lang['register'],
   "lang_control_panel" => $lang['control_panel'],
   "lang_login" => $lang['login'],
