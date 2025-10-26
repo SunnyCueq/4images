@@ -103,42 +103,56 @@
           <h5 class="mb-0"><i class="fa-solid fa-info-circle me-2"></i>{image_name}</h5>
         </div>
         <div class="card-body">
-          <table class="table table-sm table-striped mb-0">
-            <tbody>
-              <tr>
-                <td style="width: 33%;"><strong>{lang_description}</strong></td>
-                <td>{image_description}</td>
-              </tr>
-              <tr>
-                <td><strong>{lang_keywords}</strong></td>
-                <td>{image_keywords}</td>
-              </tr>
-              <tr>
-                <td><strong>{lang_date}</strong></td>
-                <td>{image_date}</td>
-              </tr>
-              <tr>
-                <td><strong>{lang_hits}</strong></td>
-                <td>{image_hits}</td>
-              </tr>
-              <tr>
-                <td><strong>{lang_downloads}</strong></td>
-                <td>{image_downloads}</td>
-              </tr>
-              <tr>
-                <td><strong>{lang_rating}</strong></td>
-                <td>{image_rating} ({image_votes} {lang_votes})</td>
-              </tr>
-              <tr>
-                <td><strong>{lang_file_size}</strong></td>
-                <td>{image_file_size}</td>
-              </tr>
-              <tr>
-                <td><strong>{lang_added_by}</strong></td>
-                <td>{user_name_link}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_description}</strong>
+                <div class="text-end">{image_description}</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_keywords}</strong>
+                <div class="text-end">{image_keywords}</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_date}</strong>
+                <div class="text-end">{image_date}</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_hits}</strong>
+                <div class="text-end">{image_hits}</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_downloads}</strong>
+                <div class="text-end">{image_downloads}</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_rating}</strong>
+                <div class="text-end">{image_rating} ({image_votes} {lang_votes})</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_file_size}</strong>
+                <div class="text-end">{image_file_size}</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <strong class="text-muted">{lang_added_by}</strong>
+                <div class="text-end">{user_name_link}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -149,11 +163,9 @@
           <h5 class="mb-0"><i class="fa-solid fa-file-code me-2"></i>IPTC Info</h5>
         </div>
         <div class="card-body">
-          <table class="table table-sm table-striped mb-0">
-            <tbody>
-              {iptc_info}
-            </tbody>
-          </table>
+          <div class="row g-3">
+            {iptc_info}
+          </div>
         </div>
       </div>
       {endif iptc_info}
@@ -165,11 +177,9 @@
           <h5 class="mb-0"><i class="fa-solid fa-camera me-2"></i>EXIF Info</h5>
         </div>
         <div class="card-body">
-          <table class="table table-sm table-striped mb-0">
-            <tbody>
-              {exif_info}
-            </tbody>
-          </table>
+          <div class="row g-3">
+            {exif_info}
+          </div>
         </div>
       </div>
       {endif exif_info}
