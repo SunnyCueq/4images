@@ -103,10 +103,12 @@ if (!empty($additional_image_fields)) {
 }
 
 $num_new_images = $config['image_cells'];
+// SECURITY FIX: Sanitize category IDs (defense-in-depth, from get_auth_cat_sql but ensure safety)
+$auth_cat_sql = $site_db->sanitize_ids(get_auth_cat_sql("auth_viewcat", "NOTIN"));
 $sql = "SELECT i.image_id, i.cat_id, i.user_id, i.image_name, i.image_description, i.image_keywords, i.image_date, i.image_active, i.image_media_file, i.image_thumb_file, i.image_download_url, i.image_allow_comments, i.image_comments, i.image_downloads, i.image_votes, i.image_rating, i.image_hits".$additional_sql.", c.cat_name".get_user_table_field(", u.", "user_name")."
         FROM (".IMAGES_TABLE." i,  ".CATEGORIES_TABLE." c)
         LEFT JOIN ".USERS_TABLE." u ON (".get_user_table_field("u.", "user_id")." = i.user_id)
-        WHERE i.image_active = 1 AND c.cat_id = i.cat_id AND i.cat_id NOT IN (".get_auth_cat_sql("auth_viewcat", "NOTIN").")
+        WHERE i.image_active = 1 AND c.cat_id = i.cat_id AND i.cat_id NOT IN ($auth_cat_sql)
         ORDER BY i.image_date DESC
         LIMIT $num_new_images";
 $result = $site_db->query($sql);

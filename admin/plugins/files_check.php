@@ -219,8 +219,12 @@ if ($action == "deleteimage") {
   $delfromserver = (isset($_POST['delfromserver'])) ? intval($_POST['delfromserver']) : 1;
   $image_ids = "";
   if (!empty($selectimages)) {
+    // SECURITY FIX: Sanitize image IDs from POST array
     foreach ($selectimages as $val) {
-      $image_ids .= (($image_ids != "") ? ", " : "").$val;
+      $val_int = intval($val);
+      if ($val_int > 0) {
+        $image_ids .= (($image_ids != "") ? ", " : "").$val_int;
+      }
     }
   }
   $lang_key = (count($selectimages) > 1) ? 'images' : 'image';
@@ -328,7 +332,9 @@ if ($cat) {
       $cats = array_merge($cats, $subcat_ids[$cat]);
     }
   }
-	$condition = "WHERE cat_id IN (".implode(",", $cats).")";
+  // SECURITY FIX: Sanitize category IDs (defense-in-depth, IDs from DB but ensure safety)
+  $cats_safe = $site_db->sanitize_ids(implode(",", $cats));
+	$condition = "WHERE cat_id IN ($cats_safe)";
 }else{
 	$condition = "";
 }
