@@ -383,18 +383,18 @@ if ($image_allow_comments == 1) {
         $comment_user_name = format_text($comment_row[$i][$user_table_fields['user_name']], 2);
 
         $comment_user_profile_link = !empty($url_show_profile) ? $site_sess->url(preg_replace("/{user_id}/", $comment_user_id, $url_show_profile)) : $site_sess->url(ROOT_PATH."member.php?action=showprofile&amp;".URL_USER_ID."=".$comment_user_id);
-        $comment_user_profile_button = "<a href=\"".$comment_user_profile_link."\" class=\"btn btn-outline-primary btn-sm me-1\" title=\"".$comment_user_name."\"><i class=\"fa-solid fa-user\"></i></a>";
+        $comment_user_profile_button = "<a href=\"".$comment_user_profile_link."\" class=\"text-decoration-none me-2\" title=\"".$comment_user_name."\"><i class=\"fa-solid fa-user\"></i></a>";
 
         $comment_user_status_img = ($comment_row[$i][$user_table_fields['user_lastaction']] >= (time() - 300) && ((isset($comment_row[$i][$user_table_fields['user_invisible']]) && $comment_row[$i][$user_table_fields['user_invisible']] == 0) || $user_info['user_level'] == ADMIN)) ? "<i class=\"fa-solid fa-circle text-success\" title=\"Online\"></i>" : "<i class=\"fa-solid fa-circle text-muted\" title=\"Offline\"></i>";
 
         $comment_user_homepage = (isset($comment_row[$i][$user_table_fields['user_homepage']])) ? format_url($comment_row[$i][$user_table_fields['user_homepage']]) : "";
         if (!empty($comment_user_homepage)) {
-          $comment_user_homepage_button = "<a href=\"".$comment_user_homepage."\" target=\"_blank\" class=\"btn btn-outline-info btn-sm me-1\" title=\"".$comment_user_homepage."\"><i class=\"fa-solid fa-globe\"></i></a>";
+          $comment_user_homepage_button = "<a href=\"".$comment_user_homepage."\" target=\"_blank\" class=\"text-decoration-none me-2\" title=\"".$comment_user_homepage."\"><i class=\"fa-solid fa-globe\"></i></a>";
         }
 
         $comment_user_icq = (isset($comment_row[$i][$user_table_fields['user_icq']])) ? format_text($comment_row[$i][$user_table_fields['user_icq']]) : "";
         if (!empty($comment_user_icq)) {
-          $comment_user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$comment_user_icq."\" target=\"_blank\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"ICQ: ".$comment_user_icq."\"><i class=\"fa-brands fa-icq\"></i></a>";
+          $comment_user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$comment_user_icq."\" target=\"_blank\" class=\"text-decoration-none me-2\" title=\"ICQ: ".$comment_user_icq."\"><i class=\"fa-brands fa-icq\"></i></a>";
         }
 
         if (!empty($comment_row[$i][$user_table_fields['user_email']]) && (!isset($comment_row[$i][$user_table_fields['user_showemail']]) || (isset($comment_row[$i][$user_table_fields['user_showemail']]) && $comment_row[$i][$user_table_fields['user_showemail']] == 1))) {
@@ -406,7 +406,7 @@ if ($image_allow_comments == 1) {
           else {
             $comment_user_mailform_link = $site_sess->url(ROOT_PATH."member.php?action=mailform&amp;".URL_USER_ID."=".$comment_user_id);
           }
-          $comment_user_email_button = "<a href=\"".$comment_user_mailform_link."\" class=\"btn btn-outline-success btn-sm me-1\" title=\"".$comment_user_email_save."\"><i class=\"fa-solid fa-envelope\"></i></a>";
+          $comment_user_email_button = "<a href=\"".$comment_user_mailform_link."\" class=\"text-decoration-none me-2\" title=\"".$comment_user_email_save."\"><i class=\"fa-solid fa-envelope\"></i></a>";
         }
 
         if (!isset($comment_row[$i][$user_table_fields['user_level']]) || (isset($comment_row[$i][$user_table_fields['user_level']]) && $comment_row[$i][$user_table_fields['user_level']] == USER)) {

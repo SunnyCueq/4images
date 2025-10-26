@@ -132,7 +132,7 @@ $site_template->register_vars(array(
   "self" => $site_sess->url($self_url),
   "self_full" => $site_sess->url($script_url."/".$self_url),
   "script_version" => SCRIPT_VERSION,
-  "cp_link" => ($user_info['user_level'] != ADMIN) ? "" : "\n<p align=\"center\">[<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php")."\">Admin Control Panel</a>]</p>\n",
+  "cp_link" => ($user_info['user_level'] != ADMIN) ? "" : "\n<div class=\"text-center mb-3\"><a href=\"".$site_sess->url(ROOT_PATH."admin/index.php")."\" class=\"btn btn-outline-primary btn-sm\" target=\"_blank\"><i class=\"fa-solid fa-cog me-1\"></i>Admin Control Panel</a></div>\n",
   "total_categories" => $total_categories,
   "total_images" => $total_images,
   "url_new_images" => $site_sess->url(ROOT_PATH."search.php?search_new_images=1"),
@@ -157,11 +157,21 @@ $site_template->register_vars(array(
   "rss_title" => "",
   "rss_url" => "",
   "copyright" => '
-<p id="copyright" align="center">
-  Powered by <b>4images</b> '.SCRIPT_VERSION.'
-  <br />
-  Copyright &copy; 2002-'.date('Y').' <a href="http://www.4homepages.de" target="_blank">4homepages.de</a>
-</p>
+<footer class="text-center text-muted py-3 mt-4 border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <p class="mb-1">
+          <strong>Powered by 4images</strong> '.SCRIPT_VERSION.'
+        </p>
+        <p class="mb-0 small">
+          Copyright &copy; 2002-'.date('Y').' 
+          <a href="http://www.4homepages.de" target="_blank" class="text-decoration-none">4homepages.de</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 ',
 ));
 
