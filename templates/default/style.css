@@ -164,21 +164,32 @@ img {
  * Steam-Style Details Page
  * ============================================ */
 
-/* Steam Color Variables */
+/* Steam Color Variables (exact Steam Store colors) */
 :root {
-  --steam-green: #66c0f4;
-  --steam-dark: #1b2838;
-  --steam-light: #c7d5e0;
-  --steam-bg: #1a1f26;
+  --steam-blue: #66c0f4;
+  --steam-dark-bg: #1b2838;
+  --steam-darker-bg: #171a21;
+  --steam-card-bg: #16202d;
+  --steam-text-light: #c7d5e0;
+  --steam-text-muted: #8f98a0;
+  --steam-border: #3d4450;
+  --steam-hover: #2a475e;
 }
 
 /* Hero Banner with Overlay */
 .steam-hero {
   position: relative;
-  background: linear-gradient(135deg, var(--steam-dark) 0%, #0d1117 100%);
+  background: linear-gradient(135deg, var(--steam-dark-bg) 0%, var(--steam-darker-bg) 100%);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* Badge size fix */
+.steam-hero-overlay .badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  vertical-align: middle;
 }
 
 .steam-hero-overlay {
@@ -198,7 +209,7 @@ img {
   overflow-x: auto;
   padding: 0.5rem 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--steam-green) transparent;
+  scrollbar-color: var(--steam-blue) transparent;
 }
 
 .steam-tags-container::-webkit-scrollbar {
@@ -206,30 +217,32 @@ img {
 }
 
 .steam-tags-container::-webkit-scrollbar-thumb {
-  background: var(--steam-green);
+  background: var(--steam-blue);
   border-radius: 3px;
 }
 
 /* Steam Tags */
 .steam-tag {
   display: inline-block;
-  background: rgba(102, 192, 244, 0.2);
-  color: var(--steam-green);
+  background: rgba(102, 192, 244, 0.15);
+  color: var(--steam-blue);
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
   white-space: nowrap;
   transition: all 0.2s;
+  border: 1px solid rgba(102, 192, 244, 0.3);
 }
 
 .steam-tag:hover {
-  background: var(--steam-green);
-  color: white;
+  background: var(--steam-hover);
+  color: var(--steam-text-light);
+  border-color: var(--steam-blue);
 }
 
 /* Steam-Style Buttons */
 .steam-btn {
-  background: var(--steam-green);
+  background: var(--steam-blue);
   color: white;
   border: none;
   transition: all 0.2s;
@@ -256,4 +269,20 @@ img {
 .steam-sidebar {
   position: sticky;
   top: 20px;
+}
+
+/* Steam Dark Accordion Styling */
+.accordion-button:not(.collapsed) {
+  background-color: var(--steam-card-bg);
+  color: var(--steam-text-light);
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: var(--steam-border);
+}
+
+.accordion-button:hover {
+  background-color: var(--steam-hover);
 }

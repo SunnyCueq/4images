@@ -59,15 +59,15 @@
 
         <!-- Title Overlay -->
         <div class="steam-hero-overlay">
-          <h1 class="display-5 fw-bold mb-2">
+          <h1 class="h2 mb-2">
             {image_name}
             {if image_is_new}
-            <span class="badge bg-success ms-2">
-              <i class="fa-solid fa-sparkles me-1"></i>{lang_new}
+            <span class="badge badge-sm bg-success ms-2">
+              <i class="fa-solid fa-sparkles me-1"></i><small>{lang_new}</small>
             </span>
             {endif image_is_new}
           </h1>
-          <p class="mb-0 opacity-75">
+          <p class="mb-0 small opacity-75">
             <i class="fa-solid fa-user me-1"></i>by {user_name_link}
             <span class="mx-2">•</span>
             <i class="fa-solid fa-calendar me-1"></i>{image_date}
@@ -101,7 +101,7 @@
       </div>
 
       <!-- Tags/Categories (Steam-Style Horizontal Scroll) -->
-      <div class="card shadow-sm mb-4">
+      <div class="card shadow-sm mb-4 bg-dark">
         <div class="card-body py-2">
           <div class="d-flex align-items-center">
             <small class="text-muted me-3 text-nowrap">
@@ -151,17 +151,17 @@
 
       <!-- Description Section with Carousel Placeholder -->
       {if image_description}
-      <div class="card shadow-sm mb-4">
-        <div class="card-header bg-white border-bottom">
+      <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
+        <div class="card-header bg-dark border-secondary">
           <h5 class="mb-0">
             <i class="fa-solid fa-align-left me-2 text-info"></i>Description
           </h5>
         </div>
         <div class="card-body">
-          <div class="lead">{image_description}</div>
+          <div>{image_description}</div>
 
           <!-- Carousel Placeholder (Future Multi-Upload Feature) -->
-          <div class="mt-4 p-4 bg-light rounded text-center text-muted">
+          <div class="mt-4 p-4 rounded text-center text-muted" style="background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.2);">
             <i class="fa-solid fa-images fa-2x mb-2 opacity-50"></i>
             <p class="mb-0 small">
               <strong>Media Gallery Carousel</strong><br>
@@ -175,22 +175,22 @@
       <!-- Technical Details Accordion (Steam-Style) -->
       <div class="accordion shadow-sm mb-4" id="detailsAccordion">
         <!-- File Information -->
-        <div class="accordion-item">
+        <div class="accordion-item bg-dark text-white border-secondary">
           <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fileInfo">
+            <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#fileInfo">
               <i class="fa-solid fa-file me-2 text-info"></i>File Information
             </button>
           </h2>
           <div id="fileInfo" class="accordion-collapse collapse show" data-bs-parent="#detailsAccordion">
-            <div class="accordion-body">
+            <div class="accordion-body bg-dark">
               <div class="row g-3">
                 <div class="col-md-6">
                   <strong class="text-muted">File Size:</strong>
-                  <span class="float-end">{image_file_size}</span>
+                  <span class="float-end text-white">{image_file_size}</span>
                 </div>
                 <div class="col-md-6">
                   <strong class="text-muted">Resolution:</strong>
-                  <span class="float-end">{width} x {height}</span>
+                  <span class="float-end text-white">{width} x {height}</span>
                 </div>
               </div>
             </div>
@@ -199,14 +199,14 @@
 
         <!-- EXIF Data -->
         {if exif_info}
-        <div class="accordion-item">
+        <div class="accordion-item bg-dark text-white border-secondary">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#exifData">
+            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#exifData">
               <i class="fa-solid fa-camera me-2 text-info"></i>EXIF Data
             </button>
           </h2>
           <div id="exifData" class="accordion-collapse collapse" data-bs-parent="#detailsAccordion">
-            <div class="accordion-body">
+            <div class="accordion-body bg-dark">
               <div class="row g-3">
                 {exif_info}
               </div>
@@ -217,14 +217,14 @@
 
         <!-- IPTC Metadata -->
         {if iptc_info}
-        <div class="accordion-item">
+        <div class="accordion-item bg-dark text-white border-secondary">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iptcData">
+            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#iptcData">
               <i class="fa-solid fa-file-code me-2 text-info"></i>IPTC Metadata
             </button>
           </h2>
           <div id="iptcData" class="accordion-collapse collapse" data-bs-parent="#detailsAccordion">
-            <div class="accordion-body">
+            <div class="accordion-body bg-dark">
               <div class="row g-3">
                 {iptc_info}
               </div>
@@ -236,7 +236,7 @@
 
       <!-- Rating Section (Steam Style) -->
       {if rate_form}
-      <div class="card shadow-sm mb-4">
+      <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
         <div class="card-body text-center py-4">
           <h5 class="mb-3">
             <i class="fa-solid fa-star-half-stroke me-2 text-warning"></i>Rate This Image
@@ -249,8 +249,8 @@
       <!-- Comments Section (Steam Style) -->
       {if allow_comments}
       <a name="comments"></a>
-      <div class="card shadow-sm mb-4">
-        <div class="card-header bg-white border-bottom">
+      <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
+        <div class="card-header bg-dark border-secondary">
           <h5 class="mb-0">
             <i class="fa-solid fa-comments me-2 text-info"></i>{lang_comments} ({image_comments})
           </h5>
@@ -261,7 +261,7 @@
           {else}
           <div class="text-center text-muted py-5">
             <i class="fa-regular fa-comment fa-3x mb-3 d-block opacity-50"></i>
-            <p class="lead">No comments yet. Be the first to comment!</p>
+            <p>No comments yet. Be the first to comment!</p>
           </div>
           {endif image_comments}
         </div>
@@ -273,14 +273,14 @@
       <!-- Navigation: Previous / Next Images (Steam Style) -->
       {if prev_image_name}
       {if next_image_name}
-      <div class="card shadow-sm mb-4">
+      <div class="card shadow-sm mb-4 bg-dark border-secondary">
         <div class="card-body py-3">
           <div class="row g-3 align-items-center">
             <div class="col-12 col-md-6 text-start">
               <small class="text-muted d-block mb-1">
                 <i class="fa-solid fa-arrow-left me-1"></i>{lang_prev_image}
               </small>
-              <a href="{prev_image_url}" class="text-decoration-none fw-bold h6 mb-0">
+              <a href="{prev_image_url}" class="text-decoration-none text-info fw-bold h6 mb-0">
                 {prev_image_name}
               </a>
             </div>
@@ -288,7 +288,7 @@
               <small class="text-muted d-block mb-1">
                 {lang_next_image}<i class="fa-solid fa-arrow-right ms-1"></i>
               </small>
-              <a href="{next_image_url}" class="text-decoration-none fw-bold h6 mb-0">
+              <a href="{next_image_url}" class="text-decoration-none text-info fw-bold h6 mb-0">
                 {next_image_name}
               </a>
             </div>
