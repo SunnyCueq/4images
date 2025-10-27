@@ -250,6 +250,46 @@ $site_template->register_vars(array(
 unset($next_prev_cache);
 
 //-----------------------------------------------------
+//--- Get Similar Images (Steam-Style Sidebar) --------
+//-----------------------------------------------------
+$similar_images_html = "";
+$sql = "SELECT image_id, cat_id, image_name, image_thumb_file
+        FROM ".IMAGES_TABLE."
+        WHERE image_active = 1
+        AND cat_id = $cat_id
+        AND image_id != $image_id
+        ORDER BY RAND()
+        LIMIT 6";
+$result = $site_db->query($sql);
+$similar_count = 0;
+
+while ($similar_row = $site_db->fetch_array($result)) {
+  $similar_count++;
+  $thumb_file = get_file_path($similar_row['image_thumb_file'], "thumb", $similar_row['cat_id'], 0, 1);
+  $image_url = $site_sess->url(ROOT_PATH."details.php?".URL_IMAGE_ID."=".$similar_row['image_id']);
+  $image_name = format_text($similar_row['image_name'], 2);
+
+  if (!$thumb_file) {
+    $thumb_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>');
+  }
+
+  $similar_images_html .= '<a href="'.$image_url.'" class="similar-image-item" title="'.$image_name.'">';
+  $similar_images_html .= '<img src="'.$thumb_file.'" alt="'.$image_name.'" class="img-fluid rounded shadow-sm mb-2">';
+  $similar_images_html .= '</a>';
+}
+$site_db->free_result($result);
+
+// If no similar images found, show placeholder
+if ($similar_count == 0) {
+  $similar_images_html = '<p class="text-muted small"><i class="fa-solid fa-images me-2"></i>No similar images in this category</p>';
+}
+
+$site_template->register_vars(array(
+  "similar_images_list" => $similar_images_html,
+  "similar_images_count" => $similar_count
+));
+
+//-----------------------------------------------------
 //--- Save Comment ------------------------------------
 //-----------------------------------------------------
 $error = 0;

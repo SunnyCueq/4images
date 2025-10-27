@@ -159,3 +159,101 @@ img {
  * - Light Grey 3: #efefef
  * - Border Color: #004C75
  */
+
+/* ============================================
+ * Steam-Style Details Page
+ * ============================================ */
+
+/* Steam Color Variables */
+:root {
+  --steam-green: #66c0f4;
+  --steam-dark: #1b2838;
+  --steam-light: #c7d5e0;
+  --steam-bg: #1a1f26;
+}
+
+/* Hero Banner with Overlay */
+.steam-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--steam-dark) 0%, #0d1117 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.steam-hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  padding: 2rem 1.5rem 1rem;
+  color: white;
+}
+
+/* Tags Container (Horizontal Scroll) */
+.steam-tags-container {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--steam-green) transparent;
+}
+
+.steam-tags-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.steam-tags-container::-webkit-scrollbar-thumb {
+  background: var(--steam-green);
+  border-radius: 3px;
+}
+
+/* Steam Tags */
+.steam-tag {
+  display: inline-block;
+  background: rgba(102, 192, 244, 0.2);
+  color: var(--steam-green);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.steam-tag:hover {
+  background: var(--steam-green);
+  color: white;
+}
+
+/* Steam-Style Buttons */
+.steam-btn {
+  background: var(--steam-green);
+  color: white;
+  border: none;
+  transition: all 0.2s;
+}
+
+.steam-btn:hover {
+  background: #5ab0db;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 192, 244, 0.3);
+}
+
+/* Similar Images Hover Effect */
+.similar-image-item {
+  display: block;
+  transition: transform 0.2s;
+}
+
+.similar-image-item:hover {
+  transform: scale(1.05);
+}
+
+/* Sticky Sidebar */
+.steam-sidebar {
+  position: sticky;
+  top: 20px;
+}
