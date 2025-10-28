@@ -98,6 +98,19 @@ $lang['headline'] = "Headline:";
 $lang['comment'] = "Comment:";
 $lang['added_by'] = "Added by:";
 $lang['allow_comments'] = "Allow comments:";
+$lang['file_information'] = "File Information";
+$lang['resolution'] = "Resolution:";
+$lang['exif_data'] = "EXIF Data";
+$lang['iptc_metadata'] = "IPTC Metadata";
+$lang['rate_this_image'] = "Rate This Image";
+$lang['no_comments_yet'] = "No comments yet. Be the first to comment!";
+$lang['media_gallery_carousel'] = "Media Gallery Carousel";
+$lang['media_gallery_placeholder'] = "Placeholder for future multi-upload feature";
+$lang['upload_information'] = "Upload Information";
+$lang['uploader'] = "Uploader:";
+$lang['uploaded'] = "Uploaded:";
+$lang['similar_images'] = "Similar Images";
+$lang['no_similar_images'] = "No similar images in this category";
 
 // IPTC Tags
 $lang['iptc_caption'] = "Caption:";

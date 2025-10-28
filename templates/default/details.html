@@ -38,7 +38,7 @@
   </nav>
 </div>
 
-<!-- Main Content (Steam-Style Layout) -->
+<!-- Main Content -->
 <div class="container-fluid">
   <div class="row">
     <!-- Left Column: Main Content (70%) -->
@@ -51,14 +51,33 @@
       </div>
       {endif msg}
 
-      <!-- Hero Banner with Image & Title Overlay (Steam-Style) -->
-      <div class="steam-hero mb-4">
-        <div class="text-center p-3">
-          {image}
+      <!-- Hero Section: Image + Title Below -->
+      <div class="details-hero mb-4">
+        <!-- Image Container -->
+        <div class="position-relative">
+          <div class="text-center p-3">
+            {image}
+          </div>
+
+          <!-- Floating Action Buttons (Desktop Only) -->
+          <div class="position-absolute top-0 end-0 m-3 d-none d-md-block">
+            <div class="btn-group-vertical shadow-lg" role="group">
+              {lightbox_button}
+              {download_button}
+              {download_zip_button}
+            </div>
+          </div>
+
+          <!-- Admin Links -->
+          {if admin_links}
+          <div class="position-absolute top-0 start-0 m-3">
+            {admin_links}
+          </div>
+          {endif admin_links}
         </div>
 
-        <!-- Title Overlay -->
-        <div class="steam-hero-overlay">
+        <!-- Title Section (below image) -->
+        <div class="details-title-section">
           <h1 class="h2 mb-2">
             {image_name}
             {if image_is_new}
@@ -73,22 +92,6 @@
             <i class="fa-solid fa-calendar me-1"></i>{image_date}
           </p>
         </div>
-
-        <!-- Floating Action Buttons (Desktop Only) -->
-        <div class="position-absolute top-0 end-0 m-3 d-none d-md-block">
-          <div class="btn-group-vertical shadow-lg" role="group">
-            {lightbox_button}
-            {download_button}
-            {download_zip_button}
-          </div>
-        </div>
-
-        <!-- Admin Links -->
-        {if admin_links}
-        <div class="position-absolute top-0 start-0 m-3">
-          {admin_links}
-        </div>
-        {endif admin_links}
       </div>
 
       <!-- Mobile Action Buttons -->
@@ -100,15 +103,15 @@
         </div>
       </div>
 
-      <!-- Tags/Categories (Steam-Style Horizontal Scroll) -->
+      <!-- Tags/Categories (Horizontal Scroll) -->
       <div class="card shadow-sm mb-4 bg-dark">
         <div class="card-body py-2">
           <div class="d-flex align-items-center">
             <small class="text-muted me-3 text-nowrap">
-              <i class="fa-solid fa-tags me-1"></i>{lang_category}:
+              <i class="fa-solid fa-tags me-1"></i>{lang_category}
             </small>
-            <div class="steam-tags-container flex-grow-1">
-              <span class="steam-tag">{cat_name}</span>
+            <div class="tags-scroll-container flex-grow-1">
+              <span class="tag-badge">{cat_name}</span>
               {if image_keywords}
               {image_keywords}
               {endif image_keywords}
@@ -117,7 +120,7 @@
         </div>
       </div>
 
-      <!-- Engagement Stats Bar (Steam-Style) -->
+      <!-- Engagement Stats Bar -->
       <div class="card shadow-sm mb-4 bg-dark text-white">
         <div class="card-body py-3">
           <div class="row text-center g-3">
@@ -154,7 +157,7 @@
       <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
         <div class="card-header bg-dark border-secondary">
           <h5 class="mb-0">
-            <i class="fa-solid fa-align-left me-2 text-info"></i>Description
+            <i class="fa-solid fa-align-left me-2 text-info"></i>{lang_description}
           </h5>
         </div>
         <div class="card-body">
@@ -164,32 +167,32 @@
           <div class="mt-4 p-4 rounded text-center text-muted" style="background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.2);">
             <i class="fa-solid fa-images fa-2x mb-2 opacity-50"></i>
             <p class="mb-0 small">
-              <strong>Media Gallery Carousel</strong><br>
-              Placeholder for future multi-upload feature
+              <strong>{lang_media_gallery_carousel}</strong><br>
+              {lang_media_gallery_placeholder}
             </p>
           </div>
         </div>
       </div>
       {endif image_description}
 
-      <!-- Technical Details Accordion (Steam-Style) -->
+      <!-- Technical Details Accordion -->
       <div class="accordion shadow-sm mb-4" id="detailsAccordion">
         <!-- File Information -->
         <div class="accordion-item bg-dark text-white border-secondary">
           <h2 class="accordion-header">
             <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#fileInfo">
-              <i class="fa-solid fa-file me-2 text-info"></i>File Information
+              <i class="fa-solid fa-file me-2 text-info"></i>{lang_file_information}
             </button>
           </h2>
           <div id="fileInfo" class="accordion-collapse collapse show" data-bs-parent="#detailsAccordion">
             <div class="accordion-body bg-dark">
               <div class="row g-3">
                 <div class="col-md-6">
-                  <strong class="text-muted">File Size:</strong>
+                  <strong class="text-muted">{lang_file_size}</strong>
                   <span class="float-end text-white">{image_file_size}</span>
                 </div>
                 <div class="col-md-6">
-                  <strong class="text-muted">Resolution:</strong>
+                  <strong class="text-muted">{lang_resolution}</strong>
                   <span class="float-end text-white">{width} x {height}</span>
                 </div>
               </div>
@@ -202,7 +205,7 @@
         <div class="accordion-item bg-dark text-white border-secondary">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#exifData">
-              <i class="fa-solid fa-camera me-2 text-info"></i>EXIF Data
+              <i class="fa-solid fa-camera me-2 text-info"></i>{lang_exif_data}
             </button>
           </h2>
           <div id="exifData" class="accordion-collapse collapse" data-bs-parent="#detailsAccordion">
@@ -220,7 +223,7 @@
         <div class="accordion-item bg-dark text-white border-secondary">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#iptcData">
-              <i class="fa-solid fa-file-code me-2 text-info"></i>IPTC Metadata
+              <i class="fa-solid fa-file-code me-2 text-info"></i>{lang_iptc_metadata}
             </button>
           </h2>
           <div id="iptcData" class="accordion-collapse collapse" data-bs-parent="#detailsAccordion">
@@ -234,19 +237,19 @@
         {endif iptc_info}
       </div>
 
-      <!-- Rating Section (Steam Style) -->
+      <!-- Rating Section -->
       {if rate_form}
       <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
         <div class="card-body text-center py-4">
           <h5 class="mb-3">
-            <i class="fa-solid fa-star-half-stroke me-2 text-warning"></i>Rate This Image
+            <i class="fa-solid fa-star-half-stroke me-2 text-warning"></i>{lang_rate_this_image}
           </h5>
           {rate_form}
         </div>
       </div>
       {endif rate_form}
 
-      <!-- Comments Section (Steam Style) -->
+      <!-- Comments Section -->
       {if allow_comments}
       <a name="comments"></a>
       <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
@@ -261,7 +264,7 @@
           {else}
           <div class="text-center text-muted py-5">
             <i class="fa-regular fa-comment fa-3x mb-3 d-block opacity-50"></i>
-            <p>No comments yet. Be the first to comment!</p>
+            <p>{lang_no_comments_yet}</p>
           </div>
           {endif image_comments}
         </div>
@@ -270,7 +273,7 @@
       {comment_form}
       {endif allow_comments}
 
-      <!-- Navigation: Previous / Next Images (Steam Style) -->
+      <!-- Navigation: Previous / Next Images -->
       {if prev_image_name}
       {if next_image_name}
       <div class="card shadow-sm mb-4 bg-dark border-secondary">
@@ -302,30 +305,30 @@
 
     <!-- Right Column: Sidebar (30%) -->
     <div class="col-12 col-lg-4">
-      <div class="steam-sidebar">
+      <div class="details-sidebar">
 
         <!-- Upload Information Card -->
         <div class="card shadow-sm mb-4">
           <div class="card-header bg-dark text-white">
             <h6 class="mb-0">
-              <i class="fa-solid fa-circle-info me-2"></i>Upload Information
+              <i class="fa-solid fa-circle-info me-2"></i>{lang_upload_information}
             </h6>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted">Uploader:</span>
+              <span class="text-muted">{lang_uploader}</span>
               <strong>{user_name_link}</strong>
             </div>
             <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted">Uploaded:</span>
+              <span class="text-muted">{lang_uploaded}</span>
               <strong>{image_date}</strong>
             </div>
             <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted">Category:</span>
+              <span class="text-muted">{lang_category}</span>
               <strong>{cat_name}</strong>
             </div>
             <div class="d-flex justify-content-between">
-              <span class="text-muted">File Size:</span>
+              <span class="text-muted">{lang_file_size}</span>
               <strong>{image_file_size}</strong>
             </div>
           </div>
@@ -335,7 +338,7 @@
         <div class="card shadow-sm mb-4">
           <div class="card-header bg-dark text-white">
             <h6 class="mb-0">
-              <i class="fa-solid fa-images me-2"></i>Similar Images
+              <i class="fa-solid fa-images me-2"></i>{lang_similar_images}
             </h6>
           </div>
           <div class="card-body">

@@ -161,71 +161,69 @@ img {
  */
 
 /* ============================================
- * Steam-Style Details Page
+ * Details Page - Modern Dark Theme
  * ============================================ */
 
-/* Steam Color Variables (exact Steam Store colors) */
+/* Dark Theme Color Variables */
 :root {
-  --steam-blue: #66c0f4;
-  --steam-dark-bg: #1b2838;
-  --steam-darker-bg: #171a21;
-  --steam-card-bg: #16202d;
-  --steam-text-light: #c7d5e0;
-  --steam-text-muted: #8f98a0;
-  --steam-border: #3d4450;
-  --steam-hover: #2a475e;
+  --detail-accent: #66c0f4;
+  --detail-dark-bg: #1b2838;
+  --detail-darker-bg: #171a21;
+  --detail-card-bg: #16202d;
+  --detail-text-light: #c7d5e0;
+  --detail-text-muted: #8f98a0;
+  --detail-border: #3d4450;
+  --detail-hover-bg: #2a475e;
 }
 
-/* Hero Banner with Overlay */
-.steam-hero {
+/* Hero Section */
+.details-hero {
   position: relative;
-  background: linear-gradient(135deg, var(--steam-dark-bg) 0%, var(--steam-darker-bg) 100%);
+  background: linear-gradient(135deg, var(--detail-dark-bg) 0%, var(--detail-darker-bg) 100%);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 /* Badge size fix */
-.steam-hero-overlay .badge {
+.details-hero .badge {
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;
   vertical-align: middle;
 }
 
-.steam-hero-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-  padding: 2rem 1.5rem 1rem;
+/* Title Section (below image, not overlay) */
+.details-title-section {
+  background: var(--detail-card-bg);
+  padding: 1.5rem;
+  border-top: 1px solid var(--detail-border);
   color: white;
 }
 
 /* Tags Container (Horizontal Scroll) */
-.steam-tags-container {
+.tags-scroll-container {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
   padding: 0.5rem 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--steam-blue) transparent;
+  scrollbar-color: var(--detail-accent) transparent;
 }
 
-.steam-tags-container::-webkit-scrollbar {
+.tags-scroll-container::-webkit-scrollbar {
   height: 6px;
 }
 
-.steam-tags-container::-webkit-scrollbar-thumb {
-  background: var(--steam-blue);
+.tags-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--detail-accent);
   border-radius: 3px;
 }
 
-/* Steam Tags */
-.steam-tag {
+/* Tag Badges */
+.tag-badge {
   display: inline-block;
   background: rgba(102, 192, 244, 0.15);
-  color: var(--steam-blue);
+  color: var(--detail-accent);
   padding: 0.25rem 0.75rem;
   border-radius: 3px;
   font-size: 0.75rem;
@@ -234,21 +232,21 @@ img {
   border: 1px solid rgba(102, 192, 244, 0.3);
 }
 
-.steam-tag:hover {
-  background: var(--steam-hover);
-  color: var(--steam-text-light);
-  border-color: var(--steam-blue);
+.tag-badge:hover {
+  background: var(--detail-hover-bg);
+  color: var(--detail-text-light);
+  border-color: var(--detail-accent);
 }
 
-/* Steam-Style Buttons */
-.steam-btn {
-  background: var(--steam-blue);
+/* Accent Buttons */
+.btn-accent {
+  background: var(--detail-accent);
   color: white;
   border: none;
   transition: all 0.2s;
 }
 
-.steam-btn:hover {
+.btn-accent:hover {
   background: #5ab0db;
   color: white;
   transform: translateY(-2px);
@@ -266,23 +264,23 @@ img {
 }
 
 /* Sticky Sidebar */
-.steam-sidebar {
+.details-sidebar {
   position: sticky;
   top: 20px;
 }
 
-/* Steam Dark Accordion Styling */
+/* Dark Accordion Styling */
 .accordion-button:not(.collapsed) {
-  background-color: var(--steam-card-bg);
-  color: var(--steam-text-light);
+  background-color: var(--detail-card-bg);
+  color: var(--detail-text-light);
   box-shadow: none;
 }
 
 .accordion-button:focus {
   box-shadow: none;
-  border-color: var(--steam-border);
+  border-color: var(--detail-border);
 }
 
 .accordion-button:hover {
-  background-color: var(--steam-hover);
+  background-color: var(--detail-hover-bg);
 }

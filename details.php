@@ -250,7 +250,7 @@ $site_template->register_vars(array(
 unset($next_prev_cache);
 
 //-----------------------------------------------------
-//--- Get Similar Images (Steam-Style Sidebar) --------
+//--- Get Similar Images (Sidebar) --------------------
 //-----------------------------------------------------
 $similar_images_html = "";
 $sql = "SELECT image_id, cat_id, image_name, image_thumb_file
@@ -281,7 +281,7 @@ $site_db->free_result($result);
 
 // If no similar images found, show placeholder
 if ($similar_count == 0) {
-  $similar_images_html = '<p class="text-muted small"><i class="fa-solid fa-images me-2"></i>No similar images in this category</p>';
+  $similar_images_html = '<p class="text-muted small"><i class="fa-solid fa-images me-2"></i>'.$lang['no_similar_images'].'</p>';
 }
 
 $site_template->register_vars(array(
@@ -608,7 +608,19 @@ $site_template->register_vars(array(
   "lang_comment" => $lang['comment'],
   "lang_prev_image" => $lang['prev_image'],
   "lang_next_image" => $lang['next_image'],
-  "lang_file_size" => $lang['file_size']
+  "lang_file_size" => $lang['file_size'],
+  "lang_file_information" => $lang['file_information'],
+  "lang_resolution" => $lang['resolution'],
+  "lang_exif_data" => $lang['exif_data'],
+  "lang_iptc_metadata" => $lang['iptc_metadata'],
+  "lang_rate_this_image" => $lang['rate_this_image'],
+  "lang_no_comments_yet" => $lang['no_comments_yet'],
+  "lang_media_gallery_carousel" => $lang['media_gallery_carousel'],
+  "lang_media_gallery_placeholder" => $lang['media_gallery_placeholder'],
+  "lang_upload_information" => $lang['upload_information'],
+  "lang_uploader" => $lang['uploader'],
+  "lang_uploaded" => $lang['uploaded'],
+  "lang_similar_images" => $lang['similar_images']
 ));
 
 $site_template->print_template($site_template->parse_template($main_template));
