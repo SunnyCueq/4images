@@ -1,106 +1,88 @@
 <form method="post" action="{url_member}" enctype="multipart/form-data" onsubmit="uploadbutton.disabled=true;">
-  <input type="hidden" name="action" value="uploadimage">
-  {if cat_id}<input type="hidden" name="cat_id" value="{cat_id}">{endif cat_id}
-  
-  <div class="card shadow-sm mb-4">
-    <div class="card-header bg-light">
-      <h5 class="mb-0"><i class="fa-solid fa-cloud-arrow-up me-2"></i>{lang_user_upload}</h5>
-    </div>
-    <div class="card-body">
-      <!-- Category -->
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label"><strong>{lang_category}</strong></label>
-        <div class="col-sm-9">
-          <p class="form-control-plaintext">{cat_name}</p>
-        </div>
-      </div>
-      
-      <!-- Media File -->
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">
-          <strong>{lang_media_file}</strong><br>
-          <small class="text-muted">
-            {lang_max_filesize}<strong>{max_media_filsize}</strong><br>
-            {lang_max_imagewidth}<strong>{max_media_imagewidth}</strong><br>
-            {lang_max_imageheight}<strong>{max_media_imageheight}</strong>
-          </small>
-        </label>
-        <div class="col-sm-9">
-          <label class="form-label"><strong>Upload:</strong></label>
-          <input type="file" name="media_file" class="form-control mb-2">
-          <label class="form-label"><strong>URL:</strong></label>
-          <input type="url" name="remote_media_file" value="{remote_media_file}" class="form-control mb-2">
-          <small class="text-muted"><strong>{lang_allowed_file_types}</strong> {allowed_media_types}</small>
-        </div>
-      </div>
-      
-      <!-- Thumbnail File -->
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">
-          <strong>{lang_thumb_file}</strong><br>
-          <small class="text-muted">
-            {lang_max_filesize}<strong>{max_thumb_filsize}</strong><br>
-            {lang_max_imagewidth}<strong>{max_thumb_imagewidth}</strong><br>
-            {lang_max_imageheight}<strong>{max_thumb_imageheight}</strong>
-          </small>
-        </label>
-        <div class="col-sm-9">
-          <label class="form-label"><strong>Upload:</strong></label>
-          <input type="file" name="thumb_file" class="form-control mb-2">
-          <label class="form-label"><strong>URL:</strong></label>
-          <input type="url" name="remote_thumb_file" value="{remote_thumb_file}" class="form-control mb-2">
-          <small class="text-muted"><strong>{lang_allowed_file_types}</strong> {allowed_thumb_types}</small>
-        </div>
-      </div>
-      
-      <!-- Image Name -->
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label"><strong>{lang_image_name}</strong></label>
-        <div class="col-sm-9">
-          <input type="text" name="image_name" value="{image_name}" class="form-control">
-        </div>
-      </div>
-      
-      <!-- Description -->
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label"><strong>{lang_description}</strong></label>
-        <div class="col-sm-9">
-          <textarea name="image_description" rows="10" class="form-control">{image_description}</textarea>
-        </div>
-      </div>
-      
-      <!-- Keywords -->
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label"><strong>{lang_keywords}</strong></label>
-        <div class="col-sm-9">
-          <textarea name="image_keywords" rows="10" class="form-control">{image_keywords}</textarea>
-        </div>
-      </div>
-      
-      <!-- Captcha -->
-      {if captcha_upload}
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label"><strong>{lang_captcha}</strong></label>
-        <div class="col-sm-9">
-          <div class="mb-2">
-            <a href="javascript:new_captcha_image();">
-              <img src="{url_captcha_image}" border="0" id="captcha_image" alt="" class="img-thumbnail">
-            </a>
-          </div>
-          <input type="text" name="captcha" id="captcha_input" value="" class="form-control mb-2">
-          <div class="form-text">{lang_captcha_desc}</div>
-        </div>
-      </div>
-      {endif captcha_upload}
-    </div>
-  </div>
-  
-  <div class="text-center">
-    <button type="submit" name="uploadbutton" class="btn btn-primary me-2">
-      <i class="fa-solid fa-upload me-1"></i>{lang_submit}
-    </button>
-    <button type="reset" class="btn btn-secondary">
-      <i class="fa-solid fa-rotate-left me-1"></i>{lang_reset}
-    </button>
-  </div>
+  <input type="hidden" name="action" value="uploadimage" />
+  {if cat_id}<input type="hidden" name="cat_id" value="{cat_id}" />{endif cat_id}
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr>
+      <td valign="top" class="head1">
+        <table width="100%" border="0" cellpadding="4" cellspacing="0">
+          <tr>
+            <td colspan="2" valign="top" class="head1">{lang_user_upload}</td>
+          </tr>
+          <tr>
+            <td class="row1"><b>{lang_category}</b></td>
+            <td class="row1">{cat_name}</td>
+          </tr>
+          <tr>
+            <td class="row2" valign="top">
+			  <b>{lang_media_file}</b><br />
+			  <span class="smalltext">
+			  {lang_max_filesize}<b>{max_media_filsize}</b><br />
+			  {lang_max_imagewidth}<b>{max_media_imagewidth}</b><br />
+			  {lang_max_imageheight}<b>{max_media_imageheight}</b><br />
+			  </span>
+			</td>
+            <td class="row2">
+              <b>Upload:</b><br />
+			  <input type="file" name="media_file" class="input" /><br />
+			  <b>URL:</b><br />
+			  <input type="text" name="remote_media_file"  size="30" value="{remote_media_file}" class="input" /><br />
+			  <span class="smalltext"><b>{lang_allowed_file_types}</b> {allowed_media_types}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="row1" valign="top">
+			  <b>{lang_thumb_file}</b><br />
+			  <span class="smalltext">
+			  {lang_max_filesize}<b>{max_thumb_filsize}</b><br />
+			  {lang_max_imagewidth}<b>{max_thumb_imagewidth}</b><br />
+			  {lang_max_imageheight}<b>{max_thumb_imageheight}</b><br />
+			  </span>
+			</td>
+            <td class="row1">
+              <b>Upload:</b><br />
+			  <input type="file" name="thumb_file" class="input" /><br />
+			  <b>URL:</b><br />
+			  <input type="text" name="remote_thumb_file"  size="30" value="{remote_thumb_file}" class="input" /><br />
+			  <span class="smalltext"><b>{lang_allowed_file_types}</b> {allowed_thumb_types}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="row2"><b>{lang_image_name}</b></td>
+            <td class="row2"><input type="text" name="image_name"  size="30" value="{image_name}" class="input" /></td>
+          </tr>
+          <tr>
+            <td class="row1" valign="top"><b>{lang_description}</b></td>
+            <td class="row1">
+              <textarea name="image_description" cols="30" class="textarea" rows="10">{image_description}</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="row2" valign="top"><b>{lang_keywords}</b></td>
+            <td class="row2">
+              <textarea cols="30" class="textarea" rows="10" name="image_keywords">{image_keywords}</textarea>
+            </td>
+          </tr>
+					{if captcha_upload}
+          <tr>
+            <td class="row1" valign="top"><b>{lang_captcha}</b></td>
+            <td class="row1">
+						  <a href="javascript:new_captcha_image();"><img src="{url_captcha_image}" border="0" id="captcha_image" alt="" /></a> <br />
+              <input type="text" name="captcha" size="30" value="" class="captchainput" id="captcha_input" />
+              <br />
+              <table cellpadding="0" cellspacing="0" width="210">
+                            <tr>
+                                <td width="594">						  {lang_captcha_desc}</td>
+                            </tr>
+                        </table>
+						</td>
+          </tr>
+          {endif captcha_upload}
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p align="center">
+    <input type="submit" name="uploadbutton" value="{lang_submit}" class="button" />
+    <input type="reset" value="{lang_reset}" class="button" />
+  </p>
 </form>

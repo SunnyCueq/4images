@@ -1,15 +1,2 @@
-<div class="text-center">
-  {thumbnail}
-  <div class="mt-2">
-    <strong>{image_name}</strong>
-    {if image_is_new}<span class="badge bg-success ms-1">{lang_new}</span>{endif image_is_new}
-  </div>
-  {if allow_comments}
-  <div class="small text-muted mt-1">
-    <i class="fa-solid fa-comments fa-fw me-1"></i>{lang_comments} {image_comments}
-  </div>
-  {endif allow_comments}
-  <div class="small text-muted">
-    {user_name}
-  </div>
-</div>
+{thumbnail}<br /><b>{image_name}</b>{if image_is_new} <sup class="new">{lang_new}</sup>{endif image_is_new}<br />
+{if allow_comments}{lang_comments} {image_comments}{endif allow_comments}<br />{user_name}

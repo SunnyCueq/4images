@@ -82,8 +82,7 @@ $in_mode = 0;
 $sql = "";
 if ($mode == "lightbox") {
   if (!empty($user_info['lightbox_image_ids'])) {
-    // SECURITY FIX: Sanitize IDs for IN() query
-    $image_id_sql = $site_db->sanitize_ids(str_replace(" ", ",", trim($user_info['lightbox_image_ids'])));
+    $image_id_sql = str_replace(" ", ", ", trim($user_info['lightbox_image_ids']));
     $sql = "SELECT image_id, cat_id, image_name, image_media_file, image_thumb_file
             FROM ".IMAGES_TABLE."
             WHERE image_active = 1 AND image_id IN ($image_id_sql) AND (cat_id NOT IN (".get_auth_cat_sql("auth_viewimage", "NOTIN").", ".get_auth_cat_sql("auth_viewcat", "NOTIN")."))
@@ -97,8 +96,7 @@ elseif ($mode == "search") {
   }
 
   if (!empty($session_info['search_id'])) {
-    // SECURITY FIX: Use unserialize with allowed_classes option (PHP 8.4+)
-    $search_id = unserialize($session_info['search_id'], ['allowed_classes' => false]);
+    $search_id = unserialize($session_info['search_id']);
   }
 
   $sql_where_query = "";
@@ -193,13 +191,13 @@ if (!empty($next_prev_cache[$next_image_id])) {
   $next_image_name = format_text($next_prev_cache[$next_image_id]['image_name'], 2);
   $next_image_url = $site_sess->url(ROOT_PATH."details.php?".URL_IMAGE_ID."=".$next_image_id.((!empty($mode)) ? "&amp;mode=".$mode : ""));
   if (!get_file_path($next_prev_cache[$next_image_id]['image_media_file'], "media", $next_prev_cache[$next_image_id]['cat_id'], 0, 0)) {
-    $next_image_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>');
+    $next_image_file = ICON_PATH."/404.gif";
   }
   else {
     $next_image_file = get_file_path($next_prev_cache[$next_image_id]['image_media_file'], "media", $next_prev_cache[$next_image_id]['cat_id'], 0, 1);
   }
   if (!get_file_path($next_prev_cache[$next_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$next_image_id]['cat_id'], 0, 0)) {
-    $next_thumb_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>');
+    $next_thumb_file = ICON_PATH."/".get_file_extension($next_prev_cache[$next_image_id]['image_media_file']).".gif";
   }
   else {
     $next_thumb_file = get_file_path($next_prev_cache[$next_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$next_image_id]['cat_id'], 0, 1);
@@ -216,13 +214,13 @@ if (!empty($next_prev_cache[$prev_image_id])) {
   $prev_image_name = format_text($next_prev_cache[$prev_image_id]['image_name'], 2);
   $prev_image_url = $site_sess->url(ROOT_PATH."details.php?".URL_IMAGE_ID."=".$prev_image_id.((!empty($mode)) ? "&amp;mode=".$mode : ""));
   if (!get_file_path($next_prev_cache[$prev_image_id]['image_media_file'], "media", $next_prev_cache[$prev_image_id]['cat_id'], 0, 0)) {
-    $prev_image_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>');
+    $prev_image_file = ICON_PATH."/404.gif";
   }
   else {
     $prev_image_file = get_file_path($next_prev_cache[$prev_image_id]['image_media_file'], "media", $next_prev_cache[$prev_image_id]['cat_id'], 0, 1);
   }
   if (!get_file_path($next_prev_cache[$prev_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$prev_image_id]['cat_id'], 0, 0)) {
-    $prev_thumb_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>');
+    $prev_thumb_file = ICON_PATH."/".get_file_extension($next_prev_cache[$prev_image_id]['image_media_file']).".gif";
   }
   else {
     $prev_thumb_file = get_file_path($next_prev_cache[$prev_image_id]['image_thumb_file'], "thumb", $next_prev_cache[$prev_image_id]['cat_id'], 0, 1);
@@ -250,51 +248,11 @@ $site_template->register_vars(array(
 unset($next_prev_cache);
 
 //-----------------------------------------------------
-//--- Get Similar Images (Sidebar) --------------------
-//-----------------------------------------------------
-$similar_images_html = "";
-$sql = "SELECT image_id, cat_id, image_name, image_thumb_file
-        FROM ".IMAGES_TABLE."
-        WHERE image_active = 1
-        AND cat_id = $cat_id
-        AND image_id != $image_id
-        ORDER BY RAND()
-        LIMIT 6";
-$result = $site_db->query($sql);
-$similar_count = 0;
-
-while ($similar_row = $site_db->fetch_array($result)) {
-  $similar_count++;
-  $thumb_file = get_file_path($similar_row['image_thumb_file'], "thumb", $similar_row['cat_id'], 0, 1);
-  $image_url = $site_sess->url(ROOT_PATH."details.php?".URL_IMAGE_ID."=".$similar_row['image_id']);
-  $image_name = format_text($similar_row['image_name'], 2);
-
-  if (!$thumb_file) {
-    $thumb_file = "data:image/svg+xml;base64,".base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>');
-  }
-
-  $similar_images_html .= '<a href="'.$image_url.'" class="similar-image-item" title="'.$image_name.'">';
-  $similar_images_html .= '<img src="'.$thumb_file.'" alt="'.$image_name.'" class="img-fluid rounded shadow-sm mb-2">';
-  $similar_images_html .= '</a>';
-}
-$site_db->free_result($result);
-
-// If no similar images found, show placeholder
-if ($similar_count == 0) {
-  $similar_images_html = '<p class="text-muted small"><i class="fa-solid fa-images me-2"></i>'.$lang['no_similar_images'].'</p>';
-}
-
-$site_template->register_vars(array(
-  "similar_images_list" => $similar_images_html,
-  "similar_images_count" => $similar_count
-));
-
-//-----------------------------------------------------
 //--- Save Comment ------------------------------------
 //-----------------------------------------------------
 $error = 0;
-if ($action == "postcomment" && isset($_POST[URL_ID])) {
-  $id = intval($_POST[URL_ID]);
+if ($action == "postcomment" && isset($HTTP_POST_VARS[URL_ID])) {
+  $id = intval($HTTP_POST_VARS[URL_ID]);
   $sql = "SELECT cat_id, image_allow_comments
           FROM ".IMAGES_TABLE."
           WHERE image_id = $id";
@@ -304,11 +262,11 @@ if ($action == "postcomment" && isset($_POST[URL_ID])) {
     $msg = $lang['comments_deactivated'];
   }
   else {
-    $user_name = un_htmlspecialchars(trim($_POST['user_name']));
-    $comment_headline = un_htmlspecialchars(trim($_POST['comment_headline']));
-    $comment_text = un_htmlspecialchars(trim($_POST['comment_text']));
+    $user_name = un_htmlspecialchars(trim($HTTP_POST_VARS['user_name']));
+    $comment_headline = un_htmlspecialchars(trim($HTTP_POST_VARS['comment_headline']));
+    $comment_text = un_htmlspecialchars(trim($HTTP_POST_VARS['comment_text']));
 
-    $captcha = (isset($_POST['captcha'])) ? un_htmlspecialchars(trim($_POST['captcha'])) : "";
+    $captcha = (isset($HTTP_POST_VARS['captcha'])) ? un_htmlspecialchars(trim($HTTP_POST_VARS['captcha'])) : "";
 
     // Flood Check
     $sql = "SELECT comment_ip, comment_date
@@ -383,7 +341,7 @@ if ($image_allow_comments == 1) {
       "rss_url"   => $script_url."/rss.php?action=comments&amp;".URL_IMAGE_ID."=".$image_id
   ));
 
-  $sql = "SELECT c.comment_id, c.image_id, c.user_id, c.user_name AS comment_user_name, c.comment_headline, c.comment_text, c.comment_ip, c.comment_date".get_user_table_field(", u.", "user_level").get_user_table_field(", u.", "user_name").get_user_table_field(", u.", "user_email").get_user_table_field(", u.", "user_showemail").get_user_table_field(", u.", "user_invisible").get_user_table_field(", u.", "user_joindate").get_user_table_field(", u.", "user_lastaction").get_user_table_field(", u.", "user_comments").get_user_table_field(", u.", "user_homepage")."
+  $sql = "SELECT c.comment_id, c.image_id, c.user_id, c.user_name AS comment_user_name, c.comment_headline, c.comment_text, c.comment_ip, c.comment_date".get_user_table_field(", u.", "user_level").get_user_table_field(", u.", "user_name").get_user_table_field(", u.", "user_email").get_user_table_field(", u.", "user_showemail").get_user_table_field(", u.", "user_invisible").get_user_table_field(", u.", "user_joindate").get_user_table_field(", u.", "user_lastaction").get_user_table_field(", u.", "user_comments").get_user_table_field(", u.", "user_homepage").get_user_table_field(", u.", "user_icq")."
           FROM ".COMMENTS_TABLE." c
           LEFT JOIN ".USERS_TABLE." u ON (".get_user_table_field("u.", "user_id")." = c.user_id)
           WHERE c.image_id = $image_id
@@ -398,7 +356,7 @@ if ($image_allow_comments == 1) {
   $num_comments = sizeof($comment_row);
 
   if (!$num_comments) {
-    $comments = "<div class=\"alert alert-info text-center\">".$lang['no_comments']."</div>";
+    $comments = "<tr><td class=\"commentrow1\" colspan=\"2\">".$lang['no_comments']."</td></tr>";
   }
   else {
     $comments = "";
@@ -411,7 +369,7 @@ if ($image_allow_comments == 1) {
       $comment_user_mailform_link = "";
       $comment_user_email_button = "";
       $comment_user_homepage_button = "";
-      // ICQ support removed
+      $comment_user_icq_button = "";
       $comment_user_profile_button = "";
       $comment_user_status_img = REPLACE_EMPTY;
       $comment_user_name = format_text($comment_row[$i]['comment_user_name'], 2);
@@ -423,16 +381,19 @@ if ($image_allow_comments == 1) {
         $comment_user_name = format_text($comment_row[$i][$user_table_fields['user_name']], 2);
 
         $comment_user_profile_link = !empty($url_show_profile) ? $site_sess->url(preg_replace("/{user_id}/", $comment_user_id, $url_show_profile)) : $site_sess->url(ROOT_PATH."member.php?action=showprofile&amp;".URL_USER_ID."=".$comment_user_id);
-        $comment_user_profile_button = "<a href=\"".$comment_user_profile_link."\" class=\"text-decoration-none me-2\" title=\"".$comment_user_name."\"><i class=\"fa-solid fa-user\"></i></a>";
+        $comment_user_profile_button = "<a href=\"".$comment_user_profile_link."\"><img src=\"".get_gallery_image("profile.gif")."\" border=\"0\" alt=\"".$comment_user_name."\" /></a>";
 
-        $comment_user_status_img = ($comment_row[$i][$user_table_fields['user_lastaction']] >= (time() - 300) && ((isset($comment_row[$i][$user_table_fields['user_invisible']]) && $comment_row[$i][$user_table_fields['user_invisible']] == 0) || $user_info['user_level'] == ADMIN)) ? "<i class=\"fa-solid fa-circle text-success\" title=\"Online\"></i>" : "<i class=\"fa-solid fa-circle text-muted\" title=\"Offline\"></i>";
+        $comment_user_status_img = ($comment_row[$i][$user_table_fields['user_lastaction']] >= (time() - 300) && ((isset($comment_row[$i][$user_table_fields['user_invisible']]) && $comment_row[$i][$user_table_fields['user_invisible']] == 0) || $user_info['user_level'] == ADMIN)) ? "<img src=\"".get_gallery_image("user_online.gif")."\" border=\"0\" alt=\"Online\" />" : "<img src=\"".get_gallery_image("user_offline.gif")."\" border=\"0\" alt=\"Offline\" />";
 
         $comment_user_homepage = (isset($comment_row[$i][$user_table_fields['user_homepage']])) ? format_url($comment_row[$i][$user_table_fields['user_homepage']]) : "";
         if (!empty($comment_user_homepage)) {
-          $comment_user_homepage_button = "<a href=\"".$comment_user_homepage."\" target=\"_blank\" class=\"text-decoration-none me-2\" title=\"".$comment_user_homepage."\"><i class=\"fa-solid fa-globe\"></i></a>";
+          $comment_user_homepage_button = "<a href=\"".$comment_user_homepage."\" target=\"_blank\"><img src=\"".get_gallery_image("homepage.gif")."\" border=\"0\" alt=\"".$comment_user_homepage."\" /></a>";
         }
 
-        // ICQ support removed
+        $comment_user_icq = (isset($comment_row[$i][$user_table_fields['user_icq']])) ? format_text($comment_row[$i][$user_table_fields['user_icq']]) : "";
+        if (!empty($comment_user_icq)) {
+          $comment_user_icq_button = "<a href=\"http://www.icq.com/people/about_me.php?uin=".$comment_user_icq."\" target=\"_blank\"><img src=\"http://status.icq.com/online.gif?icq=".$comment_user_icq."&img=5\" width=\"18\" height=\"18\" border=\"0\" alt=\"".$comment_user_icq."\" /></a>";
+        }
 
         if (!empty($comment_row[$i][$user_table_fields['user_email']]) && (!isset($comment_row[$i][$user_table_fields['user_showemail']]) || (isset($comment_row[$i][$user_table_fields['user_showemail']]) && $comment_row[$i][$user_table_fields['user_showemail']] == 1))) {
           $comment_user_email = format_text($comment_row[$i][$user_table_fields['user_email']]);
@@ -443,7 +404,7 @@ if ($image_allow_comments == 1) {
           else {
             $comment_user_mailform_link = $site_sess->url(ROOT_PATH."member.php?action=mailform&amp;".URL_USER_ID."=".$comment_user_id);
           }
-          $comment_user_email_button = "<a href=\"".$comment_user_mailform_link."\" class=\"text-decoration-none me-2\" title=\"".$comment_user_email_save."\"><i class=\"fa-solid fa-envelope\"></i></a>";
+          $comment_user_email_button = "<a href=\"".$comment_user_mailform_link."\"><img src=\"".get_gallery_image("email.gif")."\" border=\"0\" alt=\"".$comment_user_email_save."\" /></a>";
         }
 
         if (!isset($comment_row[$i][$user_table_fields['user_level']]) || (isset($comment_row[$i][$user_table_fields['user_level']]) && $comment_row[$i][$user_table_fields['user_level']] == USER)) {
@@ -462,12 +423,12 @@ if ($image_allow_comments == 1) {
 
       $admin_links = "";
       if ($user_info['user_level'] == ADMIN) {
-        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=editcomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
-        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=removecomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
+        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=editcomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\">".$lang['edit']."</a>&nbsp;";
+        $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("comments.php?action=removecomment&amp;comment_id=".$comment_row[$i]['comment_id']))."\" target=\"_blank\">".$lang['delete']."</a>";
       }
       elseif ($is_image_owner) {
-        $admin_links .= ($config['user_edit_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editcomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
-        $admin_links .= ($config['user_delete_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removecomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
+        $admin_links .= ($config['user_edit_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editcomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\">".$lang['edit']."</a>&nbsp;";
+        $admin_links .= ($config['user_delete_comments'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removecomment&amp;".URL_COMMENT_ID."=".$comment_row[$i]['comment_id'])."\">".$lang['delete']."</a>";
       }
 
       $site_template->register_vars(array(
@@ -482,7 +443,7 @@ if ($image_allow_comments == 1) {
         "comment_user_mailform_link" => $comment_user_mailform_link,
         "comment_user_email_button" => $comment_user_email_button,
         "comment_user_homepage_button" => $comment_user_homepage_button,
-        // ICQ support removed
+        "comment_user_icq_button" => $comment_user_icq_button,
         "comment_user_ip" => $comment_user_ip,
         "comment_headline" => format_text($comment_row[$i]['comment_headline'], 0, $config['wordwrap_comments'], 0, 0),
         "comment_text" => format_text($comment_row[$i]['comment_text'], $config['html_comments'], $config['wordwrap_comments'], $config['bb_comments'], $config['bb_img_comments']),
@@ -518,9 +479,9 @@ if ($image_allow_comments == 1) {
     $comment_form = "";
   }
   else {
-    $user_name = (isset($_POST['user_name']) && $error) ? format_text(trim(stripslashes($_POST['user_name'])), 2) : (($user_info['user_level'] != GUEST) ? format_text($user_info['user_name'], 2) : "");
-    $comment_headline = (isset($_POST['comment_headline']) && $error) ? format_text(trim(stripslashes($_POST['comment_headline'])), 2) : "";
-    $comment_text = (isset($_POST['comment_text']) && $error) ? format_text(trim(stripslashes($_POST['comment_text'])), 2) : "";
+    $user_name = (isset($HTTP_POST_VARS['user_name']) && $error) ? format_text(trim(stripslashes($HTTP_POST_VARS['user_name'])), 2) : (($user_info['user_level'] != GUEST) ? format_text($user_info['user_name'], 2) : "");
+    $comment_headline = (isset($HTTP_POST_VARS['comment_headline']) && $error) ? format_text(trim(stripslashes($HTTP_POST_VARS['comment_headline'])), 2) : "";
+    $comment_text = (isset($HTTP_POST_VARS['comment_text']) && $error) ? format_text(trim(stripslashes($HTTP_POST_VARS['comment_text'])), 2) : "";
 
     $site_template->register_vars(array(
       "bbcode" => $bbcode,
@@ -544,12 +505,12 @@ if ($image_allow_comments == 1) {
 // Admin Links
 $admin_links = "";
 if ($user_info['user_level'] == ADMIN) {
-  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=editimage&amp;image_id=".$image_id))."\" target=\"_blank\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
-  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=removeimage&amp;image_id=".$image_id))."\" target=\"_blank\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
+  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=editimage&amp;image_id=".$image_id))."\" target=\"_blank\">".$lang['edit']."</a>&nbsp;";
+  $admin_links .= "<a href=\"".$site_sess->url(ROOT_PATH."admin/index.php?goto=".urlencode("images.php?action=removeimage&amp;image_id=".$image_id))."\" target=\"_blank\">".$lang['delete']."</a>";
 }
 elseif ($is_image_owner) {
-  $admin_links .= ($config['user_edit_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editimage&amp;".URL_IMAGE_ID."=".$image_id)."\" class=\"btn btn-outline-warning btn-sm me-1\" title=\"".$lang['edit']."\"><i class=\"fa-solid fa-edit\"></i></a>";
-  $admin_links .= ($config['user_delete_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removeimage&amp;".URL_IMAGE_ID."=".$image_id)."\" class=\"btn btn-outline-danger btn-sm\" title=\"".$lang['delete']."\"><i class=\"fa-solid fa-trash\"></i></a>";
+  $admin_links .= ($config['user_edit_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=editimage&amp;".URL_IMAGE_ID."=".$image_id)."\">".$lang['edit']."</a>&nbsp;";
+  $admin_links .= ($config['user_delete_image'] != 1) ? "" : "<a href=\"".$site_sess->url(ROOT_PATH."member.php?action=removeimage&amp;".URL_IMAGE_ID."=".$image_id)."\">".$lang['delete']."</a>";
 }
 $site_template->register_vars("admin_links", $admin_links);
 
@@ -608,19 +569,7 @@ $site_template->register_vars(array(
   "lang_comment" => $lang['comment'],
   "lang_prev_image" => $lang['prev_image'],
   "lang_next_image" => $lang['next_image'],
-  "lang_file_size" => $lang['file_size'],
-  "lang_file_information" => $lang['file_information'],
-  "lang_resolution" => $lang['resolution'],
-  "lang_exif_data" => $lang['exif_data'],
-  "lang_iptc_metadata" => $lang['iptc_metadata'],
-  "lang_rate_this_image" => $lang['rate_this_image'],
-  "lang_no_comments_yet" => $lang['no_comments_yet'],
-  "lang_media_gallery_carousel" => $lang['media_gallery_carousel'],
-  "lang_media_gallery_placeholder" => $lang['media_gallery_placeholder'],
-  "lang_upload_information" => $lang['upload_information'],
-  "lang_uploader" => $lang['uploader'],
-  "lang_uploaded" => $lang['uploaded'],
-  "lang_similar_images" => $lang['similar_images']
+  "lang_file_size" => $lang['file_size']
 ));
 
 $site_template->print_template($site_template->parse_template($main_template));

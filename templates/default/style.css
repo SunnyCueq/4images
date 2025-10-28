@@ -1,286 +1,239 @@
-/* 
- * 4images Modern Template - Custom Styles
- * Based on Bootstrap 5.3 with ORIGINAL 4images colors
- */
-
-/* Override Bootstrap Primary Color to match ORIGINAL 4images brand */
-:root {
-  --bs-primary: #004C75;
-  --bs-primary-rgb: 0, 76, 117;
-  --bs-link-color: #004C75;
-  --bs-link-hover-color: #003a52;
-  --bs-warning: #fcdc43;
+body {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
 }
 
-/* Global styling */
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: #212529;
+hr {
+  height: 1px; 
+  color: #004c75;
   background-color: #ffffff;
 }
 
-a {
-  color: #004C75;
-  text-decoration: none;
+ul, li, p, td {
+  color: #004c75;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+.tablehead {
+  background-color: #e8e8e8;
+  color: #004c75;
+}
+
+.tablebottom {
+  background-color: #004C75;
+}
+
+.bordercolor {
+  background-color: #004C75;
+}
+
+.tablebgcolor {
+  background-color: #ffffff;
+}
+
+.navbar {
+  background-color: #fcdc43;
+  color: #004c75;
+}
+
+.row1 {
+  background-color: #e1e1e1;
+  color: #004c75;
+}
+
+.row2 {
+  background-color: #efefef;
+  color: #004c75;
+}
+
+.head1 {
+  background-color: #004C75;
+  color: #fcdc43;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.head1:hover {
+  background-color: #004C75;
+  color: #fcdc43;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.head2 {
+  background-color: #004C75;
+  color: #ffffff;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.title {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.clickstream {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 11px;
+}
+
+.smalltext {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.marktext {
+  color: #FF0000;
+  background-color: #ffffff;
+}
+
+.new {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 11px;
+  color: #FF0000;
 }
 
 a:hover {
-  color: #003a52;
+  color: #000000;
 }
 
-/* Card enhancements */
-.card {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  transition: transform 0.2s, box-shadow 0.2s;
+form {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 11px;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+.logininput {
+  background-color: #ffffff;
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+  width: 130px;
 }
 
-/* Primary color backgrounds (Original 4images Blue) */
-.bg-primary {
-  background-color: #004C75 !important;
+.searchinput {
+  background-color: #FFFFFF;
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+  WIDTH: 130px;
 }
 
-.btn-primary {
-  background-color: #004C75;
-  border-color: #004C75;
+.textarea {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+  width: 230px;
 }
 
-.btn-primary:hover {
-  background-color: #003a52;
-  border-color: #003a52;
+.input {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+  width: 230px;
 }
 
-.btn-outline-primary {
+.select {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+}
+
+.setperpageselect {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+}
+
+.categoryselect {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+}
+
+.dropdownmarker {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  background-color: #EEEEEE;
+  color: #136c99;
+  font-size: 11px;
+}
+
+.button {
+  font-family:  Tahoma,Verdana,Arial, Helvetica, sans-serif;
+  background-color: #003366;
+  color: #fcdc43;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/*--Categories------------------------------------------------*/
+.catbgcolor {
+  background-color: #EFEFEF;
+}
+
+.maincat {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.subcat {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/*--Images----------------------------------------------------*/
+.imagerow1 {
+  background-color: #E5E5E5;
   color: #004C75;
-  border-color: #004C75;
 }
 
-.btn-outline-primary:hover {
-  background-color: #004C75;
-  border-color: #004C75;
-  color: #fff;
-}
-
-/* Text colors */
-.text-primary {
-  color: #004C75 !important;
-}
-
-/* Badge styling */
-.badge.bg-success {
-  background-color: #198754 !important;
-}
-
-/* List group enhancements */
-.list-group-item-action:hover {
-  background-color: rgba(0, 76, 117, 0.05);
-}
-
-/* Form styling */
-.form-control:focus,
-.form-select:focus {
-  border-color: #004C75;
-  box-shadow: 0 0 0 0.25rem rgba(0, 76, 117, 0.25);
-}
-
-/* Breadcrumb */
-.breadcrumb {
-  background-color: #f8f9fa;
-  border-radius: 0.25rem;
-}
-
-/* Image thumbnails */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Clickstream (breadcrumb) styling */
-.clickstream a {
+.imagerow2 {
+  background-color: #EFEFEF;
   color: #004C75;
-  text-decoration: none;
 }
 
-.clickstream a:hover {
-  text-decoration: underline;
-}
-
-/* Small utilities */
-.small, small {
-  font-size: 0.875em;
-}
-
-/* Text muted */
-.text-muted {
-  color: #6c757d !important;
-}
-
-/* Warning color (Original 4images Yellow) */
-.bg-warning {
-  background-color: #fcdc43 !important;
-  color: #004C75 !important;
-}
-
-.text-warning {
-  color: #fcdc43 !important;
-}
-
-/* Light backgrounds (Original 4images Grey tones) */
-.bg-light {
-  background-color: #e8e8e8 !important;
-}
-
-.card-header.bg-light {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-/* Table styling for Bootstrap compatibility */
-.table-light {
+/*--Comments--------------------------------------------------*/
+.commentrow1 {
   background-color: #e1e1e1;
+  color: #004c75;
 }
 
-/* Responsive spacing adjustments */
-@media (max-width: 991.98px) {
-  .container-fluid {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+.commentrow2 {
+  background-color: #efefef;
+  color: #004c75;
 }
 
-/* Original 4images color scheme reference:
- * - Primary Blue: #004C75
- * - Accent Yellow: #fcdc43
- * - Light Grey 1: #e8e8e8
- * - Light Grey 2: #e1e1e1
- * - Light Grey 3: #efefef
- * - Border Color: #004C75
- */
-
-/* ============================================
- * Details Page - Modern Dark Theme
- * ============================================ */
-
-/* Dark Theme Color Variables */
-:root {
-  --detail-accent: #66c0f4;
-  --detail-dark-bg: #1b2838;
-  --detail-darker-bg: #171a21;
-  --detail-card-bg: #16202d;
-  --detail-text-light: #c7d5e0;
-  --detail-text-muted: #8f98a0;
-  --detail-border: #3d4450;
-  --detail-hover-bg: #2a475e;
+.commentspacerrow {
+  background-color: #d1d1d1;
+  color: #004c75;
 }
 
-/* Hero Section */
-.details-hero {
-  position: relative;
-  background: linear-gradient(135deg, var(--detail-dark-bg) 0%, var(--detail-darker-bg) 100%);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+.commenttextarea {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+  width: 250px;
 }
 
-/* Badge size fix */
-.details-hero .badge {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  vertical-align: middle;
+.commentinput {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+  width: 250px;
 }
 
-/* Title Section (below image, not overlay) */
-.details-title-section {
-  background: var(--detail-card-bg);
-  padding: 1.5rem;
-  border-top: 1px solid var(--detail-border);
-  color: white;
-}
-
-/* Tags Container (Horizontal Scroll) */
-.tags-scroll-container {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding: 0.5rem 0;
-  scrollbar-width: thin;
-  scrollbar-color: var(--detail-accent) transparent;
-}
-
-.tags-scroll-container::-webkit-scrollbar {
-  height: 6px;
-}
-
-.tags-scroll-container::-webkit-scrollbar-thumb {
-  background: var(--detail-accent);
-  border-radius: 3px;
-}
-
-/* Tag Badges */
-.tag-badge {
-  display: inline-block;
-  background: rgba(102, 192, 244, 0.15);
-  color: var(--detail-accent);
-  padding: 0.25rem 0.75rem;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  transition: all 0.2s;
-  border: 1px solid rgba(102, 192, 244, 0.3);
-}
-
-.tag-badge:hover {
-  background: var(--detail-hover-bg);
-  color: var(--detail-text-light);
-  border-color: var(--detail-accent);
-}
-
-/* Accent Buttons */
-.btn-accent {
-  background: var(--detail-accent);
-  color: white;
-  border: none;
-  transition: all 0.2s;
-}
-
-.btn-accent:hover {
-  background: #5ab0db;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 192, 244, 0.3);
-}
-
-/* Similar Images Hover Effect */
-.similar-image-item {
-  display: block;
-  transition: transform 0.2s;
-}
-
-.similar-image-item:hover {
-  transform: scale(1.05);
-}
-
-/* Sticky Sidebar */
-.details-sidebar {
-  position: sticky;
-  top: 20px;
-}
-
-/* Dark Accordion Styling */
-.accordion-button:not(.collapsed) {
-  background-color: var(--detail-card-bg);
-  color: var(--detail-text-light);
-  box-shadow: none;
-}
-
-.accordion-button:focus {
-  box-shadow: none;
-  border-color: var(--detail-border);
-}
-
-.accordion-button:hover {
-  background-color: var(--detail-hover-bg);
+.captchainput {
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  color: #0f5475;
+  font-size: 11px;
+  width: 200px;
 }

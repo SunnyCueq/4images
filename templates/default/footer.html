@@ -1,3 +1,9 @@
+{if has_rss}
+<p align="center">
+  <a href="{rss_url}"><img src="{template_url}/images/rss.gif" border="0" width="15" height="15" alt="{rss_title}" /></a>
+</p>
+{endif has_rss}
+
 {cp_link}
 <!--
     Bitte beachten Sie, dass der folgende Copyrighthinweis
@@ -21,10 +27,5 @@
     more information.
 // -->
 {copyright}
-
-<!-- Bootstrap 5.3.3 JS Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<!-- Custom Scripts (modern ES6+ event listeners) -->
-<script src="{template_url}/scripts.js"></script>
 </body>
 </html>

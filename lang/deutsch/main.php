@@ -98,19 +98,6 @@ $lang['headline'] = "Überschrift:";
 $lang['comment'] = "Kommentar:";
 $lang['added_by'] = "Hinzugefügt von:";
 $lang['allow_comments'] = "Kommentare erlauben:";
-$lang['file_information'] = "Datei-Informationen";
-$lang['resolution'] = "Auflösung:";
-$lang['exif_data'] = "EXIF-Daten";
-$lang['iptc_metadata'] = "IPTC-Metadaten";
-$lang['rate_this_image'] = "Bild bewerten";
-$lang['no_comments_yet'] = "Noch keine Kommentare. Sei der Erste, der kommentiert!";
-$lang['media_gallery_carousel'] = "Medien-Galerie Karussell";
-$lang['media_gallery_placeholder'] = "Platzhalter für zukünftige Multi-Upload-Funktion";
-$lang['upload_information'] = "Upload-Informationen";
-$lang['uploader'] = "Hochgeladen von:";
-$lang['uploaded'] = "Hochgeladen am:";
-$lang['similar_images'] = "Ähnliche Bilder";
-$lang['no_similar_images'] = "Keine ähnlichen Bilder in dieser Kategorie";
 
 // IPTC Tags
 $lang['iptc_caption'] = "Objektbeschreibung:";

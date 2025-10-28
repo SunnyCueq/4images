@@ -1,357 +1,251 @@
 {header}
-<!-- Header with Logo and Search -->
-<div class="bg-primary text-white py-3 mb-3">
-  <div class="container-fluid">
-    <div class="row align-items-center">
-      <div class="col-12 col-md-6 mb-2 mb-md-0">
-        <h1 class="h4 mb-0"><i class="fa-solid fa-images me-2"></i>{site_name}</h1>
-      </div>
-      <div class="col-12 col-md-6">
-        <form method="post" action="{url_search}" class="d-flex">
-          <input type="text" name="search_keywords" class="form-control form-control-sm me-2" placeholder="{lang_search}">
-          <button type="submit" class="btn btn-light btn-sm" name="submit">
-            <i class="fa-solid fa-search"></i>
-          </button>
-        </form>
-        <div class="mt-1">
-          <a href="{url_search}" class="text-white text-decoration-none small">{lang_advanced_search}</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Breadcrumb Navigation -->
-<div class="container-fluid mb-3">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb bg-light p-2 mb-0">
-      <li class="breadcrumb-item small">{clickstream}</li>
-      <li class="ms-auto">
-        <a href="{url_top_images}" class="btn btn-outline-primary btn-sm me-1">
-          <i class="fa-solid fa-star me-1"></i>{lang_top_images}
-        </a>
-        <a href="{url_new_images}" class="btn btn-outline-primary btn-sm">
-          <i class="fa-solid fa-clock me-1"></i>{lang_new_images}
-        </a>
-      </li>
-    </ol>
-  </nav>
-</div>
-
-<!-- Main Content -->
-<div class="container-fluid">
-  <div class="row">
-    <!-- Left Column: Main Content (70%) -->
-    <div class="col-12 col-lg-8">
-
-      <!-- Message -->
-      {if msg}
-      <div class="alert alert-info" role="alert">
-        <strong>{msg}</strong>
-      </div>
-      {endif msg}
-
-      <!-- Hero Section: Image + Title Below -->
-      <div class="details-hero mb-4">
-        <!-- Image Container -->
-        <div class="position-relative">
-          <div class="text-center p-3">
-            {image}
-          </div>
-
-          <!-- Floating Action Buttons (Desktop Only) -->
-          <div class="position-absolute top-0 end-0 m-3 d-none d-md-block">
-            <div class="btn-group-vertical shadow-lg" role="group">
-              {lightbox_button}
-              {download_button}
-              {download_zip_button}
-            </div>
-          </div>
-
-          <!-- Admin Links -->
-          {if admin_links}
-          <div class="position-absolute top-0 start-0 m-3">
-            {admin_links}
-          </div>
-          {endif admin_links}
-        </div>
-
-        <!-- Title Section (below image) -->
-        <div class="details-title-section">
-          <h1 class="h2 mb-2">
-            {image_name}
-            {if image_is_new}
-            <span class="badge badge-sm bg-success ms-2">
-              <i class="fa-solid fa-sparkles me-1"></i><small>{lang_new}</small>
-            </span>
-            {endif image_is_new}
-          </h1>
-          <p class="mb-0 small opacity-75">
-            <i class="fa-solid fa-user me-1"></i>by {user_name_link}
-            <span class="mx-2">•</span>
-            <i class="fa-solid fa-calendar me-1"></i>{image_date}
-          </p>
-        </div>
-      </div>
-
-      <!-- Mobile Action Buttons -->
-      <div class="d-md-none mb-3 text-center">
-        <div class="btn-group" role="group">
-          {lightbox_button}
-          {download_button}
-          {download_zip_button}
-        </div>
-      </div>
-
-      <!-- Tags/Categories (Horizontal Scroll) -->
-      <div class="card shadow-sm mb-4 bg-dark">
-        <div class="card-body py-2">
-          <div class="d-flex align-items-center">
-            <small class="text-muted me-3 text-nowrap">
-              <i class="fa-solid fa-tags me-1"></i>{lang_category}
-            </small>
-            <div class="tags-scroll-container flex-grow-1">
-              <span class="tag-badge">{cat_name}</span>
-              {if image_keywords}
-              {image_keywords}
-              {endif image_keywords}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Engagement Stats Bar -->
-      <div class="card shadow-sm mb-4 bg-dark text-white">
-        <div class="card-body py-3">
-          <div class="row text-center g-3">
-            <div class="col-6 col-md-3">
-              <div class="h4 mb-0 text-info">
-                <i class="fa-solid fa-eye me-2"></i>{image_hits}
-              </div>
-              <small class="opacity-75">{lang_hits}</small>
-            </div>
-            <div class="col-6 col-md-3">
-              <div class="h4 mb-0 text-info">
-                <i class="fa-solid fa-star me-2"></i>{image_rating}
-              </div>
-              <small class="opacity-75">{image_votes} {lang_votes}</small>
-            </div>
-            <div class="col-6 col-md-3">
-              <div class="h4 mb-0 text-info">
-                <i class="fa-solid fa-download me-2"></i>{image_downloads}
-              </div>
-              <small class="opacity-75">{lang_downloads}</small>
-            </div>
-            <div class="col-6 col-md-3">
-              <div class="h4 mb-0 text-info">
-                <i class="fa-solid fa-comment me-2"></i>{image_comments}
-              </div>
-              <small class="opacity-75">{lang_comments}</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Description Section with Carousel Placeholder -->
-      {if image_description}
-      <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
-        <div class="card-header bg-dark border-secondary">
-          <h5 class="mb-0">
-            <i class="fa-solid fa-align-left me-2 text-info"></i>{lang_description}
-          </h5>
-        </div>
-        <div class="card-body">
-          <div>{image_description}</div>
-
-          <!-- Carousel Placeholder (Future Multi-Upload Feature) -->
-          <div class="mt-4 p-4 rounded text-center text-muted" style="background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.2);">
-            <i class="fa-solid fa-images fa-2x mb-2 opacity-50"></i>
-            <p class="mb-0 small">
-              <strong>{lang_media_gallery_carousel}</strong><br>
-              {lang_media_gallery_placeholder}
-            </p>
-          </div>
-        </div>
-      </div>
-      {endif image_description}
-
-      <!-- Technical Details Accordion -->
-      <div class="accordion shadow-sm mb-4" id="detailsAccordion">
-        <!-- File Information -->
-        <div class="accordion-item bg-dark text-white border-secondary">
-          <h2 class="accordion-header">
-            <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#fileInfo">
-              <i class="fa-solid fa-file me-2 text-info"></i>{lang_file_information}
-            </button>
-          </h2>
-          <div id="fileInfo" class="accordion-collapse collapse show" data-bs-parent="#detailsAccordion">
-            <div class="accordion-body bg-dark">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <strong class="text-muted">{lang_file_size}</strong>
-                  <span class="float-end text-white">{image_file_size}</span>
-                </div>
-                <div class="col-md-6">
-                  <strong class="text-muted">{lang_resolution}</strong>
-                  <span class="float-end text-white">{width} x {height}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- EXIF Data -->
-        {if exif_info}
-        <div class="accordion-item bg-dark text-white border-secondary">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#exifData">
-              <i class="fa-solid fa-camera me-2 text-info"></i>{lang_exif_data}
-            </button>
-          </h2>
-          <div id="exifData" class="accordion-collapse collapse" data-bs-parent="#detailsAccordion">
-            <div class="accordion-body bg-dark">
-              <div class="row g-3">
-                {exif_info}
-              </div>
-            </div>
-          </div>
-        </div>
-        {endif exif_info}
-
-        <!-- IPTC Metadata -->
-        {if iptc_info}
-        <div class="accordion-item bg-dark text-white border-secondary">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#iptcData">
-              <i class="fa-solid fa-file-code me-2 text-info"></i>{lang_iptc_metadata}
-            </button>
-          </h2>
-          <div id="iptcData" class="accordion-collapse collapse" data-bs-parent="#detailsAccordion">
-            <div class="accordion-body bg-dark">
-              <div class="row g-3">
-                {iptc_info}
-              </div>
-            </div>
-          </div>
-        </div>
-        {endif iptc_info}
-      </div>
-
-      <!-- Rating Section -->
-      {if rate_form}
-      <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
-        <div class="card-body text-center py-4">
-          <h5 class="mb-3">
-            <i class="fa-solid fa-star-half-stroke me-2 text-warning"></i>{lang_rate_this_image}
-          </h5>
-          {rate_form}
-        </div>
-      </div>
-      {endif rate_form}
-
-      <!-- Comments Section -->
-      {if allow_comments}
-      <a name="comments"></a>
-      <div class="card shadow-sm mb-4 bg-dark text-white border-secondary">
-        <div class="card-header bg-dark border-secondary">
-          <h5 class="mb-0">
-            <i class="fa-solid fa-comments me-2 text-info"></i>{lang_comments} ({image_comments})
-          </h5>
-        </div>
-        <div class="card-body">
-          {if image_comments}
-          {comments}
-          {else}
-          <div class="text-center text-muted py-5">
-            <i class="fa-regular fa-comment fa-3x mb-3 d-block opacity-50"></i>
-            <p>{lang_no_comments_yet}</p>
-          </div>
-          {endif image_comments}
-        </div>
-      </div>
-
-      {comment_form}
-      {endif allow_comments}
-
-      <!-- Navigation: Previous / Next Images -->
-      {if prev_image_name}
-      {if next_image_name}
-      <div class="card shadow-sm mb-4 bg-dark border-secondary">
-        <div class="card-body py-3">
-          <div class="row g-3 align-items-center">
-            <div class="col-12 col-md-6 text-start">
-              <small class="text-muted d-block mb-1">
-                <i class="fa-solid fa-arrow-left me-1"></i>{lang_prev_image}
-              </small>
-              <a href="{prev_image_url}" class="text-decoration-none text-info fw-bold h6 mb-0">
-                {prev_image_name}
-              </a>
-            </div>
-            <div class="col-12 col-md-6 text-md-end">
-              <small class="text-muted d-block mb-1">
-                {lang_next_image}<i class="fa-solid fa-arrow-right ms-1"></i>
-              </small>
-              <a href="{next_image_url}" class="text-decoration-none text-info fw-bold h6 mb-0">
-                {next_image_name}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      {endif next_image_name}
-      {endif prev_image_name}
-
-    </div>
-
-    <!-- Right Column: Sidebar (30%) -->
-    <div class="col-12 col-lg-4">
-      <div class="details-sidebar">
-
-        <!-- Upload Information Card -->
-        <div class="card shadow-sm mb-4">
-          <div class="card-header bg-dark text-white">
-            <h6 class="mb-0">
-              <i class="fa-solid fa-circle-info me-2"></i>{lang_upload_information}
-            </h6>
-          </div>
-          <div class="card-body">
-            <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted">{lang_uploader}</span>
-              <strong>{user_name_link}</strong>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted">{lang_uploaded}</span>
-              <strong>{image_date}</strong>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted">{lang_category}</span>
-              <strong>{cat_name}</strong>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span class="text-muted">{lang_file_size}</span>
-              <strong>{image_file_size}</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Similar Images Card -->
-        <div class="card shadow-sm mb-4">
-          <div class="card-header bg-dark text-white">
-            <h6 class="mb-0">
-              <i class="fa-solid fa-images me-2"></i>{lang_similar_images}
-            </h6>
-          </div>
-          <div class="card-body">
-            <div class="row g-2">
-              {similar_images_list}
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
+<table width="640" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablehead">
+        <tr> 
+          <td width="100%" colspan="4"><table cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td width="6"><img src="{template_url}/images/header_top_left.gif" width="6" height="6" alt="" /></td>
+        <td width="100%"><img src="{template_url}/images/header_top.gif" width="100%" height="6" alt="" /></td>
+	<td width="6"><img src="{template_url}/images/header_top_right.gif" width="6" height="6" alt="" /></td>
+    </tr>
+</table>
+</td>
+        </tr>
+        <tr> 
+          <td width="6"><img src="{template_url}/images/header_left.gif" width="6" height="60" alt="" /></td>
+          <td width="100%"><img src="{template_url}/images/header_logo.gif" width="405" height="60" alt="" /></td>
+          <td width="225" align="right"> 
+            <form method="post" action="{url_search}">
+              <table border="0" cellspacing="0" cellpadding="1">
+                <tr> 
+                  <td> 
+                    <input type="text" name="search_keywords" size="15" class="searchinput" />
+                  </td>
+                  <td> 
+                    <input type="submit" value="{lang_search}" class="button" name="submit" />
+                  </td>
+                </tr>
+                <tr valign="top"> 
+                  <td colspan="2"><a href="{url_search}" class="smalltext">{lang_advanced_search}</a></td>
+                </tr>
+              </table>
+            </form>
+          </td>
+          <td align="right" width="6"><img src="{template_url}/images/header_right.gif" width="6" height="60" alt="" /></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="bordercolor"> 
+      <table width="100%" border="0" cellspacing="1" cellpadding="0">
+        <tr> 
+          <td class="tablebgcolor"> 
+            <table width="100%" border="0" cellspacing="1" cellpadding="0">
+              <tr> 
+                <td class="navbar" height="23"> 
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td><img src="{template_url}/images/spacer.gif" width="4" height="4" alt="" />{clickstream}</td>
+                      <td align="right">
+						<a href="{url_top_images}"><b>{lang_top_images}</b></a>&nbsp;
+						<a href="{url_new_images}"><b>{lang_new_images}</b></a>&nbsp;
+					  </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <table width="638" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="150" valign="top" class="row2">
+                  <table width="150" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td class="head2" height="20"><img src="{template_url}/images/spacer.gif" alt="" width="4" height="4" />{lang_registered_user}</td>
+                    </tr>
+                    <tr>
+                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
+                    </tr>
+                    <tr>
+                      <td align="center" class="row1">{user_box}</td>
+                    </tr>
+                    <tr>
+                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
+                    </tr>
+                  </table>
+                  {if random_cat_image}
+                  <table width="150" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td class="head2" height="20"> <img src="{template_url}/images/spacer.gif" alt="" width="4" height="4" />{lang_random_image}</td>
+                    </tr>
+                    <tr>
+                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
+                    </tr>
+                    <tr>
+                      <td align="center" class="row1"> <br>
+                        {random_cat_image} <br>
+                        <br>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
+                    </tr>
+                  </table>
+                  {endif random_cat_image} </td>
+                <td width="1" class="bordercolor" valign="top"><img src="{template_url}/images/spacer.gif" width="1" height="1" alt="" /></td>
+                <td width="18" valign="top"><img src="{template_url}/images/spacer.gif" width="18" height="18" alt="" /></td>
+                <td width="100%" valign="top"><br>
+                  <b class="title">{image_name}</b>{if image_is_new} <sup class="new">{lang_new}</sup>{endif
+                  image_is_new}
+                  <hr size="1" />
+                  {if msg}<b>{msg}<br>
+                  <br>
+                  </b>{endif msg}
+                  <div align="center"> 
+									  {image} 
+										{if admin_links}<br>
+                    {admin_links}<br>
+                    {endif admin_links}<br>
+                    {lightbox_button}&nbsp;&nbsp;{postcard_button}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{download_button}&nbsp;&nbsp;{download_zip_button}
+									</div>
+                  <br>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tr>
+                      <td class="bordercolor">
+                        <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                          <tr>
+                            <td class="head1" valign="top" colspan="2">{image_name}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row1" width="33%"><b>{lang_description}</b></td>
+                            <td valign="top" class="row1">{image_description}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row2"><b>{lang_keywords}</b></td>
+                            <td valign="top" class="row2">{image_keywords}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row1"><b>{lang_date}</b></td>
+                            <td valign="top" class="row1">{image_date}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row2"><b>{lang_hits}</b></td>
+                            <td valign="top" class="row2">{image_hits}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row1"><b>{lang_downloads}</b></td>
+                            <td valign="top" class="row1">{image_downloads}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row2"><b>{lang_rating}</b></td>
+                            <td valign="top" class="row2">{image_rating} ({image_votes}
+                              {lang_votes})</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row1"><b>{lang_file_size}</b></td>
+                            <td valign="top" class="row1">{image_file_size}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" class="row2"><b>{lang_added_by}</b></td>
+                            <td valign="top" class="row2">{user_name_link}</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  {if iptc_info} 
+									<br>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tr>
+                      <td class="bordercolor">
+                        <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                          <tr>
+                            <td class="head1" valign="top" colspan="2">IPTC Info</td>
+                          </tr>
+                          {iptc_info}
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  {endif iptc_info} 
+									{if exif_info} 
+									<br>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tr>
+                      <td class="bordercolor">
+                        <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                          <tr>
+                            <td class="head1" valign="top" colspan="2">EXIF Info</td>
+                          </tr>
+                          {exif_info}
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  {endif exif_info} 
+									{if rate_form}
+                  <br>
+									<div align="center">{rate_form}</div>
+                  {endif rate_form} 
+									{if allow_comments} 
+									<a name="comments"></a>
+									<br>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                      <td class="head1" valign="top">
+                        <table width="100%" border="0" cellpadding="3" cellspacing="1">
+                          <tr>
+                            <td valign="top" class="head1">{lang_author}</td>
+                            <td valign="top" class="head1">{lang_comment}</td>
+                          </tr>
+                          {comments}
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+                  {comment_form} {endif allow_comments} <br>
+                  <br>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tr>
+                      <td class="bordercolor">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                          <tr valign="top">
+                            <td class="row2"> {if prev_image_name}{lang_prev_image}<br>&nbsp;&nbsp;
+                              <b><a href="{prev_image_url}">{prev_image_name}</a></b>
+                              <!-- <br><br><a href="{prev_image_url}"><img src="{prev_thumb_file}" border="1"></a> -->
+                              {endif prev_image_name}&nbsp;</td>
+                            <td align="right" class="row2"> &nbsp;{if next_image_name}{lang_next_image}<br>
+                              <b><a href="{next_image_url}">{next_image_name}</a>&nbsp;&nbsp;&nbsp;</b>
+                              <!-- <br><br><a href="{next_image_url}"><img src="{next_thumb_file}" border="1"></a> -->
+                              {endif next_image_name}</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <p>&nbsp;</p>
+                </td>
+                <td width="20" valign="top"><img src="{template_url}/images/spacer.gif" width="19" height="19" alt="" /></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablebottom">
+        <tr> 
+          <td width="6" nowrap><img src="{template_url}/images/footer_left.gif" width="6" height="19" alt="" /></td>
+          <td width="100%"></td>
+          <td width="6" nowrap><img src="{template_url}/images/footer_right.gif" width="6" height="19" alt="" /></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 {footer}
