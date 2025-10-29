@@ -18,6 +18,15 @@ docker-compose.yml
 
 .data
 
-# IDE-specific files (optional: commit .vscode/settings.json for team-wide settings)
-# .vscode/
-# .ide-stubs.php
+# IDE-specific files
+.vscode/
+.ide-stubs.php
+.claude/
+
+# Development documentation (keep locally, not in repo)
+CLAUDE.md
+REDESIGN_PLAN.md
+cookies.txt
+
+# Docker distribution files (keep Dockerfile and docker-compose.yml)
+Dockerfile.dist
