@@ -28,5 +28,9 @@ CLAUDE.md
 REDESIGN_PLAN.md
 cookies.txt
 
-# Docker distribution files (keep Dockerfile and docker-compose.yml)
+# Docker distribution files
 Dockerfile.dist
+docker-compose.yml.dist
+
+# Update script (not needed)
+update.php
