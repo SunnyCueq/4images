@@ -1,172 +1,111 @@
 {header}
-<table width="640" border="0" cellspacing="0" cellpadding="0" align="center">
-  <tr> 
-    <td> 
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablehead">
-        <tr> 
-          <td width="100%" colspan="4"><table cellpadding="0" cellspacing="0" width="100%">
-    <tr>
-        <td width="6"><img src="{template_url}/images/header_top_left.gif" width="6" height="6" alt="" /></td>
-        <td width="100%"><img src="{template_url}/images/header_top.gif" width="100%" height="6" alt="" /></td>
-	<td width="6"><img src="{template_url}/images/header_top_right.gif" width="6" height="6" alt="" /></td>
-    </tr>
-</table>
-</td>
-        </tr>
-        <tr> 
-          <td width="6"><img src="{template_url}/images/header_left.gif" width="6" height="60" alt="" /></td>
-          <td width="100%"><img src="{template_url}/images/header_logo.gif" width="405" height="60" alt="" /></td>
-          <td width="225" align="right"> 
-            <form method="post" action="{url_search}">
-              <table border="0" cellspacing="0" cellpadding="1">
-                <tr> 
-                  <td> 
-                    <input type="text" name="search_keywords" size="15" class="searchinput" />
-                  </td>
-                  <td> 
-                    <input type="submit" value="{lang_search}" class="button" name="submit" />
-                  </td>
-                </tr>
-                <tr valign="top"> 
-                  <td colspan="2"><a href="{url_search}" class="smalltext">{lang_advanced_search}</a></td>
-                </tr>
-              </table>
-            </form>
-          </td>
-          <td align="right" width="6"><img src="{template_url}/images/header_right.gif" width="6" height="60" alt="" /></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr> 
-    <td class="bordercolor"> 
-      <table width="100%" border="0" cellspacing="1" cellpadding="0">
-        <tr> 
-          <td class="tablebgcolor"> 
-            <table width="100%" border="0" cellspacing="1" cellpadding="0">
-              <tr> 
-                <td class="navbar" height="23"> 
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td><img src="{template_url}/images/spacer.gif" width="4" height="4" alt="" />{clickstream}</td>
-                      <td align="right">
-						<a href="{url_top_images}"><b>{lang_top_images}</b></a>&nbsp;
-						<a href="{url_new_images}"><b>{lang_new_images}</b></a>&nbsp;
-					  </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-            <table width="638" border="0" cellspacing="0" cellpadding="0">
-              <tr> 
-                <td width="150" class="row2" valign="top"> 
-                  <table width="150" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td class="head2" height="20"><img src="{template_url}/images/spacer.gif" alt="" width="4" height="4" />{lang_registered_user}</td>
-                    </tr>
-                    <tr> 
-                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
-                    </tr>
-                    <tr> 
-                      <td align="center" class="row1">{user_box} </td>
-                    </tr>
-                    <tr> 
-                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
-                    </tr>
-                  </table>
-                  {if random_cat_image}
-                  <table width="150" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td class="head2" height="20"> <img src="{template_url}/images/spacer.gif" alt="" width="4" height="4" />{lang_random_image}</td>
-                    </tr>
-                    <tr> 
-                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
-                    </tr>
-                    <tr> 
-                      <td align="center" class="row1">
-                        <br>
-                        {random_cat_image}
-                        <br>
-                        <br>
-                      </td>
-                    </tr>
-                    <tr> 
-                      <td class="tablebgcolor"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
-                    </tr>
-                  </table>
-                  {endif random_cat_image}
-				</td>
-                <td width="1" class="bordercolor" valign="top"><img src="{template_url}/images/spacer.gif" alt="" width="1" height="1" /></td>
-                <td width="18" valign="top"><img src="{template_url}/images/spacer.gif" alt="" width="18" height="18" /></td>
-                <td width="100%" valign="top"><br>
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td><b class="title">{cat_name}</b></td>
-                      <td align="right" valign="bottom">{upload_button}</td>
-                    </tr>
-                  </table>
-                  <br>{cat_description} (Hits: {cat_hits}) 
-                  <hr size="1" />
-                  {if categories} 
-                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-                    <tr> 
-                      <td class="head1"> 
-                        <table width="100%" border="0" cellspacing="0" cellpadding="3">
-                          <tr> 
-                            <td class="head1" valign="top">{lang_sub_categories}</td>
-                          </tr>
-                          <tr> 
-                            <td class="row2" valign="top">{categories}</td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                  <br>
-				  {endif categories}
-				  <br>
-				  {paging_stats}
-				  <br>
-				  <br>
-                  {if msg}<b>{msg}</b><br><br>{endif msg} 
-                  {if thumbnails}
-				  <table width="450" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td class="head1">{thumbnails}</td>
-                    </tr>
-                  </table>
-				  {endif thumbnails}
-                  <br>
-				  {paging}
-				  <br>
-				  <br>
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td>{category_dropdown_form}</td>
-                      <td align="right">{setperpage_dropdown_form}</td>
-                    </tr>
-                  </table>
-                  <p>&nbsp;</p>
-				</td>
-                <td width="19" valign="top"><img src="{template_url}/images/spacer.gif" alt="" width="19" height="19" /></td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr> 
-    <td> 
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablebottom">
-        <tr> 
-          <td width="6" nowrap><img src="{template_url}/images/footer_left.gif" width="6" height="19" alt="" /></td>
-          <td width="100%"></td>
-          <td width="6" nowrap><img src="{template_url}/images/footer_right.gif" width="6" height="19" alt="" /></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-sm text-gray-600 mb-6">
+  <a href="{url_home}" class="hover:text-brand-blue transition"><i class="fa-solid fa-home"></i></a>
+  <i class="fa-solid fa-chevron-right text-xs"></i>
+  <span class="text-gray-900">{clickstream}</span>
+  <div class="ml-auto flex items-center gap-4">
+    <a href="{url_top_images}" class="hover:text-brand-blue transition font-medium"><i class="fa-solid fa-star text-xs"></i> {lang_top_images}</a>
+    <a href="{url_new_images}" class="hover:text-brand-blue transition font-medium"><i class="fa-solid fa-sparkles text-xs"></i> {lang_new_images}</a>
+  </div>
+</nav>
+
+<!-- Main Layout: Sidebar + Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+  <!-- Sidebar (3 cols desktop, full-width mobile) -->
+  <aside class="lg:col-span-3 space-y-6">
+
+    <!-- User Box Card -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="bg-brand-blue text-white px-4 py-3 font-semibold text-sm flex items-center gap-2">
+        <i class="fa-solid fa-user"></i>
+        {lang_registered_user}
+      </div>
+      <div class="p-4 text-sm text-center">
+        {user_box}
+      </div>
+    </div>
+
+    <!-- Random Category Image Card -->
+    {if random_cat_image}
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="bg-brand-blue text-white px-4 py-3 font-semibold text-sm flex items-center gap-2">
+        <i class="fa-solid fa-shuffle"></i>
+        {lang_random_image}
+      </div>
+      <div class="p-4 text-center">
+        {random_cat_image}
+      </div>
+    </div>
+    {endif random_cat_image}
+
+  </aside>
+
+  <!-- Main Content (9 cols desktop) -->
+  <section class="lg:col-span-9">
+
+    <!-- Category Header -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+      <h1 class="text-3xl font-bold text-gray-900">{cat_name}</h1>
+      <div>{upload_button}</div>
+    </div>
+
+    <!-- Category Description -->
+    <div class="text-gray-700 mb-2">
+      {cat_description} <span class="text-gray-500 text-sm">(Hits: {cat_hits})</span>
+    </div>
+
+    <hr class="border-t border-gray-300 mb-6" />
+
+    <!-- Sub-Categories -->
+    {if categories}
+    <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
+      <div class="bg-brand-blue text-white px-6 py-4 font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-folder-open"></i>
+        {lang_sub_categories}
+      </div>
+      <div class="p-6">
+        {categories}
+      </div>
+    </div>
+    {endif categories}
+
+    <!-- Paging Stats -->
+    <div class="text-sm text-gray-600 mb-4">
+      {paging_stats}
+    </div>
+
+    <!-- Success/Error Message -->
+    {if msg}
+    <div class="bg-blue-50 border border-blue-200 text-blue-900 px-4 py-3 rounded mb-6">
+      <b>{msg}</b>
+    </div>
+    {endif msg}
+
+    <!-- Thumbnails -->
+    {if thumbnails}
+    <div class="mb-6">
+      {thumbnails}
+    </div>
+    {endif thumbnails}
+
+    <!-- Paging Navigation -->
+    <div class="mb-6">
+      {paging}
+    </div>
+
+    <!-- Category & Items Per Page Dropdowns -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+      <div class="w-full sm:w-auto">
+        {category_dropdown_form}
+      </div>
+      <div class="w-full sm:w-auto">
+        {setperpage_dropdown_form}
+      </div>
+    </div>
+
+  </section>
+
+</div>
 {footer}
