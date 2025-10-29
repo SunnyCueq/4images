@@ -1,46 +1,141 @@
-# 4images - Image Gallery Management System
+# 4images - Modern Image Gallery Management System
 
-## Licence
+**Fork von [4images v1.10](https://www.4homepages.de)** - Modernisiert mit Tailwind CSS, PHP 8.4+ und responsivem Design
 
-Please see the `docs/Licence.english.txt` file
+---
 
-If you want use 4images for non-private and commercial  purposes or if you want to remove the copyright text in the footer of the gallery, please get your license here: https://www.4homepages.de/download-4images/
+## 🎯 Über diesen Fork
 
-## Installation
+Dieses Projekt modernisiert die klassische 4images v1.10 Galerie mit moderner Web-Technologie, während das Original-Design 1:1 erhalten bleibt:
 
-Please see the `docs/Installation.english.txt` file
+- ✅ **Tailwind CSS** statt veralteter Table-Layouts und Inline-Styles
+- ✅ **Responsive Design** (Mobile-First) statt fixed-width
+- ✅ **PHP 8.4+ kompatibel** (geplant)
+- ✅ **Moderne HTML5-Struktur** (Flexbox/Grid statt Tables)
+- ✅ **FontAwesome 7.0** Icons
+- ✅ **CDN-basiert** - Keine Build-Tools nötig!
 
-## FAQ
+**Wichtig:** Visuell bleibt alles beim Original - nur der Code wird modernisiert!
 
-If you have problems, see the FAQ section in our support forum: https://www.4homepages.de/forum/index.php?board=14.0
+---
 
-## Download
+## 🚀 Was ist neu?
 
-You can get the newest version of 4images at https://www.4homepages.de
+### ✅ Bereits modernisiert (Task 2 - Teilweise):
+- **[header.html](templates/default/header.html)** - Sticky Header, responsive Navigation, Hamburger-Menu
+- **[footer.html](templates/default/footer.html)** - 3-Spalten Grid-Layout, moderne Struktur
+- **[home.html](templates/default/home.html)** - Responsive Grid (Sidebar + Content), Cards mit Shadows
 
-## Support
+### 🔜 In Arbeit:
+- details.html, categories.html, search.html (weitere ~40 Templates)
+- PHP 8.4+ Kompatibilität (Task 1)
+- Admin-Bereich Modernisierung (Task 3)
 
-There is a support forum under https://www.4homepages.de/forum
+---
 
+## 📦 Installation
 
-## Lizenz / Online-Lizenzshop
+### Voraussetzungen
+- **Webserver** (Apache/Nginx)
+- **PHP 7.4+** (aktuell), **PHP 8.4+** (nach Task 1)
+- **MySQL/MariaDB**
 
-Die Lizenzbestimmungen finden Sie in der Datei `docs/Lizenz.deutsch.txt`
+### Quick Start
 
-Wenn Sie 4images für nicht private Zwecke nutzen möchten oder Sie den Copyright-Vermerk im Fuß der Galerie entfernen möchten, erwerben Sie bitte hier die entsprechende Lizenz: https://www.4homepages.de/download-4images/
+1. **Repository klonen:**
+   ```bash
+   git clone https://github.com/SunnyCueq/4images.git
+   cd 4images
+   ```
 
-## Installation
+2. **Konfiguration:**
+   - Kopiere `config.php.dist` → `config.php`
+   - Passe Datenbank-Zugangsdaten an
 
-Eine Installationsanleitung finden Sie in der Datei `docs/Installation.deutsch.txt`
+3. **Installation:**
+   - Führe die Installation über `/admin/` aus
+   - Folge den Anweisungen in `docs/Installation.deutsch.txt`
 
-## FAQ
+4. **Fertig!** Das modernisierte Template ist bereits aktiv.
 
-Bei Problemen kontaktieren Sie bitte den FAQ-Bereich in unserem Support-Forum: https://www.4homepages.de/forum/index.php?board=14.0
+---
 
-## Download
+## 🛠️ Tech Stack
 
-Die neueste Version von 4images kann unter https://www.4homepages.de heruntergeladen werden.
+| Komponente | Technologie |
+|-----------|-------------|
+| **Frontend** | Tailwind CSS 3.x (Play CDN) |
+| **Icons** | FontAwesome 7.0.0 Free |
+| **Backend** | PHP 8.4+ (geplant) |
+| **Datenbank** | MySQL 5.7+ / MariaDB 10.3+ |
+| **JavaScript** | Vanilla ES6+ |
+| **Templates** | 4images Template-System (.html) |
 
-## Support
+**Keine Build-Tools nötig!** Alle Assets werden via CDN geladen.
 
-Das Supportforum finden Sie unter https://www.4homepages.de/forum
+---
+
+## 📚 Dokumentation
+
+- **[CLAUDE.md](CLAUDE.md)** - Entwicklungs-Richtlinien und Modernisierungs-Philosophie
+- **[docs/](docs/)** - Original 4images Dokumentation (Lizenz, Installation, etc.)
+
+---
+
+## 🎨 Design-Philosophie
+
+**1:1 Modernisierung** bedeutet:
+- ✅ Original-Layout beibehalten (Spalten, Struktur, Positionen)
+- ✅ Original-Farben verwenden (#004C75 Blau, #fbbf24 Gelb modernisiert)
+- ✅ Tables durch `<div>` + Grid/Flexbox ersetzen
+- ✅ GIF-Borders durch CSS-Borders/Shadows ersetzen
+- ✅ Responsive machen (max-w-6xl Container, Mobile-First)
+- ❌ **KEIN** neues Design erfinden!
+
+---
+
+## 📄 Lizenz
+
+Bitte beachten Sie die Lizenzbedingungen in `docs/Lizenz.deutsch.txt` bzw. `docs/Licence.english.txt`.
+
+**Wichtig:**
+- Für **private Nutzung** ist 4images kostenlos
+- Für **kommerzielle/nicht-private Nutzung** oder zum Entfernen des Copyright-Vermerks benötigen Sie eine Lizenz: https://www.4homepages.de/download-4images/
+
+---
+
+## 🔗 Original 4images Links
+
+- **Download:** https://www.4homepages.de
+- **Support Forum:** https://www.4homepages.de/forum
+- **FAQ:** https://www.4homepages.de/forum/index.php?board=14.0
+
+---
+
+## 🤝 Contributing
+
+Dieses Projekt ist ein privater Fork zur Modernisierung. Contributions sind willkommen:
+
+1. Fork das Projekt
+2. Erstelle einen Feature-Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit deine Änderungen (`git commit -m 'Add some AmazingFeature'`)
+4. Push zum Branch (`git push origin feature/AmazingFeature`)
+5. Öffne einen Pull Request
+
+**Bitte beachte:** Alle Änderungen müssen die 1:1 Modernisierungs-Philosophie respektieren (siehe CLAUDE.md).
+
+---
+
+## 📝 Changelog
+
+### [Unreleased]
+- ✅ Header, Footer, Home modernisiert mit Tailwind CSS
+- ✅ Responsive Design implementiert (Mobile-First)
+- ✅ Repository aufgeräumt (Dev-Dateien entfernt)
+
+### [v1.10.0] - Original
+- Basis: 4images v1.10.0 von 4homepages.de
+
+---
+
+**Entwickelt mit ❤️ unter Beibehaltung des klassischen 4images Designs**
