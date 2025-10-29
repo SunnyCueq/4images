@@ -1,151 +1,108 @@
 {header}
 
-<!-- Main Container: 640px centered -->
-<div class="max-w-[640px] mx-auto">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-sm text-gray-600 mb-6">
+  <a href="{url_home}" class="hover:text-brand-blue transition">
+    <i class="fa-solid fa-home"></i>
+  </a>
+  <i class="fa-solid fa-chevron-right text-xs"></i>
+  <span class="text-gray-900 font-medium">{clickstream}</span>
+</nav>
 
-  <!-- Header Section -->
-  <div class="tablehead">
-    <!-- Header Top Border Images -->
-    <div class="flex">
-      <img src="{template_url}/images/header_top_left.gif" width="6" height="6" alt="" class="flex-none" />
-      <div class="flex-1 h-[6px]">
-        <img src="{template_url}/images/header_top.gif" class="w-full h-full" alt="" />
+<!-- Main Layout: Sidebar + Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+  <!-- Sidebar (3 columns on desktop, full width on mobile) -->
+  <aside class="lg:col-span-3 space-y-6">
+
+    <!-- User Box Card -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="bg-brand-blue text-white px-4 py-3 font-semibold text-sm flex items-center gap-2">
+        <i class="fa-solid fa-user"></i>
+        {lang_registered_user}
       </div>
-      <img src="{template_url}/images/header_top_right.gif" width="6" height="6" alt="" class="flex-none" />
-    </div>
-
-    <!-- Header Content: Logo + Search -->
-    <div class="flex items-center">
-      <img src="{template_url}/images/header_left.gif" width="6" height="60" alt="" class="flex-none" />
-
-      <div class="flex-1">
-        <img src="{template_url}/images/header_logo.gif" width="405" height="60" alt="" />
-      </div>
-
-      <div class="w-[225px] text-right px-2">
-        <form method="post" action="{url_search}" class="inline-block">
-          <div class="flex gap-1 mb-1">
-            <input type="text" name="search_keywords" size="15" class="searchinput px-2 py-1 border border-gray-300 rounded text-sm" />
-            <input type="submit" value="{lang_search}" class="button px-3 py-1 bg-brand-blue text-white rounded text-sm cursor-pointer hover:bg-brand-blue-light transition" name="submit" />
-          </div>
-          <div>
-            <a href="{url_search}" class="smalltext text-xs hover:underline">{lang_advanced_search}</a>
-          </div>
-        </form>
-      </div>
-
-      <img src="{template_url}/images/header_right.gif" width="6" height="60" alt="" class="flex-none" />
-    </div>
-  </div>
-
-  <!-- Border -->
-  <div class="border border-brand-border">
-
-    <!-- Navbar: Yellow breadcrumb bar -->
-    <div class="navbar bg-brand-yellow h-[23px] flex items-center px-2 justify-between text-sm">
-      <div class="clickstream">{clickstream}</div>
-      <div class="flex gap-2">
-        <a href="{url_top_images}" class="font-bold hover:underline">{lang_top_images}</a>
-        <a href="{url_new_images}" class="font-bold hover:underline">{lang_new_images}</a>
+      <div class="p-4 text-sm">
+        {user_box}
       </div>
     </div>
 
-    <!-- Main Layout: Sidebar + Content -->
-    <div class="flex bg-white">
-
-      <!-- Sidebar: 150px fixed width -->
-      <div class="w-[150px] flex-none bg-brand-gray">
-
-        <!-- User Box -->
-        <div class="mb-1">
-          <div class="head2 bg-brand-blue text-white h-[20px] px-1 flex items-center text-sm">
-            {lang_registered_user}
-          </div>
-          <div class="h-px bg-brand-border"></div>
-          <div class="row1 bg-brand-gray-light text-center py-2">
-            {user_box}
-          </div>
-          <div class="h-px bg-brand-border"></div>
-        </div>
-
-        <!-- Random Image -->
-        {if random_image}
-        <div>
-          <div class="head2 bg-brand-blue text-white h-[20px] px-1 flex items-center text-sm">
-            {lang_random_image}
-          </div>
-          <div class="h-px bg-brand-border"></div>
-          <div class="row1 bg-brand-gray-light text-center py-4">
-            {random_image}
-          </div>
-          <div class="h-px bg-brand-border"></div>
-        </div>
-        {endif random_image}
+    <!-- Random Image Card -->
+    {if random_image}
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="bg-brand-blue text-white px-4 py-3 font-semibold text-sm flex items-center gap-2">
+        <i class="fa-solid fa-shuffle"></i>
+        {lang_random_image}
       </div>
+      <div class="p-4">
+        {random_image}
+      </div>
+    </div>
+    {endif random_image}
 
-      <!-- Vertical Divider -->
-      <div class="w-px bg-brand-border"></div>
+  </aside>
 
-      <!-- Spacer -->
-      <div class="w-[18px]"></div>
+  <!-- Main Content (9 columns on desktop, full width on mobile) -->
+  <section class="lg:col-span-9">
 
-      <!-- Main Content Area -->
-      <div class="flex-1 py-4 pr-[19px]">
+    <!-- Page Title -->
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">{site_name}</h1>
+    <hr class="border-t border-gray-300 mb-6" />
 
-        <!-- Site Name -->
-        <h1 class="title text-2xl font-bold text-brand-blue-light mb-2">{site_name}</h1>
-        <hr class="border-t border-gray-300 mb-4" />
+    <!-- Message -->
+    {if msg}
+    <div class="bg-blue-50 border-l-4 border-blue-500 text-blue-900 p-4 mb-6 rounded">
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-info-circle text-blue-500 text-xl flex-shrink-0 mt-0.5"></i>
+        <div class="font-medium">{msg}</div>
+      </div>
+    </div>
+    {endif msg}
 
-        <!-- Categories -->
-        {if categories}
-        <div class="mb-4">
-          <div class="head1 bg-brand-blue">
-            <div class="text-white p-3 font-bold">{lang_categories}</div>
-            <div class="row2 bg-brand-gray p-3">
-              {categories}
-            </div>
-          </div>
-        </div>
-        {endif categories}
+    <!-- Categories Section -->
+    {if categories}
+    <div class="bg-white rounded-lg shadow mb-6 overflow-hidden">
+      <div class="bg-brand-blue text-white px-6 py-4 font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-folder-open"></i>
+        {lang_categories}
+      </div>
+      <div class="p-6">
+        {categories}
+      </div>
+    </div>
+    {endif categories}
 
-        <!-- Site Stats -->
-        <div class="mb-4">{lang_site_stats}</div>
+    <!-- Site Stats -->
+    <div class="text-gray-600 mb-6">
+      {lang_site_stats}
+    </div>
 
-        <!-- Message -->
-        {if msg}
-        <div class="font-bold mb-4">{msg}</div>
-        {endif msg}
-
-        <!-- New Images -->
-        <div class="max-w-[450px] mb-4">
-          <div class="head1 bg-brand-blue">
-            <div class="text-white p-4 font-bold">{lang_new_images}</div>
-            <div>{new_images}</div>
-          </div>
-        </div>
-
-        <!-- Who's Online -->
-        <div class="mb-4">{whos_online}</div>
-
-        <!-- Dropdowns -->
-        <div class="flex justify-between items-center">
-          <div>{category_dropdown_form}</div>
-          <div>{setperpage_dropdown_form}</div>
-        </div>
-
-        <!-- Bottom Spacer -->
-        <div class="h-8"></div>
+    <!-- New Images Section -->
+    <div class="bg-white rounded-lg shadow mb-6 overflow-hidden">
+      <div class="bg-brand-blue text-white px-6 py-4 font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-sparkles"></i>
+        {lang_new_images}
+      </div>
+      <div class="p-6">
+        {new_images}
       </div>
     </div>
 
-  </div>
+    <!-- Who's Online -->
+    <div class="mb-6">
+      {whos_online}
+    </div>
 
-  <!-- Footer -->
-  <div class="tablebottom flex">
-    <img src="{template_url}/images/footer_left.gif" width="6" height="19" alt="" class="flex-none" />
-    <div class="flex-1"></div>
-    <img src="{template_url}/images/footer_right.gif" width="6" height="19" alt="" class="flex-none" />
-  </div>
+    <!-- Filters: Category Dropdown + Items Per Page -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gray-50 p-4 rounded-lg">
+      <div class="w-full sm:w-auto">
+        {category_dropdown_form}
+      </div>
+      <div class="w-full sm:w-auto">
+        {setperpage_dropdown_form}
+      </div>
+    </div>
+
+  </section>
 
 </div>
 

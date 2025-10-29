@@ -1,31 +1,148 @@
-{if has_rss}
-<p align="center">
-  <a href="{rss_url}"><img src="{template_url}/images/rss.gif" border="0" width="15" height="15" alt="{rss_title}" /></a>
-</p>
-{endif has_rss}
+</main>
+<!-- End Main Content -->
 
-{cp_link}
-<!--
-    Bitte beachten Sie, dass der folgende Copyrighthinweis
-    auf JEDER Seite die von 4images ausgegeben wird sichtbar 
-    sein MUSS. Schriftart, Farbe etc. dürfen an die eigene 
-    Website angepasst werden, der Hinweis darf aber unter 
-    KEINEN Umständen entfernt oder unsichtbar gemacht werden.
-    Auch muss der Hyperlink zu http://www.4homepages.de intakt 
-    bleiben. Diese Bedingung ist Bestandteil der Lizenz dieser 
-    Software. Lesen Sie die Lizenz.txt Datei für weitere 
-    Informationen.
-	
-    Please note that the following copyright notice
-    MUST be displayed on each and every page output
-    by 4images. You may alter the font, colour etc. but
-    you CANNOT remove it, nor change it so that it be,
-    to all intents and purposes, invisible. The hyperlink 
-    http://www.4homepages.de must also remain intact. 
-    These conditions are part of the licence this software 
-    is released under. See the Licence.txt file for 
-    more information.
-// -->
-{copyright}
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-400 mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Footer Content Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+      <!-- About Section -->
+      <div>
+        <h4 class="text-white font-semibold text-lg mb-4">{site_name}</h4>
+        <p class="text-sm leading-relaxed">
+          A modern image gallery powered by 4images.
+        </p>
+        {if has_rss}
+        <div class="mt-4">
+          <a href="{rss_url}" class="inline-flex items-center gap-2 text-sm hover:text-white transition">
+            <i class="fa-solid fa-rss text-orange-500"></i>
+            RSS Feed
+          </a>
+        </div>
+        {endif has_rss}
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold text-lg mb-4">{lang_quick_links}</h4>
+        <ul class="text-sm space-y-2">
+          <li>
+            <a href="{url_home}" class="hover:text-white transition flex items-center gap-2">
+              <i class="fa-solid fa-home text-xs"></i> {lang_home}
+            </a>
+          </li>
+          <li>
+            <a href="{url_top_images}" class="hover:text-white transition flex items-center gap-2">
+              <i class="fa-solid fa-star text-xs"></i> {lang_top_images}
+            </a>
+          </li>
+          <li>
+            <a href="{url_new_images}" class="hover:text-white transition flex items-center gap-2">
+              <i class="fa-solid fa-clock text-xs"></i> {lang_new_images}
+            </a>
+          </li>
+          <li>
+            <a href="{url_search}" class="hover:text-white transition flex items-center gap-2">
+              <i class="fa-solid fa-search text-xs"></i> {lang_advanced_search}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- User Links -->
+      <div>
+        <h4 class="text-white font-semibold text-lg mb-4">{lang_user_area}</h4>
+        <ul class="text-sm space-y-2">
+          <li>
+            <a href="{url_register}" class="hover:text-white transition flex items-center gap-2">
+              <i class="fa-solid fa-user-plus text-xs"></i> {lang_register}
+            </a>
+          </li>
+          <li>
+            <a href="{url_member}" class="hover:text-white transition flex items-center gap-2">
+              <i class="fa-solid fa-user text-xs"></i> {lang_control_panel}
+            </a>
+          </li>
+          <li>
+            <a href="{url_lightbox}" class="hover:text-white transition flex items-center gap-2">
+              <i class="fa-solid fa-lightbulb text-xs"></i> {lang_lightbox}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar: Copyright & Admin Link -->
+    <div class="border-t border-gray-800 pt-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+
+        <!-- Copyright (REQUIRED by 4images license) -->
+        <div class="text-center md:text-left">
+          {cp_link}
+          <!--
+              Bitte beachten Sie, dass der folgende Copyrighthinweis
+              auf JEDER Seite die von 4images ausgegeben wird sichtbar
+              sein MUSS. Schriftart, Farbe etc. dürfen an die eigene
+              Website angepasst werden, der Hinweis darf aber unter
+              KEINEN Umständen entfernt oder unsichtbar gemacht werden.
+              Auch muss der Hyperlink zu http://www.4homepages.de intakt
+              bleiben. Diese Bedingung ist Bestandteil der Lizenz dieser
+              Software. Lesen Sie die Lizenz.txt Datei für weitere
+              Informationen.
+
+              Please note that the following copyright notice
+              MUST be displayed on each and every page output
+              by 4images. You may alter the font, colour etc. but
+              you CANNOT remove it, nor change it so that it be,
+              to all intents and purposes, invisible. The hyperlink
+              http://www.4homepages.de must also remain intact.
+              These conditions are part of the licence this software
+              is released under. See the Licence.txt file for
+              more information.
+          // -->
+          {copyright}
+        </div>
+
+        <!-- Admin Link (if logged in) -->
+        <div>
+          {if is_admin}
+          <a href="{url_admin}" class="text-brand-yellow hover:text-white transition flex items-center gap-2">
+            <i class="fa-solid fa-cog"></i> Admin Panel
+          </a>
+          {endif is_admin}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Mobile Menu Toggle Script -->
+<script>
+  // Mobile Menu Toggle
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuToggle && mobileMenu) {
+    mobileMenuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+
+      // Toggle icon
+      const icon = mobileMenuToggle.querySelector('i');
+      if (icon) {
+        if (mobileMenu.classList.contains('hidden')) {
+          icon.className = 'fa-solid fa-bars text-2xl text-gray-700';
+        } else {
+          icon.className = 'fa-solid fa-times text-2xl text-gray-700';
+        }
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
