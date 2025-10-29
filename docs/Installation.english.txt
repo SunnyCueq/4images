@@ -1,15 +1,22 @@
   ==========================================================
                   4images Installation
+           (Modernized Version with Tailwind CSS)
   ==========================================================
 
   ----------------------------------------------------------
   System Requirements:
   ----------------------------------------------------------
   - A webserver or web hosting account (Linux/Apache recommended).
-  - PHP version 5.2 or higher (we recommend to use always the latest stable version).
+  - PHP version 7.4 or higher (Recommended: PHP 8.1+, PHP 8.4 planned).
     To ensure that 4images is functioning properly, "safe_mode" should be disabled
     ("safe_mode = off" in your php.ini).
-  - MySQL version 5.1 up to 5.7. MySQL version 8 is currently not supported.
+  - MySQL version 5.7+ or MariaDB 10.3+
+
+  NEW in this modernized version:
+  - Tailwind CSS and FontAwesome automatically loaded via CDN
+  - NO build tools or npm required!
+  - Responsive design for mobile, tablet and desktop
+  - Modern HTML5 structure instead of outdated table layouts
 
   Optional:
   - In order to make thumbnails and reduced size images you need PHP compiled with
@@ -47,39 +54,25 @@
      chmod 777 (drwxrwxrwx) : data/thumbnails
      chmod 777 (drwxrwxrwx) : data/tmp_media
      chmod 777 (drwxrwxrwx) : data/tmp_thumbnails
-     chmod 777 (drwxrwxrwx) : templates
-     chmod 777 (drwxrwxrwx) : templates/default
-     chmod 777 (drwxrwxrwx) : templates/default/media
-     chmod 777 (drwxrwxrwx) : templates/default_960px
-     chmod 777 (drwxrwxrwx) : templates/default_960px/media
-     chmod 777 (drwxrwxrwx) : templates/default_full
-     chmod 777 (drwxrwxrwx) : templates/default_full/media          
 
-     Set permissions for the following files:
-
-     chmod 666 (-rw-rw-rw-) : all files in the directory "templates/default"
-     chmod 666 (-rw-rw-rw-) : all files in the directory "templates/default/media"
-     chmod 666 (-rw-rw-rw-) : all files in the directory "templates/default_960px"
-     chmod 666 (-rw-rw-rw-) : all files in the directory "templates/default_960px/media"
-     chmod 666 (-rw-rw-rw-) : all files in the directory "templates/default_full"
-     chmod 666 (-rw-rw-rw-) : all files in the directory "templates/default_full/media"          
+     IMPORTANT: templates/ directory does NOT require 777 permissions anymore!
+     The modernized templates are not modified at runtime.
 
      You can do this with FTP programs such as Filezilla, CuteFTP or WS_FTP.
 
   6. You must ensure you remove "install.php" and any "update_*_to_*.php" files.
-     Additionally you may delete all files in "data/database/default" and
-     the "docs" directory if you wish.
+     Additionally you may delete all files in "data/database/default" if you wish.
 
   7. At this point your basic installation is complete. Please be sure to check the
      General Configuration details and make any required changes in your Control Panel.
 
   8. Since version 1.7.1, 4images has an internal caching system.
      Please read docs/Cache.english.txt for further informations.
-     
+
      Since version 1.7.9, 4images includes an automatic protection against Cross-Site
      Request Forgery (CSRF) attacks.
      Please read docs/CSRF.english.txt for further informations.
-     
+
      Since version 1.7.10 it is possible to define how the fields should be index
      for the search. The settings can be changed in includes/search_utils.php
      There are 3 types:
@@ -89,3 +82,39 @@
      "phrase":   Content will NOT be split up. Words will NOT be normalized and cleaned up.
 
      The values can also be set in the config.php.
+
+
+  ----------------------------------------------------------
+  Modernization Notes (NEW in this fork):
+  ----------------------------------------------------------
+
+  This version includes the following modernizations:
+
+  ✅ FRONTEND MODERNIZATION:
+     - Tailwind CSS 3.x via Play CDN (no npm/build process required!)
+     - FontAwesome 7.0 icons via CDN
+     - Responsive design: Mobile-first approach
+     - Modern HTML5 structure (Flexbox/Grid instead of tables)
+     - Optimized color palette (#004C75 blue, #fbbf24 yellow)
+     - Sticky header for better navigation
+     - Hamburger menu for mobile devices
+
+  ✅ ALREADY MODERNIZED:
+     - templates/default/header.html
+     - templates/default/footer.html
+     - templates/default/home.html
+
+  🔜 WORK IN PROGRESS:
+     - Additional templates (details.html, categories.html, search.html etc.)
+     - PHP 8.4+ compatibility
+     - Admin panel modernization
+
+  TECHNICAL DETAILS:
+  - All CSS assets loaded via CDN (cdn.tailwindcss.com, cdnjs.cloudflare.com)
+  - No additional files required on server
+  - Works on any standard web hosting with PHP 7.4+
+  - Browser compatibility: All modern browsers (Chrome, Firefox, Safari, Edge)
+
+  For more information about the modernization, please see:
+  - README.md (Project overview)
+  - docs/MODERNIZATION.english.txt (Modernization details)

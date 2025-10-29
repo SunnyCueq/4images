@@ -1,0 +1,443 @@
+  ==========================================================
+         4images Modernization - Technical Details
+  ==========================================================
+
+  Created: 2025-10-29
+  Fork of: 4images v1.10.0 (https://www.4homepages.de)
+  GitHub: https://github.com/SunnyCueq/4images
+
+  ==========================================================
+  1. OVERVIEW
+  ==========================================================
+
+  This project modernizes the classic 4images v1.10 gallery
+  while preserving the original design 1:1.
+
+  IMPORTANT: This is NOT a redesign! The visual layout remains
+  identical - only the code is being modernized.
+
+
+  ==========================================================
+  2. MODERNIZATION PHILOSOPHY
+  ==========================================================
+
+  "1:1 Modernization" means:
+
+  ✅ KEEP:
+     - Original layout (column count, structure, positions)
+     - Color scheme (only slightly optimized)
+     - All functions (upload, categories, gallery, admin)
+     - License terms (4images copyright in footer)
+
+  ✅ MODERNIZE:
+     - Table layouts → Flexbox/Grid (CSS)
+     - Inline styles → Tailwind CSS classes
+     - Fixed width → Responsive design
+     - GIF borders → CSS borders/shadows
+     - Old icons → FontAwesome 7.0
+     - PHP 5.x → PHP 8.4+ (planned)
+
+  ❌ DO NOT CHANGE:
+     - Visual appearance (must look identical!)
+     - Functional logic (remains the same)
+
+
+  ==========================================================
+  3. TECH STACK
+  ==========================================================
+
+  FRONTEND:
+  ---------
+  - Tailwind CSS 3.x (via Play CDN)
+    URL: https://cdn.tailwindcss.com
+    → NO npm, NO build process!
+
+  - FontAwesome 7.0.0 Free (via CDN)
+    URL: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css
+    → Icons for navigation, buttons, etc.
+
+  - Vanilla JavaScript ES6+
+    → No jQuery, no frameworks
+    → Only for mobile menu toggle
+
+  BACKEND:
+  --------
+  - PHP 7.4+ (current)
+  - PHP 8.4+ (planned for Task 1)
+  - MySQL 5.7+ / MariaDB 10.3+
+  - Original 4images template system (.html files)
+
+  RESPONSIVE DESIGN:
+  ------------------
+  - Mobile: < 640px
+  - Tablet: 640px - 1024px
+  - Desktop: > 1024px
+  - Max-Width: 1152px (max-w-6xl container)
+  - Approach: Mobile-first
+
+
+  ==========================================================
+  4. COLORS & DESIGN SYSTEM
+  ==========================================================
+
+  PRIMARY COLORS:
+  ---------------
+  Brand Blue:       #004C75  (Original retained)
+  Brand Blue Dark:  #003d5c  (Hover states, new)
+  Brand Blue Light: #0F5475  (Secondary, new)
+  Brand Yellow:     #fbbf24  (Modernized from #fcdc43)
+
+  GRAY TONES (Tailwind standard):
+  --------------------------------
+  Gray 50:   #f9fafb  (Backgrounds)
+  Gray 100:  #f3f4f6
+  Gray 200:  #e5e7eb  (Borders)
+  Gray 300:  #d1d5db
+  Gray 700:  #374151  (Text)
+  Gray 900:  #111827  (Footer, primary text)
+
+  TAILWIND CONFIG:
+  ----------------
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            blue: '#004C75',
+            'blue-dark': '#003d5c',
+            'blue-light': '#0F5475',
+            yellow: '#fbbf24'
+          }
+        },
+        fontFamily: {
+          sans: ['-apple-system', 'BlinkMacSystemFont',
+                 '"Segoe UI"', 'Roboto', 'Arial', 'sans-serif']
+        },
+        maxWidth: {
+          'content': '1152px'
+        }
+      }
+    }
+  }
+
+
+  ==========================================================
+  5. LAYOUT STRUCTURE
+  ==========================================================
+
+  HEADER (header.html):
+  ---------------------
+  - Sticky header (stays on top when scrolling)
+  - Logo + site name
+  - Desktop: Horizontal navigation
+  - Mobile: Hamburger menu
+  - Search field (visible on desktop, in menu on mobile)
+
+  FOOTER (footer.html):
+  ---------------------
+  - 3-column grid (desktop)
+  - 1-column (mobile)
+  - Columns: About, Quick Links, User Area
+  - Copyright notice (REQUIRED by license!)
+
+  MAIN LAYOUT (home.html example):
+  ---------------------------------
+  Desktop:
+    [ Sidebar (3/12) | Content (9/12) ]
+
+  Mobile:
+    [ Sidebar (full-width) ]
+    [ Content (full-width) ]
+
+  Implemented with CSS Grid:
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <aside class="lg:col-span-3">...</aside>
+      <section class="lg:col-span-9">...</section>
+    </div>
+
+
+  ==========================================================
+  6. COMPONENTS
+  ==========================================================
+
+  CARDS:
+  ------
+  Usage: Categories, images, sidebar boxes
+
+  <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-brand-blue text-white px-4 py-3">
+      Header
+    </div>
+    <div class="p-4">
+      Content
+    </div>
+  </div>
+
+  BUTTONS:
+  --------
+  Primary: bg-brand-blue hover:bg-brand-blue-dark text-white
+  Secondary: bg-gray-200 hover:bg-gray-300 text-gray-700
+
+  NAVIGATION LINKS:
+  -----------------
+  Desktop: hover:text-brand-blue transition
+  Mobile: block py-2 border-b border-gray-200
+
+
+  ==========================================================
+  7. ALREADY MODERNIZED
+  ==========================================================
+
+  ✅ templates/default/header.html
+     - Tailwind CSS Play CDN integrated
+     - Responsive navigation with hamburger menu
+     - Sticky header
+     - Mobile-first structure
+
+  ✅ templates/default/footer.html
+     - 3-column grid layout
+     - Responsive (1-column on mobile)
+     - Mobile menu toggle JavaScript
+
+  ✅ templates/default/home.html
+     - Table layout → CSS Grid replaced
+     - Sidebar + content responsive
+     - Cards with shadows
+     - Breadcrumb navigation
+
+
+  ==========================================================
+  8. STILL TO BE MODERNIZED
+  ==========================================================
+
+  HIGH PRIORITY:
+  --------------
+  🔜 templates/default/details.html      - Image detail page
+  🔜 templates/default/categories.html   - Category overview
+  🔜 templates/default/search.html       - Search page
+  🔜 templates/default/member.html       - User area
+
+  MEDIUM PRIORITY:
+  ----------------
+  🔜 templates/default/register.html     - Registration
+  🔜 templates/default/lightbox.html     - Lightbox
+  🔜 templates/default/postcards.html    - Postcards
+  🔜 templates/default/top.html          - Top lists
+
+  LOW PRIORITY:
+  -------------
+  🔜 Approx. 30 additional templates
+  🔜 Admin area (/admin/)
+
+
+  ==========================================================
+  9. PHP 8.4+ COMPATIBILITY (Task 1 - PLANNED)
+  ==========================================================
+
+  REPLACE DEPRECATED CODE:
+  ------------------------
+  - mysql_* functions → PDO with prepared statements
+  - each() → foreach
+  - Old switch structures → match (where appropriate)
+  - create_function() → Closures
+
+  SECURITY UPDATES:
+  -----------------
+  - Prepared statements for all DB queries
+  - htmlspecialchars() for all outputs
+  - Modernize CSRF protection
+  - Strengthen XSS protection
+
+
+  ==========================================================
+  10. DEPLOYMENT
+  ==========================================================
+
+  REQUIREMENTS:
+  -------------
+  - Web hosting with PHP 7.4+
+  - MySQL 5.7+ or MariaDB 10.3+
+  - NO special Node.js/npm requirements!
+  - NO build processes!
+
+  WHAT GETS UPLOADED:
+  -------------------
+  - All PHP files (as before)
+  - Modernized .html templates
+  - Original data/, includes/, lang/ folders
+  - config.php (created during installation)
+
+  WHAT DOES NOT GET UPLOADED:
+  ----------------------------
+  - .vscode/, .claude/ (dev tools)
+  - CLAUDE.md, REDESIGN_PLAN.md (development docs)
+  - .git/ (Git history)
+  - Dockerfile.dist, docker-compose.yml.dist
+
+  CDN CONNECTIONS:
+  ----------------
+  Server must allow outgoing HTTPS connections to:
+  - cdn.tailwindcss.com (Tailwind CSS)
+  - cdnjs.cloudflare.com (FontAwesome)
+
+  If CDN access is not possible:
+  → Tailwind CSS and FontAwesome can be hosted locally
+  → See https://tailwindcss.com/docs/installation
+
+
+  ==========================================================
+  11. BROWSER COMPATIBILITY
+  ==========================================================
+
+  SUPPORTED:
+  ----------
+  - Chrome 90+
+  - Firefox 88+
+  - Safari 14+
+  - Edge 90+
+  - Mobile Safari (iOS 14+)
+  - Chrome Mobile (Android 90+)
+
+  NOT SUPPORTED:
+  --------------
+  - Internet Explorer (all versions)
+  - Very old browsers without CSS Grid support
+
+
+  ==========================================================
+  12. PERFORMANCE
+  ==========================================================
+
+  ADVANTAGES:
+  -----------
+  + CDN caching for Tailwind/FontAwesome
+  + Less custom CSS → smaller load times
+  + System fonts → no web font download
+  + No GIF borders → fewer HTTP requests
+
+  DISADVANTAGES:
+  --------------
+  - Initial CDN connection required
+  - Tailwind Play CDN larger than custom CSS
+    (For production: Tailwind CLI with purge recommended)
+
+
+  ==========================================================
+  13. LICENSE & COPYRIGHT
+  ==========================================================
+
+  ORIGINAL 4IMAGES:
+  -----------------
+  - Copyright: 4homepages.de
+  - License: See docs/Licence.english.txt
+  - Private use: Free
+  - Commercial use: License required
+  - Copyright notice in footer: MANDATORY!
+
+  MODERNIZATIONS (THIS FORK):
+  ----------------------------
+  - Fork created by: SunnyCueq
+  - GitHub: https://github.com/SunnyCueq/4images
+  - Changes: Frontend/code modernization only
+  - License: Remains under original 4images license
+  - No changes to license terms!
+
+
+  ==========================================================
+  14. SUPPORT & RESOURCES
+  ==========================================================
+
+  ORIGINAL 4IMAGES:
+  -----------------
+  Website:      https://www.4homepages.de
+  Forum:        https://www.4homepages.de/forum
+  FAQ:          https://www.4homepages.de/forum/index.php?board=14.0
+
+  THIS FORK:
+  ----------
+  GitHub Repo:  https://github.com/SunnyCueq/4images
+  Issues:       https://github.com/SunnyCueq/4images/issues
+  README:       README.md in repository
+
+  DOCUMENTATION:
+  --------------
+  - CLAUDE.md (local, not in Git)
+    → Development guidelines
+
+  - docs/REDESIGN_PLAN.md (local, not in Git)
+    → Detailed design system and components
+
+  - README.md
+    → Project overview and quick start
+
+  - docs/Installation.english.txt
+    → Installation guide (updated)
+
+
+  ==========================================================
+  15. LESSONS LEARNED
+  ==========================================================
+
+  1. Tables → Divs:
+     Always replace old <table> structures with modern CSS Grid/Flexbox
+     for better responsiveness.
+
+  2. Modernize colors:
+     Yellow from #fcdc43 → #fbbf24 (less bright, more modern)
+
+  3. Responsive container:
+     max-w-6xl (1152px) instead of fixed width for better UX
+
+  4. Remove GIF borders:
+     Replace all border*.gif with CSS borders/shadows
+
+  5. Sticky header:
+     Header with sticky top-0 z-50 for better navigation
+
+  6. Mobile menu:
+     Hamburger menu with vanilla JS toggle (no jQuery)
+
+  7. Tailwind nested config:
+     brand.blue instead of brand-blue for better organization
+
+  8. System fonts:
+     Native font stack for faster loading
+
+  9. Git cleanup:
+     Exclude dev files via .gitignore, don't rewrite history!
+
+  10. Documentation:
+      Always keep CLAUDE.md, README.md and docs/ up to date
+
+
+  ==========================================================
+  16. NEXT STEPS
+  ==========================================================
+
+  SHORT-TERM (Continue Task 2):
+  ------------------------------
+  1. Modernize details.html
+  2. Modernize categories.html
+  3. Modernize search.html
+  4. Modernize member.html
+
+  MEDIUM-TERM:
+  ------------
+  1. Task 1: Establish PHP 8.4+ compatibility
+  2. Modernize remaining templates
+  3. E2E tests on local XAMPP/PHP server
+
+  LONG-TERM:
+  ----------
+  1. Task 3: Modernize admin area
+  2. Task 4: Final checks & deployment preparation
+  3. Production-optimized Tailwind CSS (with purge)
+  4. Performance optimizations
+
+
+  ==========================================================
+
+  Status: 2025-10-29
+  Version: Modernized fork based on 4images v1.10.0
+
+  ==========================================================
