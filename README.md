@@ -1,44 +1,30 @@
-# 4images - Modern Image Gallery Management System
+# 4images - Modern Image Gallery System
 
 **Fork von [4images v1.10](https://www.4homepages.de)** - Modernisiert mit Tailwind CSS, PHP 8.4+ und responsivem Design
 
 ---
 
-## 🎯 Über diesen Fork
+## Über diesen Fork
 
 Dieses Projekt modernisiert die klassische 4images v1.10 Galerie mit moderner Web-Technologie, während das Original-Design 1:1 erhalten bleibt:
 
-- ✅ **Tailwind CSS** statt veralteter Table-Layouts und Inline-Styles
-- ✅ **Responsive Design** (Mobile-First) statt fixed-width
-- ✅ **PHP 8.4+ kompatibel** (geplant)
-- ✅ **Moderne HTML5-Struktur** (Flexbox/Grid statt Tables)
-- ✅ **FontAwesome 7.0** Icons
-- ✅ **CDN-basiert** - Keine Build-Tools nötig!
+- **Tailwind CSS** statt veralteter Table-Layouts und Inline-Styles
+- **Responsive Design** (Mobile-First) statt fixed-width
+- **PHP 8.4+ kompatibel** (geplant)
+- **Moderne HTML5-Struktur** (Flexbox/Grid statt Tables)
+- **FontAwesome 7.0** Icons
+- **CDN-basiert** - Keine Build-Tools nötig!
 
 **Wichtig:** Visuell bleibt alles beim Original - nur der Code wird modernisiert!
 
 ---
 
-## 🚀 Was ist neu?
-
-### ✅ Bereits modernisiert (Task 2 - Teilweise):
-- **[header.html](templates/default/header.html)** - Sticky Header, responsive Navigation, Hamburger-Menu
-- **[footer.html](templates/default/footer.html)** - 3-Spalten Grid-Layout, moderne Struktur
-- **[home.html](templates/default/home.html)** - Responsive Grid (Sidebar + Content), Cards mit Shadows
-
-### 🔜 In Arbeit:
-- details.html, categories.html, search.html (weitere ~40 Templates)
-- PHP 8.4+ Kompatibilität (Task 1)
-- Admin-Bereich Modernisierung (Task 3)
-
----
-
-## 📦 Installation
+## Installation
 
 ### Voraussetzungen
 - **Webserver** (Apache/Nginx)
 - **PHP 7.4+** (aktuell), **PHP 8.4+** (nach Task 1)
-- **MySQL/MariaDB**
+- **MySQL/MariaDB 5.7+**
 
 ### Quick Start
 
@@ -60,13 +46,13 @@ Dieses Projekt modernisiert die klassische 4images v1.10 Galerie mit moderner We
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Komponente | Technologie |
 |-----------|-------------|
 | **Frontend** | Tailwind CSS 3.x (Play CDN) |
 | **Icons** | FontAwesome 7.0.0 Free |
-| **Backend** | PHP 8.4+ (geplant) |
+| **Backend** | PHP 7.4+ (8.4+ geplant) |
 | **Datenbank** | MySQL 5.7+ / MariaDB 10.3+ |
 | **JavaScript** | Vanilla ES6+ |
 | **Templates** | 4images Template-System (.html) |
@@ -75,26 +61,76 @@ Dieses Projekt modernisiert die klassische 4images v1.10 Galerie mit moderner We
 
 ---
 
-## 📚 Dokumentation
-
-- **[CLAUDE.md](CLAUDE.md)** - Entwicklungs-Richtlinien und Modernisierungs-Philosophie
-- **[docs/](docs/)** - Original 4images Dokumentation (Lizenz, Installation, etc.)
-
----
-
-## 🎨 Design-Philosophie
+## Design-Philosophie
 
 **1:1 Modernisierung** bedeutet:
-- ✅ Original-Layout beibehalten (Spalten, Struktur, Positionen)
-- ✅ Original-Farben verwenden (#004C75 Blau, #fbbf24 Gelb modernisiert)
-- ✅ Tables durch `<div>` + Grid/Flexbox ersetzen
-- ✅ GIF-Borders durch CSS-Borders/Shadows ersetzen
-- ✅ Responsive machen (max-w-6xl Container, Mobile-First)
-- ❌ **KEIN** neues Design erfinden!
+- Original-Layout beibehalten (Spalten, Struktur, Positionen)
+- Original-Farben verwenden (#004C75 Blau, #fbbf24 Gelb modernisiert)
+- Tables durch `<div>` + Grid/Flexbox ersetzen
+- GIF-Borders durch CSS-Borders/Shadows ersetzen
+- Responsive machen (max-w-6xl Container, Mobile-First)
+- **KEIN** neues Design erfinden!
 
 ---
 
-## 📄 Lizenz
+## Dokumentation
+
+- **[docs/Installation.deutsch.txt](docs/Installation.deutsch.txt)** - Installationsanleitung (DE)
+- **[docs/Installation.english.txt](docs/Installation.english.txt)** - Installation Guide (EN)
+- **[docs/MODERNIZATION.deutsch.txt](docs/MODERNIZATION.deutsch.txt)** - Modernisierungs-Dokumentation (DE)
+- **[docs/MODERNIZATION.english.txt](docs/MODERNIZATION.english.txt)** - Modernization Documentation (EN)
+- **[docs/](docs/)** - Weitere Dokumentation (Lizenz, FAQ, etc.)
+
+---
+
+## Changelog
+
+### [1.10.1] - 2025-01-XX (In Entwicklung)
+
+**Frontend-Modernisierung (KOMPLETT):**
+- Alle 38 Templates in `templates/default/` mit Tailwind CSS modernisiert
+- Kompletter Ersatz aller Table-Layouts durch CSS Grid/Flexbox
+- Responsive Design für alle Seiten (Mobile-First, max-w-6xl Container)
+- FontAwesome 7.0 Icons statt veralteter GIF-Grafiken
+- Moderne Form-Inputs mit Focus-States und Hover-Effekten
+
+**Entfernte Features:**
+- Postkarten-System entfernt (postcard_*.html)
+- Keine GIF-Border-Grafiken mehr - alles CSS
+- Docker-Support entfernt (für Webspace-Fokus)
+
+**Templates modernisiert:**
+- Hauptseiten: header, footer, home, details, categories, search, member, register, lightbox, top, error
+- Member-Bereich: uploadform, profile, editimage, editcomment, deleteimage, deletecomment, editprofile, lostpassword, mailform (9 Templates)
+- Bits/Widgets: comment_bit, thumbnail_bit, category_bit, exif_bit, iptc_bit, random_image, random_cat_image (7 Templates)
+- Formulare: comment_form, rate_form, search_form, register_form, register_signup, user_loginform, user_logininfo (7 Templates)
+- Utilities: bbcode, whos_online, category_dropdown_form, setperpage_dropdown_form (4 Templates)
+
+**Technische Verbesserungen:**
+- Code-Reduktion: 20-64% weniger Zeilen pro Template
+- Konsistente 3/9 Grid-Layout-Struktur (Sidebar/Content)
+- Tailwind CSS Play CDN Integration (keine Build-Tools)
+- System Font Stack für schnelleres Laden
+- Alternating row colors in Tabellen für bessere Lesbarkeit
+
+**Dokumentation:**
+- Umfangreiche Modernisierungs-Dokumentation (DE/EN) in docs/
+- Installation Guides aktualisiert mit Tailwind CSS Anforderungen
+- README.md überarbeitet
+
+**Geplant für nächste Releases:**
+- PHP 8.4+ Kompatibilität (PDO Migration, Deprecations)
+- Admin-Bereich Modernisierung
+- JavaScript Konsolidierung in externe Dateien
+
+### [1.10.0] - Original
+- Basis: 4images v1.10.0 von 4homepages.de
+
+Vollständiger Changelog: [docs/CHANGELOG.txt](docs/CHANGELOG.txt)
+
+---
+
+## Lizenz
 
 Bitte beachten Sie die Lizenzbedingungen in `docs/Lizenz.deutsch.txt` bzw. `docs/Licence.english.txt`.
 
@@ -104,7 +140,7 @@ Bitte beachten Sie die Lizenzbedingungen in `docs/Lizenz.deutsch.txt` bzw. `docs
 
 ---
 
-## 🔗 Original 4images Links
+## Original 4images Links
 
 - **Download:** https://www.4homepages.de
 - **Support Forum:** https://www.4homepages.de/forum
@@ -112,30 +148,18 @@ Bitte beachten Sie die Lizenzbedingungen in `docs/Lizenz.deutsch.txt` bzw. `docs
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Dieses Projekt ist ein privater Fork zur Modernisierung. Contributions sind willkommen:
+Contributions sind willkommen! Bitte beachte:
 
 1. Fork das Projekt
-2. Erstelle einen Feature-Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit deine Änderungen (`git commit -m 'Add some AmazingFeature'`)
-4. Push zum Branch (`git push origin feature/AmazingFeature`)
+2. Erstelle einen Feature-Branch (`git checkout -b feature/NeuesFeature`)
+3. Commit deine Änderungen (`git commit -m 'Feature: Beschreibung'`)
+4. Push zum Branch (`git push origin feature/NeuesFeature`)
 5. Öffne einen Pull Request
 
-**Bitte beachte:** Alle Änderungen müssen die 1:1 Modernisierungs-Philosophie respektieren (siehe CLAUDE.md).
+**Wichtig:** Alle Änderungen sollten die 1:1 Modernisierungs-Philosophie respektieren.
 
 ---
 
-## 📝 Changelog
-
-### [Unreleased]
-- ✅ Header, Footer, Home modernisiert mit Tailwind CSS
-- ✅ Responsive Design implementiert (Mobile-First)
-- ✅ Repository aufgeräumt (Dev-Dateien entfernt)
-
-### [v1.10.0] - Original
-- Basis: 4images v1.10.0 von 4homepages.de
-
----
-
-**Entwickelt mit ❤️ unter Beibehaltung des klassischen 4images Designs**
+Entwickelt unter Beibehaltung des klassischen 4images Designs
