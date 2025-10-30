@@ -1,27 +1,15 @@
-<form method="post" action="{self}">
-  <table border="0" cellspacing="0" cellpadding="1">
-    <tr>
-      <td class="head1">
-        <table border="0" cellspacing="0" cellpadding="3" class="row1">
-          <tr> 
-            <td valign="bottom"> 
-              <select name="rating" class="select">
-                <option value="">--</option>
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-              </select>
-            </td>
-            <td> 
-              <input type="hidden" name="action" value="rateimage" />
-              <input type="hidden" name="id" value="{image_id}" />
-              <input type="submit" value="{rate}" class="button" name="submit" />
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+<form method="post" action="{self}" class="inline-flex items-center gap-2">
+  <input type="hidden" name="action" value="rateimage" />
+  <input type="hidden" name="id" value="{image_id}" />
+
+  <select name="rating" class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent">
+    <option value="">--</option>
+    <option value="5">5</option>
+    <option value="4">4</option>
+    <option value="3">3</option>
+    <option value="2">2</option>
+    <option value="1">1</option>
+  </select>
+
+  <input type="submit" value="{rate}" name="submit" class="px-4 py-1.5 text-sm bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition cursor-pointer" />
 </form>

@@ -1,9 +1,9 @@
-<table width="100%" border="0" cellpadding="4" cellspacing="0">
-  <tr> 
-    <td valign="top" align="left">
-	  {lang_loggedin_msg}<br /><br />
-      » <a href="{url_lightbox}">{lang_lightbox}</a><br />
-	  » <a href="{url_control_panel}">{lang_control_panel}</a><br />
-      » <a href="{url_logout}">{lang_logout}</a><br>&nbsp;</td>
-  </tr>
-</table>
+<div class="p-4">
+  <div class="text-sm text-gray-700 mb-4">{lang_loggedin_msg}</div>
+
+  <div class="space-y-2 text-sm">
+    <div><a href="{url_lightbox}" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fa-solid fa-lightbulb text-xs"></i> {lang_lightbox}</a></div>
+    <div><a href="{url_control_panel}" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fa-solid fa-gauge text-xs"></i> {lang_control_panel}</a></div>
+    <div><a href="{url_logout}" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fa-solid fa-right-from-bracket text-xs"></i> {lang_logout}</a></div>
+  </div>
+</div>

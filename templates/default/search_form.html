@@ -1,61 +1,88 @@
-<form method="post" action="{url_search}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr>
-      <td class="head1">
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr>
-            <td colspan="2" valign="top" class="head1">{lang_search}</td>
-          </tr>
-          <tr>
-            <td valign="top" class="row1"><b>{lang_search_by_keyword}</b></td>
-            <td class="row1" valign="top">
-              <input type="text" name="search_keywords" size="40" value="{search_keywords}" class="input" />
-              <br />
-              <input type="checkbox" name="search_new_images" value="1" />
-              {lang_new_images_only}</td>
-          </tr>
-		  <tr>
-            <td valign="top" class="row2"><b>{lang_search_by_username}</b></td>
-            <td class="row2" valign="top">
-              <input type="text" name="search_user" size="40" value="{search_user}" class="input" />
-            </td>
-          </tr>
-          <tr>
-            <td class="row1"><b>{lang_search_terms}</b></td>
-            <td class="row1">
-              <input type="radio" name="search_terms" value="any" checked="checked" />
-              {lang_or}&nbsp;&nbsp;
-							<input type="radio" name="search_terms" value="all" />
-              {lang_and}
-            </td>
-          </tr>
-          <tr>
-            <td class="row2"><b>{lang_category}</b></td>
-            <td class="row2">{category_dropdown}</td>
-          </tr>
-          <tr>
-            <td valign="top" class="row1"><b>{lang_search_fields}</b></td>
-            <td class="row1">
-              <table border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="all" checked="checked" /> {lang_all_fields}</td>
-                  <td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="image_name" /> {lang_name_only}</td>
-                </tr>
-                <tr>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="image_description" /> {lang_description_only}</td>
-                  <td nowrap="nowrap">&nbsp;</td>
-                  <td nowrap="nowrap"><input type="radio" name="search_fields" value="image_keywords" /> {lang_keywords_only}</td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="row1">&nbsp;</td>
-            <td class="row1"><input type="submit" value="{lang_search}" class="button" /></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+<form method="post" action="{url_search}" class="max-w-4xl mx-auto">
+  <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
+
+    <!-- Card Header -->
+    <div class="bg-brand-blue text-white px-6 py-4 font-semibold flex items-center gap-2">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      {lang_search}
+    </div>
+
+    <!-- Form Fields -->
+    <div class="divide-y divide-gray-200">
+
+      <!-- Search by Keyword -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+        <div class="font-semibold text-gray-700">{lang_search_by_keyword}</div>
+        <div class="sm:col-span-2 space-y-3">
+          <input type="text" name="search_keywords" size="40" value="{search_keywords}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="search_new_images" value="1" class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue rounded" />
+            <span class="text-sm">{lang_new_images_only}</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Search by Username -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+        <div class="font-semibold text-gray-700">{lang_search_by_username}</div>
+        <div class="sm:col-span-2">
+          <input type="text" name="search_user" size="40" value="{search_user}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+        </div>
+      </div>
+
+      <!-- Search Terms -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+        <div class="font-semibold text-gray-700">{lang_search_terms}</div>
+        <div class="sm:col-span-2 flex items-center gap-6">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="search_terms" value="any" checked="checked" class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+            <span>{lang_or}</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="search_terms" value="all" class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+            <span>{lang_and}</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Category -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+        <div class="font-semibold text-gray-700">{lang_category}</div>
+        <div class="sm:col-span-2">
+          {category_dropdown}
+        </div>
+      </div>
+
+      <!-- Search Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+        <div class="font-semibold text-gray-700">{lang_search_fields}</div>
+        <div class="sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="search_fields" value="all" checked="checked" class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+            <span>{lang_all_fields}</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="search_fields" value="image_name" class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+            <span>{lang_name_only}</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="search_fields" value="image_description" class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+            <span>{lang_description_only}</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="search_fields" value="image_keywords" class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+            <span>{lang_keywords_only}</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Submit Button -->
+  <div class="flex justify-center">
+    <input type="submit" value="{lang_search}" class="px-6 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition cursor-pointer min-w-[200px]" />
+  </div>
+
 </form>

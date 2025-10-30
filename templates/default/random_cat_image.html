@@ -1,2 +1,9 @@
-{thumbnail}<br />{image_name}{if image_is_new} <sup class="new">{lang_new}</sup>{endif image_is_new}<br />
-{if allow_comments}{lang_comments} {image_comments}{endif allow_comments}<br />{user_name}
+<div class="text-center">
+  <div class="mb-3">{thumbnail}</div>
+  <div class="font-semibold text-gray-900 mb-1">
+    {image_name}
+    {if image_is_new}<span class="ml-1 inline-block px-2 py-0.5 text-xs font-semibold text-white bg-red-600 rounded">NEU</span>{endif image_is_new}
+  </div>
+  {if allow_comments}<div class="text-sm text-gray-600 mb-1"><i class="fa-solid fa-comment text-xs"></i> {lang_comments} {image_comments}</div>{endif allow_comments}
+  <div class="text-sm text-gray-600">{user_name}</div>
+</div>
