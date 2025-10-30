@@ -1,35 +1,48 @@
-<form name="commentform" action="{url_member}" method="post" onsubmit="uploadbutton.disabled=true;">
+<form name="commentform" action="{url_member}" method="post" onsubmit="uploadbutton.disabled=true;" class="max-w-4xl mx-auto">
   <input type="hidden" name="action" value="updatecomment" />
   <input type="hidden" name="comment_id" value="{comment_id}" />
-  <table width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_edit_comment}</td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_headline}</b></td>
-            <td class="row2"> 
-              <input type="text" name="comment_headline" size="30" value="{comment_headline}" class="commentinput" />
-            </td>
-          </tr>
-          <tr> 
-            <td class="row1" valign="top"><b>{lang_comment}</b></td>
-            <td class="row1"> 
-              <textarea name="comment_text" cols="30" rows="10" wrap="virtual" class="commenttextarea">{comment_text}</textarea>
-            </td>
-          </tr>
-          <tr> 
-            <td class="row2" valign="top">&nbsp;</td>
-            <td class="row2">{bbcode}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <p align="center"> 
-    <input type="submit" name="uploadbutton" value="{lang_submit}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
+
+  <!-- Edit Comment Card -->
+  <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
+
+    <!-- Card Header -->
+    <div class="bg-brand-blue text-white px-6 py-4 font-semibold flex items-center gap-2">
+      <i class="fa-solid fa-comment-pen"></i>
+      {lang_edit_comment}
+    </div>
+
+    <!-- Form Fields -->
+    <div class="divide-y divide-gray-200">
+
+      <!-- Headline -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+        <div class="font-semibold text-gray-700">{lang_headline}</div>
+        <div class="sm:col-span-2">
+          <input type="text" name="comment_headline" size="30" value="{comment_headline}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+        </div>
+      </div>
+
+      <!-- Comment Text -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+        <div class="font-semibold text-gray-700">{lang_comment}</div>
+        <div class="sm:col-span-2">
+          <textarea name="comment_text" cols="30" rows="10" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent resize-y">{comment_text}</textarea>
+        </div>
+      </div>
+
+      <!-- BBCode -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+        <div></div>
+        <div class="sm:col-span-2 text-sm text-gray-600">{bbcode}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Form Buttons -->
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+    <input type="submit" name="uploadbutton" value="{lang_submit}" class="px-6 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+    <input type="reset" value="{lang_reset}" class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+  </div>
+
 </form>

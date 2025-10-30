@@ -1,36 +1,56 @@
-<table width="100%" border="0" cellspacing="0" cellpadding="1">
-  <tr> 
-    <td valign="top" class="head1"> 
-      <table width="100%" border="0" cellpadding="4" cellspacing="0">
-        <tr> 
-          <td valign="top" class="head1">{lang_profile_of} {user_name}</td>
-          <td valign="top" class="head1" align="right"><a href="{url_show_user_images}" class="head1">{lang_show_user_images}</a></td>
-        </tr>
-        <tr> 
-          <td class="row1"><b>{lang_join_date}</b></td>
-          <td class="row1">{user_join_date}</td>
-        </tr>
-        <tr> 
-          <td class="row2"><b>{lang_last_action}</b></td>
-          <td class="row2">{user_last_action}</td>
-        </tr>
-        <tr> 
-          <td class="row1"><b>{lang_comments}</b></td>
-          <td class="row1">{user_comments}</td>
-        </tr>
-        <tr> 
-          <td class="row2"><b>{lang_email}</b></td>
-          <td class="row2">{if user_email}<a href="{user_mailform_link}">{user_email_save}</a>{endif user_email}</td>
-        </tr>
-        <tr> 
-          <td class="row1"><b>{lang_homepage}</b></td>
-          <td class="row1">{if user_homepage}<a href="{user_homepage}" target="_blank">{user_homepage}</a>{endif user_homepage}</td>
-        </tr>
-        <tr> 
-          <td class="row2"><b>{lang_icq}</b></td>
-          <td class="row2">{if user_icq}<a href="http://www.icq.com/people/about_me.php?uin={user_icq}" target="_blank">{user_icq}</a> (<b>{user_icq_status}</b>){endif user_icq}</td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
+<!-- User Profile Card -->
+<div class="bg-white rounded-lg shadow overflow-hidden">
+
+  <!-- Card Header -->
+  <div class="bg-brand-blue text-white px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+    <div class="font-semibold flex items-center gap-2">
+      <i class="fa-solid fa-user"></i>
+      {lang_profile_of} {user_name}
+    </div>
+    <a href="{url_show_user_images}" class="text-white hover:text-brand-yellow transition text-sm font-medium">
+      <i class="fa-solid fa-images text-xs"></i> {lang_show_user_images}
+    </a>
+  </div>
+
+  <!-- Profile Information -->
+  <div class="divide-y divide-gray-200">
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+      <div class="font-semibold text-gray-700">{lang_join_date}</div>
+      <div class="sm:col-span-2 text-gray-900">{user_join_date}</div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+      <div class="font-semibold text-gray-700">{lang_last_action}</div>
+      <div class="sm:col-span-2 text-gray-900">{user_last_action}</div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+      <div class="font-semibold text-gray-700">{lang_comments}</div>
+      <div class="sm:col-span-2 text-gray-900">{user_comments}</div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+      <div class="font-semibold text-gray-700">{lang_email}</div>
+      <div class="sm:col-span-2 text-gray-900">
+        {if user_email}<a href="{user_mailform_link}" class="text-brand-blue hover:underline">{user_email_save}</a>{endif user_email}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+      <div class="font-semibold text-gray-700">{lang_homepage}</div>
+      <div class="sm:col-span-2 text-gray-900">
+        {if user_homepage}<a href="{user_homepage}" target="_blank" class="text-brand-blue hover:underline">{user_homepage}</a>{endif user_homepage}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+      <div class="font-semibold text-gray-700">{lang_icq}</div>
+      <div class="sm:col-span-2 text-gray-900">
+        {if user_icq}<a href="http://www.icq.com/people/about_me.php?uin={user_icq}" target="_blank" class="text-brand-blue hover:underline">{user_icq}</a> (<span class="font-semibold">{user_icq_status}</span>){endif user_icq}
+      </div>
+    </div>
+
+  </div>
+
+</div>

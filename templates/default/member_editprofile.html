@@ -1,95 +1,173 @@
-{lang_edit_profile_msg}<br />
-<br><form method="post" action="{url_member}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_profile_of} {user_name}</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_email}</b></td>
-            <td class="row1"><input type="text" name="user_email"  size="30" value="{user_email}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_email_confirm}</b></td>
-            <td class="row2"><input type="text" name="user_email2"  size="30" value="{user_email2}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_show_email}</b></td>
-            <td class="row1"> 
-              <input type="radio" name="user_showemail" value="1" {user_showemail_yes} />
-              {lang_yes}&nbsp;&nbsp;&nbsp; 
-              <input type="radio" name="user_showemail" value="0" {user_showemail_no} />
-              {lang_no}</td>
-          </tr>
-		  <tr> 
-            <td class="row2"><b>{lang_allow_emails}</b></td>
-            <td class="row2"> 
-              <input type="radio" name="user_allowemails" value="1" {user_allowemails_yes} />
-              {lang_yes}&nbsp;&nbsp;&nbsp; 
-              <input type="radio" name="user_allowemails" value="0" {user_allowemails_no} />
-              {lang_no}
-			</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_invisible}</b></td>
-            <td class="row1"> 
-              <input type="radio" name="user_invisible" value="1" {user_invisible_yes} />
-              {lang_yes}&nbsp;&nbsp;&nbsp; 
-              <input type="radio" name="user_invisible" value="0" {user_invisible_no} />
-              {lang_no}
-			</td>
-          </tr>
-          <tr> 
-            <td colspan="2" class="head1">{lang_optional_infos}</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_homepage}</b></td>
-            <td class="row1"><input type="text" name="user_homepage"  size="30" value="{user_homepage}" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_icq}</b></td>
-            <td class="row2"><input type="text" name="user_icq"  size="30" value="{user_icq}" class="input" /></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="action" value="updateprofile" />
-  <p align="center"> 
-    <input type="submit" value="{lang_save}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
-</form>
-<br />
-<form method="post" action="{url_member}">
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td colspan="2" valign="top" class="head1">{lang_change_password}</td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_old_password}</b></td>
-            <td class="row1"><input type="password" name="current_user_password" size="30" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row2"><b>{lang_new_password}</b></td>
-            <td class="row2"><input type="password" name="user_password" size="30" class="input" /></td>
-          </tr>
-          <tr> 
-            <td class="row1"><b>{lang_new_password_confirm}</b></td>
-            <td class="row1"><input type="password" name="user_password2" size="30" class="input" /></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" name="action" value="updatepassword" />
-  <p align="center"> 
-    <input type="submit" value="{lang_change_password}" class="button" />
-    <input type="reset" value="{lang_reset}" class="button" />
-  </p>
-</form>
+<div class="max-w-4xl mx-auto space-y-6">
+
+  <!-- Info Message -->
+  <div class="bg-blue-50 border border-blue-200 text-blue-900 px-4 py-3 rounded-lg">
+    {lang_edit_profile_msg}
+  </div>
+
+  <!-- Edit Profile Form -->
+  <form method="post" action="{url_member}">
+    <input type="hidden" name="action" value="updateprofile" />
+
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+
+      <!-- Card Header -->
+      <div class="bg-brand-blue text-white px-6 py-4 font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-user-pen"></i>
+        {lang_profile_of} {user_name}
+      </div>
+
+      <!-- Form Fields -->
+      <div class="divide-y divide-gray-200">
+
+        <!-- Email -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+          <div class="font-semibold text-gray-700">{lang_email}</div>
+          <div class="sm:col-span-2">
+            <input type="text" name="user_email" size="30" value="{user_email}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          </div>
+        </div>
+
+        <!-- Email Confirm -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+          <div class="font-semibold text-gray-700">{lang_email_confirm}</div>
+          <div class="sm:col-span-2">
+            <input type="text" name="user_email2" size="30" value="{user_email2}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          </div>
+        </div>
+
+        <!-- Show Email -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+          <div class="font-semibold text-gray-700">{lang_show_email}</div>
+          <div class="sm:col-span-2 flex items-center gap-6">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="user_showemail" value="1" {user_showemail_yes} class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+              <span>{lang_yes}</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="user_showemail" value="0" {user_showemail_no} class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+              <span>{lang_no}</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Allow Emails -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+          <div class="font-semibold text-gray-700">{lang_allow_emails}</div>
+          <div class="sm:col-span-2 flex items-center gap-6">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="user_allowemails" value="1" {user_allowemails_yes} class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+              <span>{lang_yes}</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="user_allowemails" value="0" {user_allowemails_no} class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+              <span>{lang_no}</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Invisible -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+          <div class="font-semibold text-gray-700">{lang_invisible}</div>
+          <div class="sm:col-span-2 flex items-center gap-6">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="user_invisible" value="1" {user_invisible_yes} class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+              <span>{lang_yes}</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="user_invisible" value="0" {user_invisible_no} class="w-4 h-4 text-brand-blue focus:ring-2 focus:ring-brand-blue" />
+              <span>{lang_no}</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Optional Info Section Header -->
+      <div class="bg-gray-100 px-6 py-3 font-semibold text-gray-700 border-t border-gray-200">
+        {lang_optional_infos}
+      </div>
+
+      <!-- Optional Info Fields -->
+      <div class="divide-y divide-gray-200">
+
+        <!-- Homepage -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+          <div class="font-semibold text-gray-700">{lang_homepage}</div>
+          <div class="sm:col-span-2">
+            <input type="text" name="user_homepage" size="30" value="{user_homepage}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          </div>
+        </div>
+
+        <!-- ICQ -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+          <div class="font-semibold text-gray-700">{lang_icq}</div>
+          <div class="sm:col-span-2">
+            <input type="text" name="user_icq" size="30" value="{user_icq}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Form Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <input type="submit" value="{lang_save}" class="px-6 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+      <input type="reset" value="{lang_reset}" class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+    </div>
+
+  </form>
+
+  <!-- Change Password Form -->
+  <form method="post" action="{url_member}">
+    <input type="hidden" name="action" value="updatepassword" />
+
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+
+      <!-- Card Header -->
+      <div class="bg-brand-blue text-white px-6 py-4 font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-key"></i>
+        {lang_change_password}
+      </div>
+
+      <!-- Form Fields -->
+      <div class="divide-y divide-gray-200">
+
+        <!-- Old Password -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+          <div class="font-semibold text-gray-700">{lang_old_password}</div>
+          <div class="sm:col-span-2">
+            <input type="password" name="current_user_password" size="30" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          </div>
+        </div>
+
+        <!-- New Password -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-gray-50">
+          <div class="font-semibold text-gray-700">{lang_new_password}</div>
+          <div class="sm:col-span-2">
+            <input type="password" name="user_password" size="30" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          </div>
+        </div>
+
+        <!-- New Password Confirm -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 py-4 bg-white">
+          <div class="font-semibold text-gray-700">{lang_new_password_confirm}</div>
+          <div class="sm:col-span-2">
+            <input type="password" name="user_password2" size="30" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent" />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Form Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <input type="submit" value="{lang_change_password}" class="px-6 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+      <input type="reset" value="{lang_reset}" class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+    </div>
+
+  </form>
+
+</div>

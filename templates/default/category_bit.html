@@ -1,14 +1,15 @@
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr> 
-    <td valign="top">
-	  <img src="{template_url}/images/folder.gif" width="20" height="13" alt="" /> 
-      <!-- {if random_cat_image_file}<a href="{cat_url}"><img src="{random_cat_image_file}" border="1"></a>{endif random_cat_image_file}  -->
-    </td>
-    <td>
-	  <a href="{cat_url}" class="maincat">{cat_name}</a>&nbsp;({num_images}) 
-      {if cat_is_new}<sup class="new">{lang_new}</sup>{endif cat_is_new}
-	</td>
-  </tr>
-</table>
-{if cat_description}<span class="smalltext">{cat_description}</span><br />{endif cat_description}
-{if sub_cats}{sub_cats}{endif sub_cats}
+<div class="flex items-start gap-3 mb-4">
+  <div class="flex-shrink-0 mt-1">
+    <i class="fa-solid fa-folder text-brand-blue text-xl"></i>
+    <!-- {if random_cat_image_file}<a href="{cat_url}"><img src="{random_cat_image_file}" border="1"></a>{endif random_cat_image_file}  -->
+  </div>
+  <div class="flex-1">
+    <div class="mb-1">
+      <a href="{cat_url}" class="text-lg font-semibold text-brand-blue hover:underline">{cat_name}</a>
+      <span class="text-gray-600">({num_images})</span>
+      {if cat_is_new}<span class="ml-1 inline-block px-2 py-0.5 text-xs font-semibold text-white bg-red-600 rounded">NEU</span>{endif cat_is_new}
+    </div>
+    {if cat_description}<div class="text-sm text-gray-600 mb-2">{cat_description}</div>{endif cat_description}
+    {if sub_cats}<div class="ml-4 mt-2 text-sm">{sub_cats}</div>{endif sub_cats}
+  </div>
+</div>

@@ -1,22 +1,27 @@
-<form method="post" action="{url_member}" enctype="multipart/form-data" onsubmit="uploadbutton.disabled=true;">
+<form method="post" action="{url_member}" enctype="multipart/form-data" onsubmit="uploadbutton.disabled=true;" class="max-w-4xl mx-auto">
   <input type="hidden" name="action" value="deleteimage" />
   <input type="hidden" name="image_id" value="{image_id}" />
-  <table width="100%" border="0" cellspacing="0" cellpadding="1">
-    <tr> 
-      <td valign="top" class="head1"> 
-        <table width="100%" border="0" cellpadding="4" cellspacing="0">
-          <tr> 
-            <td valign="top" class="head1">{lang_delete_image}</td>
-          </tr>
-          <tr> 
-            <td class="row2">{lang_delete_image_confirm}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <p align="center"> 
-    <input type="submit" name="uploadbutton" value="{lang_yes}" class="button" />
-    <input type="button" value="{lang_no}" class="button" onclick="javascript:history.go(-1)" />
-  </p>
+
+  <!-- Delete Image Card -->
+  <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
+
+    <!-- Card Header -->
+    <div class="bg-red-600 text-white px-6 py-4 font-semibold flex items-center gap-2">
+      <i class="fa-solid fa-trash"></i>
+      {lang_delete_image}
+    </div>
+
+    <!-- Confirmation Message -->
+    <div class="px-6 py-6 bg-red-50 border-l-4 border-red-600">
+      <p class="text-red-900 text-lg">{lang_delete_image_confirm}</p>
+    </div>
+
+  </div>
+
+  <!-- Form Buttons -->
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+    <input type="submit" name="uploadbutton" value="{lang_yes}" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+    <input type="button" value="{lang_no}" onclick="javascript:history.go(-1)" class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+  </div>
+
 </form>
