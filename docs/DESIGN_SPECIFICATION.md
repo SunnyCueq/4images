@@ -377,36 +377,45 @@ Component Spacing:
 ```
 
 #### Buttons (STANDARDIZED!)
+
+**UPDATED 2025-01-31:** Button standards updated to reflect actual usage after audit
+
 ```html
-<!-- Primary Button -->
+<!-- Primary Button (Large - Form Submits) -->
+<input type="submit" value="Submit" class="px-6 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+
+<!-- Primary Button (Medium - Inline Actions) -->
 <button class="px-6 py-2.5 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition inline-flex items-center gap-2">
   <i class="fa-solid fa-icon"></i>
   Button Text
 </button>
 
-<!-- Secondary Button -->
-<button class="px-6 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold rounded-lg transition inline-flex items-center gap-2">
-  Cancel
+<!-- Primary Button (Small - Compact Controls) -->
+<button class="px-4 py-2 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold rounded-lg transition text-sm">
+  Go
 </button>
 
-<!-- Danger Button -->
-<button class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition inline-flex items-center gap-2">
-  <i class="fa-solid fa-trash"></i>
-  Delete
-</button>
+<!-- Secondary Button (Cancel/Reset) -->
+<input type="reset" value="Reset" class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
 
-<!-- Success Button -->
-<button class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition inline-flex items-center gap-2">
-  <i class="fa-solid fa-check"></i>
+<!-- Danger Button (Delete Actions) -->
+<input type="submit" value="Delete" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]" />
+
+<!-- Success Button (Confirmations) -->
+<button class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition cursor-pointer min-w-[140px]">
   Confirm
 </button>
 ```
 
 **Rules:**
-- ✅ ALWAYS: `px-6 py-2.5` for consistent sizing
+- ✅ Large Buttons (Form Submits): `px-6 py-3` + `min-w-[140px]`
+- ✅ Medium Buttons (Actions): `px-6 py-2.5`
+- ✅ Small Buttons (Compact): `px-4 py-2` + `text-sm`
 - ✅ ALWAYS: `font-semibold rounded-lg transition`
 - ✅ Icon + Text: `inline-flex items-center gap-2`
-- ❌ NO variations in padding!
+- ✅ Input buttons: `cursor-pointer` class required
+- ✅ Secondary buttons use `gray-500` (NOT gray-200 - better visual hierarchy)
+- ❌ NO other padding variations!
 
 ### 5. Footer Component
 
