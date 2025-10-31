@@ -1,9 +1,9 @@
 {header}
 <!-- Breadcrumb -->
-<nav class="flex items-center gap-2 text-sm text-gray-600 mb-6">
-  <a href="{url_home}" class="hover:text-brand-blue transition"><i class="fa-solid fa-home"></i></a>
-  <i class="fa-solid fa-chevron-right text-xs"></i>
-  <span class="text-gray-900">{clickstream}</span>
+<nav class="flex items-center gap-2 text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
+  <a href="{url_home}" class="text-gray-500 hover:text-brand-blue transition" aria-label="Home"><i class="fa-solid fa-home"></i></a>
+  <span class="text-gray-400">/</span>
+  <span class="text-gray-900 font-medium" aria-current="page">{clickstream}</span>
   <div class="ml-auto flex items-center gap-4">
     <a href="{url_top_images}" class="hover:text-brand-blue transition font-medium"><i class="fa-solid fa-star text-xs"></i> {lang_top_images}</a>
     <a href="{url_new_images}" class="hover:text-brand-blue transition font-medium"><i class="fa-solid fa-sparkles text-xs"></i> {lang_new_images}</a>
