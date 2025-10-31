@@ -237,3 +237,17 @@ form {
   font-size: 11px;
   width: 200px;
 }
+
+/*--Modern Thumbnail Styles (Tailwind compatible)-------------*/
+/* Ensure images inside aspect-square containers fill properly */
+.aspect-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover effect for thumbnails */
+.group:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
